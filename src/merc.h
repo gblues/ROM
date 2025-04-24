@@ -42,12 +42,6 @@
 #define DECLARE_SPELL_FUN( fun )	SPELL_FUN fun
 #endif
 
-/* system calls */
-int unlink();
-int system();
-
-
-
 /*
  * Short scalar types.
  * Diavolo reports AIX compiler has bugs with short types.
@@ -72,7 +66,15 @@ typedef short   int			sh_int;
 typedef unsigned char			bool;
 #endif
 
-
+/*
+ * MacOS (modern)
+ */
+#if defined(__MACH__)
+#include <unistd.h>
+#include <sys/socket.h>
+#include <stdlib.h>
+#define unix
+#endif
 
 /*
  * Structure types.

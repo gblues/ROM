@@ -196,7 +196,7 @@ void show_spec_cmds( CHAR_DATA *ch )
     buf1[0] = '\0';
     col = 0;
     send_to_char( "Preceed special functions with 'spec_'\n\r\n\r", ch );
-    for (spec = 0; spec_table[spec].function[0] != '\0'; spec++)
+    for (spec = 0; spec_table[spec].function != NULL; spec++)
     {
 	sprintf( buf, "%-19.18s", &spec_table[spec].name[5] );
 	strcat( buf1, buf );
@@ -802,7 +802,7 @@ AEDIT( aedit_builder )
 
     name[0] = UPPER( name[0] );
 
-    if ( strstr( pArea->builders, name ) != '\0' )
+    if ( strstr( pArea->builders, name ) != NULL )
     {
 	pArea->builders = string_replace( pArea->builders, name, "\0" );
 	pArea->builders = string_unpad( pArea->builders );
@@ -818,7 +818,7 @@ AEDIT( aedit_builder )
     else
     {
 	buf[0] = '\0';
-	if ( strstr( pArea->builders, "None" ) != '\0' )
+	if ( strstr( pArea->builders, "None" ) != NULL )
 	{
 	    pArea->builders = string_replace( pArea->builders, "None", "\0" );
 	    pArea->builders = string_unpad( pArea->builders );
@@ -2987,7 +2987,6 @@ OEDIT( oedit_ed )
 
     if ( !str_cmp( command, "format" ) )
     {
-	EXTRA_DESCR_DATA *ped = NULL;
 
 	if ( keyword[0] == '\0' )
 	{
@@ -2999,7 +2998,6 @@ OEDIT( oedit_ed )
 	{
 	    if ( is_name( keyword, ed->keyword ) )
 		break;
-	    ped = ed;
 	}
 
 	if ( !ed )

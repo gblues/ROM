@@ -421,12 +421,13 @@ void do_put( CHAR_DATA *ch, char *argument )
 	}
 	
 	if (container->pIndexData->vnum == OBJ_VNUM_PIT 
-	&&  !CAN_WEAR(container,ITEM_TAKE))
-	    if (obj->timer)
+	&&  !CAN_WEAR(container,ITEM_TAKE)) {
+	    if (obj->timer) {
 		SET_BIT(obj->extra_flags,ITEM_HAD_TIMER);
-	    else
+		} else {
 	        obj->timer = number_range(100,200);
-
+		}
+	}
 	obj_from_char( obj );
 	obj_to_obj( obj, container );
 
@@ -459,11 +460,13 @@ void do_put( CHAR_DATA *ch, char *argument )
 	    &&   get_obj_weight(obj) < (container->value[3] * 10))
 	    {
 	    	if (container->pIndexData->vnum == OBJ_VNUM_PIT
-	    	&&  !CAN_WEAR(obj, ITEM_TAKE) )
-	    	    if (obj->timer)
+	    	&&  !CAN_WEAR(obj, ITEM_TAKE) ) {
+	    	    if (obj->timer) {
 			SET_BIT(obj->extra_flags,ITEM_HAD_TIMER);
-	    	    else
+				} else {		
 	    	    	obj->timer = number_range(100,200);
+				}
+			}
 		obj_from_char( obj );
 		obj_to_obj( obj, container );
 
@@ -2478,11 +2481,13 @@ int get_cost( CHAR_DATA *keeper, OBJ_DATA *obj, bool fBuy )
 	    for ( obj2 = keeper->carrying; obj2; obj2 = obj2->next_content )
 	    {
 	    	if ( obj->pIndexData == obj2->pIndexData
-		&&   !str_cmp(obj->short_descr,obj2->short_descr) )
-	 	    if (IS_OBJ_STAT(obj2,ITEM_INVENTORY))
+		&&   !str_cmp(obj->short_descr,obj2->short_descr) ) {
+	 	    if (IS_OBJ_STAT(obj2,ITEM_INVENTORY)) {
 			cost /= 2;
-		    else
+			} else {
                     	cost = cost * 3 / 4;
+			}
+		}
 	    }
     }
 

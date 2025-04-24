@@ -70,7 +70,7 @@ void violence_update( void )
     CHAR_DATA *ch_next;
     CHAR_DATA *victim;
 
-    for ( ch = char_list; ch != NULL; ch = ch->next )
+    for ( ch = char_list; ch != NULL; ch = ch_next )
     {
 	ch_next	= ch->next;
 
@@ -568,11 +568,12 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
      else if (victim->position < POS_FIGHTING)
 	dam = dam * 3 / 2;
 
-    if ( dt == gsn_backstab && wield != NULL) 
+    if ( dt == gsn_backstab && wield != NULL) {
     	if ( wield->value[0] != 2 )
-	    dam *= 2 + (ch->level / 10); 
-	else 
-	    dam *= 2 + (ch->level / 8);
+	    	dam *= 2 + (ch->level / 10); 
+		else 
+	    	dam *= 2 + (ch->level / 8);
+	}
 
     dam += GET_DAMROLL(ch) * UMIN(100,skill) /100;
 
@@ -1693,7 +1694,9 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 {
     char buf[MAX_STRING_LENGTH];
     CHAR_DATA *gch;
+	#ifdef ROM_GROUP_RESTRICT
     CHAR_DATA *lch;
+	#endif
     int xp;
     int members;
     int group_levels;
@@ -1723,8 +1726,9 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	members = 1;
 	group_levels = ch->level ;
     }
-
+	#ifdef ROM_GROUP_RESTRICT
     lch = (ch->leader != NULL) ? ch->leader : ch;
+	#endif
 
     for ( gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room )
     {
@@ -1734,7 +1738,8 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	if ( !is_same_group( gch, ch ) || IS_NPC(gch))
 	    continue;
 
-/*	Taken out, add it back if you want it
+/*	Taken out, add it back if you want it */
+#ifdef ROM_GROUP_RESTRICT
 	if ( gch->level - lch->level >= 5 )
 	{
 	    send_to_char( "You are too high for this group.\n\r", gch );
@@ -1746,7 +1751,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	    send_to_char( "You are too low for this group.\n\r", gch );
 	    continue;
 	}
-*/
+	#endif
 
 	xp = xp_compute( gch, victim, group_levels );  
 	sprintf( buf, "You receive %d experience points.\n\r", xp );

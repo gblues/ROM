@@ -111,7 +111,7 @@ int material_lookup (const char *name)
 {
     int mat;
 
-    for ( mat = 0; material_type[mat].name != NULL && material_type[mat].name[0] != NULL; mat++)
+    for ( mat = 0; material_type[mat].name != NULL && material_type[mat].name[0] != '\0'; mat++)
     {
 	if (name[0] == material_type[mat].name[0]
 	&& !str_prefix(name,material_type[mat].name))
@@ -577,12 +577,12 @@ void reset_char(CHAR_DATA *ch)
 	ch->pcdata->perm_mana 	= ch->max_mana;
 	ch->pcdata->perm_move	= ch->max_move;
 	ch->pcdata->last_level	= ch->played/3600;
-	if (ch->pcdata->true_sex < 0 || ch->pcdata->true_sex > 2)
+	if (ch->pcdata->true_sex < 0 || ch->pcdata->true_sex > 2) {
 		if (ch->sex > 0 && ch->sex < 3)
 	    	    ch->pcdata->true_sex	= ch->sex;
 		else
 		    ch->pcdata->true_sex 	= 0;
-
+    }
     }
 
     /* now restore the character to his/her true condition */
@@ -773,12 +773,12 @@ int get_max_train( CHAR_DATA *ch, int stat )
 	return 25;
 
     max = pc_race_table[ch->race].max_stats[stat];
-    if (class_table[ch->class].attr_prime == stat)
+    if (class_table[ch->class].attr_prime == stat) {
 	if (ch->race == race_lookup("human"))
 	   max += 3;
 	else
 	   max += 2;
-
+    }
     return UMIN(max,25);
 }
    
@@ -1313,9 +1313,7 @@ bool is_affected( CHAR_DATA *ch, int sn )
 void affect_join( CHAR_DATA *ch, AFFECT_DATA *paf )
 {
     AFFECT_DATA *paf_old;
-    bool found;
 
-    found = FALSE;
     for ( paf_old = ch->affected; paf_old != NULL; paf_old = paf_old->next )
     {
 	if ( paf_old->type == paf->type )
@@ -1657,8 +1655,8 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
     obj->wear_loc	 = -1;
 
     if (!obj->enchanted)
-	for ( paf = obj->pIndexData->affected; paf != NULL; paf = paf->next )
-	    if ( paf->location == APPLY_SPELL_AFFECT )
+	for ( paf = obj->pIndexData->affected; paf != NULL; paf = paf->next ) {
+	    if ( paf->location == APPLY_SPELL_AFFECT ) 
 	    {
 	        for ( lpaf = ch->affected; lpaf != NULL; lpaf = lpaf_next )
 	        {
@@ -1677,7 +1675,7 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
 	        affect_modify( ch, paf, FALSE );
 		affect_check(ch,paf->where,paf->bitvector);
 	    }
-
+    }
     for ( paf = obj->affected; paf != NULL; paf = paf->next )
 	if ( paf->location == APPLY_SPELL_AFFECT )
 	{

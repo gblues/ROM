@@ -1034,7 +1034,7 @@ char *spec_string( SPEC_FUN *fun )	/* OLC */
 {
     int cmd;
     
-    for ( cmd = 0; spec_table[cmd].function[0] != '\0'; cmd++ )
+    for ( cmd = 0; spec_table[cmd].function != NULL; cmd++ )
 	if ( fun == spec_table[cmd].function )
 	    return spec_table[cmd].name;
 

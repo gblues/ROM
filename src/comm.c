@@ -122,6 +122,7 @@ const	char 	go_ahead_str	[] = { IAC, GA, '\0' };
 /*
  * OS-dependent declarations.
  */
+
 #if	defined(_AIX)
 #include <sys/select.h>
 int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
@@ -890,7 +891,7 @@ void init_descriptor( int control )
     struct sockaddr_in sock;
     struct hostent *from;
     int desc;
-    int size;
+    unsigned size;
 
     size = sizeof(sock);
     getsockname( control, (struct sockaddr *) &sock, &size );
@@ -1253,96 +1254,89 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
      * Bust a prompt.
      * OLC changed
      */
-    if ( !merc_down )
-	if ( d->showstr_point )
-	    write_to_buffer( d, "[Hit Return to continue]\n\r", 0 );
-	else if ( fPrompt && d->pString && d->connected == CON_PLAYING )
-	    write_to_buffer( d, "> ", 2 );
-	else if ( fPrompt && d->connected == CON_PLAYING )
-    {
-   	CHAR_DATA *ch;
-	CHAR_DATA *victim;
+    if ( !merc_down ) {
+		if ( d->showstr_point )
+	    	write_to_buffer( d, "[Hit Return to continue]\n\r", 0 );
+		else if ( fPrompt && d->pString && d->connected == CON_PLAYING )
+		    write_to_buffer( d, "> ", 2 );
+		else if ( fPrompt && d->connected == CON_PLAYING ) {
+		   	CHAR_DATA *ch;
+			CHAR_DATA *victim;
 
-	ch = d->character;
+			ch = d->character;
 
-        /* battle prompt */
-        if ((victim = ch->fighting) != NULL && can_see(ch,victim))
-        {
-            int percent;
-            char wound[100];
-	    char buf[MAX_STRING_LENGTH];
+        	/* battle prompt */
+        	if ((victim = ch->fighting) != NULL && can_see(ch,victim)) {
+	            int percent;
+    	        char wound[100];
+	    		char buf[MAX_STRING_LENGTH];
  
-            if (victim->max_hit > 0)
-                percent = victim->hit * 100 / victim->max_hit;
-            else
-                percent = -1;
+	            if (victim->max_hit > 0)
+    	            percent = victim->hit * 100 / victim->max_hit;
+        	    else
+            	    percent = -1;
  
-            if (percent >= 100)
-                sprintf(wound,"is in excellent condition.");
-            else if (percent >= 90)
-                sprintf(wound,"has a few scratches.");
-            else if (percent >= 75)
-                sprintf(wound,"has some small wounds and bruises.");
-            else if (percent >= 50)
-                sprintf(wound,"has quite a few wounds.");
-            else if (percent >= 30)
-                sprintf(wound,"has some big nasty wounds and scratches.");
-            else if (percent >= 15)
-                sprintf(wound,"looks pretty hurt.");
-            else if (percent >= 0)
-                sprintf(wound,"is in awful condition.");
-            else
-                sprintf(wound,"is bleeding to death.");
+	            if (percent >= 100)
+    	            sprintf(wound,"is in excellent condition.");
+        	    else if (percent >= 90)
+            	    sprintf(wound,"has a few scratches.");
+            	else if (percent >= 75)
+                	sprintf(wound,"has some small wounds and bruises.");
+            	else if (percent >= 50)
+                	sprintf(wound,"has quite a few wounds.");
+            	else if (percent >= 30)
+                	sprintf(wound,"has some big nasty wounds and scratches.");
+            	else if (percent >= 15)
+                	sprintf(wound,"looks pretty hurt.");
+            	else if (percent >= 0)
+                	sprintf(wound,"is in awful condition.");
+            	else
+                	sprintf(wound,"is bleeding to death.");
  
-            sprintf(buf,"%s %s \n\r", 
-	            IS_NPC(victim) ? victim->short_descr : victim->name,wound);
-	    buf[0] = UPPER(buf[0]);
-            write_to_buffer( d, buf, 0);
-        }
+	            sprintf(buf,"%s %s \n\r", 
+		            IS_NPC(victim) ? victim->short_descr : victim->name,wound);
+	    		buf[0] = UPPER(buf[0]);
+            	write_to_buffer( d, buf, 0);
+        	}
 
+			ch = d->original ? d->original : d->character;
+			if (!IS_SET(ch->comm, COMM_COMPACT) )
+	    		write_to_buffer( d, "\n\r", 2 );
 
-	ch = d->original ? d->original : d->character;
-	if (!IS_SET(ch->comm, COMM_COMPACT) )
-	    write_to_buffer( d, "\n\r", 2 );
+	        if ( IS_SET(ch->comm, COMM_PROMPT) )
+    	        bust_a_prompt( d->character );
 
+			if (IS_SET(ch->comm,COMM_TELNET_GA))
+	    		write_to_buffer(d,go_ahead_str,0);
+    	}
+	}
 
-        if ( IS_SET(ch->comm, COMM_PROMPT) )
-            bust_a_prompt( d->character );
+	/*
+		* Short-circuit if nothing to write.
+		*/
+	if ( d->outtop == 0 )
+		return TRUE;
 
-	if (IS_SET(ch->comm,COMM_TELNET_GA))
-	    write_to_buffer(d,go_ahead_str,0);
-    }
+	/*
+		* Snoop-o-rama.
+	*/
+	if ( d->snoop_by != NULL ) {
+		if (d->character != NULL)
+		write_to_buffer( d->snoop_by, d->character->name,0);
+		write_to_buffer( d->snoop_by, "> ", 2 );
+		write_to_buffer( d->snoop_by, d->outbuf, d->outtop );
+	}
 
-    /*
-     * Short-circuit if nothing to write.
-     */
-    if ( d->outtop == 0 )
-	return TRUE;
-
-    /*
-     * Snoop-o-rama.
-     */
-    if ( d->snoop_by != NULL )
-    {
-	if (d->character != NULL)
-	    write_to_buffer( d->snoop_by, d->character->name,0);
-	write_to_buffer( d->snoop_by, "> ", 2 );
-	write_to_buffer( d->snoop_by, d->outbuf, d->outtop );
-    }
-
-    /*
-     * OS-dependent output.
-     */
-    if ( !write_to_descriptor( d->descriptor, d->outbuf, d->outtop ) )
-    {
-	d->outtop = 0;
-	return FALSE;
-    }
-    else
-    {
-	d->outtop = 0;
-	return TRUE;
-    }
+	/*
+		* OS-dependent output.
+	*/
+	if ( !write_to_descriptor( d->descriptor, d->outbuf, d->outtop ) ) {
+		d->outtop = 0;
+		return FALSE;
+	} else {
+		d->outtop = 0;
+		return TRUE;
+	}
 }
 
 /*
@@ -2455,7 +2449,8 @@ void show_string(struct descriptor_data *d, char *input)
 	{
 	    *scan = '\0';
 	    write_to_buffer(d,buffer,strlen(buffer));
-	    for (chk = d->showstr_point; isspace(*chk); chk++);
+	    for (chk = d->showstr_point; isspace(*chk); chk++)
+		;
 	    {
 		if (!*chk)
 		{

@@ -39,7 +39,7 @@ int flag_lookup (const char *name, const struct flag_type *flag_table)
 {
     int flag;
 
-    for (flag = 0; flag_table[flag].name != NULL && flag_table[flag].name[0] != NULL; flag++)
+    for (flag = 0; flag_table[flag].name != NULL && flag_table[flag].name[0] != '\0'; flag++)
     {
 	if (LOWER(name[0]) == LOWER(flag_table[flag].name[0])
 	&&  !str_prefix(name,flag_table[flag].name))

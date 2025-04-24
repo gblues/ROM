@@ -56,7 +56,7 @@ char *fix_string( const char *str )
     int o;
 
     if ( str == NULL )
-        return '\0';
+        return NULL;
 
     for ( o = i = 0; str[i+o] != '\0'; i++ )
     {
@@ -601,7 +601,9 @@ void save_resets( FILE *fp, AREA_DATA *pArea )
 {
     RESET_DATA *pReset;
     MOB_INDEX_DATA *pLastMob = NULL;
+    #if defined(VERBOSE)
     OBJ_INDEX_DATA *pLastObj;
+    #endif
     ROOM_INDEX_DATA *pRoom;
     char buf[MAX_STRING_LENGTH];
     int iHash;
@@ -707,7 +709,6 @@ void save_resets( FILE *fp, AREA_DATA *pArea )
             break;
 
 	case 'O':
-            pLastObj = get_obj_index( pReset->arg1 );
             pRoom = get_room_index( pReset->arg3 );
 	    fprintf( fp, "O 0 %d %d %d\n", 
 	        pReset->arg1,
@@ -716,7 +717,6 @@ void save_resets( FILE *fp, AREA_DATA *pArea )
             break;
 
 	case 'P':
-            pLastObj = get_obj_index( pReset->arg1 );
 	    fprintf( fp, "P 0 %d %d %d %d\n", 
 	        pReset->arg1,
                 pReset->arg2,
@@ -861,10 +861,7 @@ void do_asave( CHAR_DATA *ch, char *argument )
 {
     char arg1 [MAX_INPUT_LENGTH];
     AREA_DATA *pArea;
-    FILE *fp;
     int value;
-
-    fp = NULL;
 
     if ( !ch )       /* Do an autosave */
     {
