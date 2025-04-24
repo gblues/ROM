@@ -14,20 +14,19 @@
  *  benefitting.  We hope that you share your changes too.  What goes	   *
  *  around, comes around.						   *
  ***************************************************************************/
- 
+
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
-*	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@hypercube.org)				   *
-*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
-*	    Brian Moore (zump@rom.org)					   *
-*	By using this code, you have agreed to follow the terms of the	   *
-*	ROM license, in the file Rom24/doc/rom.license			   *
-***************************************************************************/
+ *	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
+ *	ROM has been brought to you by the ROM consortium		   *
+ *	    Russ Taylor (rtaylor@hypercube.org)				   *
+ *	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
+ *	    Brian Moore (zump@rom.org)					   *
+ *	By using this code, you have agreed to follow the terms of the	   *
+ *	ROM license, in the file Rom24/doc/rom.license			   *
+ ***************************************************************************/
 
-
-int	clan_lookup	args( (const char *name) );
-int	position_lookup	args( (const char *name) );
-int 	sex_lookup	args( (const char *name) );
-int 	size_lookup	args( (const char *name) );
-int flag_lookup args( ( const char *name, const struct flag_type *flag_table ) );
+int clan_lookup args((const char *name));
+int position_lookup args((const char *name));
+int sex_lookup args((const char *name));
+int size_lookup args((const char *name));
+int flag_lookup args((const char *name, const struct flag_type *flag_table));
