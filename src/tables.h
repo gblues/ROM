@@ -14,61 +14,56 @@
  *  benefitting.  We hope that you share your changes too.  What goes	   *
  *  around, comes around.						   *
  ***************************************************************************/
- 
+
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
-*	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Russ Taylor (rtaylor@hypercube.org)				   *
-*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
-*	By using this code, you have agreed to follow the terms of the	   *
-*	ROM license, in the file Rom24/doc/rom.license			   *
-***************************************************************************/
+ *	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
+ *	ROM has been brought to you by the ROM consortium		   *
+ *	    Russ Taylor (rtaylor@efn.org)				   *
+ *	    Russ Taylor (rtaylor@hypercube.org)				   *
+ *	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
+ *	By using this code, you have agreed to follow the terms of the	   *
+ *	ROM license, in the file Rom24/doc/rom.license			   *
+ ***************************************************************************/
+
+struct clan_type {
+  char *name;
+  char *who_name;
+  sh_int hall;
+  bool independent; /* true for loners */
+};
+
+struct position_type {
+  char *name;
+  char *short_name;
+};
+
+struct sex_type {
+  char *name;
+};
+
+struct size_type {
+  char *name;
+};
 
 /* game tables */
-extern	const	struct	clan_type	clan_table[MAX_CLAN];
-extern	const	struct	position_type	position_table[];
-extern	const	struct	sex_type	sex_table[];
-extern	const	struct	size_type	size_table[];
+extern const struct clan_type clan_table[MAX_CLAN];
+extern const struct position_type position_table[];
+extern const struct sex_type sex_table[];
+extern const struct size_type size_table[];
 
 /* flag tables */
-extern	const	struct	flag_type	act_flags[];
-extern	const	struct	flag_type	plr_flags[];
-extern	const	struct	flag_type	affect_flags[];
-extern	const	struct	flag_type	off_flags[];
-extern	const	struct	flag_type	imm_flags[];
-extern	const	struct	flag_type	form_flags[];
-extern	const	struct	flag_type	part_flags[];
-extern	const	struct	flag_type	comm_flags[];
-extern	const	struct	flag_type	extra_flags[];
-extern	const	struct	flag_type	wear_flags[];
-extern	const	struct	flag_type	weapon_flags[];
-extern	const	struct	flag_type	container_flags[];
-extern	const	struct	flag_type	portal_flags[];
-extern	const	struct	flag_type	room_flags[];
-extern	const	struct	flag_type	exit_flags[];
-
-struct clan_type
-{
-    char 	*name;
-    char 	*who_name;
-    sh_int 	hall;
-    bool	independent; /* true for loners */
-};
-
-struct position_type
-{
-    char *name;
-    char *short_name;
-};
-
-struct sex_type
-{
-    char *name;
-};
-
-struct size_type
-{
-    char *name;
-};
-
+extern const struct flag_type act_flags[];
+extern const struct flag_type plr_flags[];
+extern const struct flag_type affect_flags[];
+extern const struct flag_type off_flags[];
+extern const struct flag_type imm_flags[];
+extern const struct flag_type form_flags[];
+extern const struct flag_type part_flags[];
+extern const struct flag_type comm_flags[];
+extern const struct flag_type extra_flags[];
+extern const struct flag_type wear_flags[];
+extern const struct flag_type weapon_flags[];
+extern const struct flag_type container_flags[];
+extern const struct flag_type portal_flags[];
+extern const struct flag_type room_flags[];
+extern const struct flag_type exit_flags[];

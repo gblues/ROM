@@ -1,3 +1,5 @@
+#ifndef __LOOKUP_H
+#define __LOOKUP_H
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -14,20 +16,23 @@
  *  benefitting.  We hope that you share your changes too.  What goes	   *
  *  around, comes around.						   *
  ***************************************************************************/
- 
+
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
-*	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@hypercube.org)				   *
-*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
-*	    Brian Moore (zump@rom.org)					   *
-*	By using this code, you have agreed to follow the terms of the	   *
-*	ROM license, in the file Rom24/doc/rom.license			   *
-***************************************************************************/
+ *	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
+ *	ROM has been brought to you by the ROM consortium		   *
+ *	    Russ Taylor (rtaylor@hypercube.org)				   *
+ *	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
+ *	    Brian Moore (zump@rom.org)					   *
+ *	By using this code, you have agreed to follow the terms of the	   *
+ *	ROM license, in the file Rom24/doc/rom.license			   *
+ ***************************************************************************/
 
+#include "merc.h"
 
-int	clan_lookup	args( (const char *name) );
-int	position_lookup	args( (const char *name) );
-int 	sex_lookup	args( (const char *name) );
-int 	size_lookup	args( (const char *name) );
-int flag_lookup args( ( const char *name, const struct flag_type *flag_table ) );
+int clan_lookup args((const char *name));
+int position_lookup args((const char *name));
+int sex_lookup args((const char *name));
+int size_lookup args((const char *name));
+int flag_lookup args((const char *name, const struct flag_type *flag_table));
+
+#endif  // __LOOKUP_H

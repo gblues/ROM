@@ -5,14 +5,43 @@ PROF    = -O -g
 NOCRYPT =
 C_FLAGS =  -Wall $(PROF) $(DEBUG) $(NOCRYPT)
 L_FLAGS =  $(PROF) $(DEBUG)
-
-O_FILES = act_comm.o act_enter.o act_info.o act_move.o act_obj.o act_wiz.o \
-          alias.o ban.o comm.o const.o db.o db2.o effects.o fight.o flags.o \
-	  handler.o healer.o interp.o note.o lookup.o magic.o magic2.o \
-	  music.o recycle.o save.o scan.o skills.o special.o tables.o \
-	  update.o \
-          string.o mem.o bit.o \
-	  olc.o olc_act.o olc_save.o \
+O_FILES :=
+O_FILES += act_comm.o
+O_FILES += act_enter.o
+O_FILES += act_info.o
+O_FILES += act_move.o
+O_FILES += act_obj.o
+O_FILES += act_wiz.o
+O_FILES += alias.o
+O_FILES += ban.o
+O_FILES += bit.o
+O_FILES += comm.o
+O_FILES += const.o
+O_FILES += db.o 
+O_FILES += db2.o
+O_FILES += effects.o
+O_FILES += fight.o
+O_FILES += flags.o
+O_FILES += handler.o
+O_FILES += healer.o
+O_FILES += interp.o
+O_FILES += note.o
+O_FILES += lookup.o
+O_FILES += magic.o
+O_FILES += magic2.o
+O_FILES += music.o
+O_FILES += olc.o
+O_FILES += olc_act.o
+O_FILES += olc_save.o
+O_FILES += recycle.o
+O_FILES += save.o
+O_FILES += scan.o
+O_FILES += skills.o
+O_FILES += special.o
+O_FILES += tables.o
+O_FILES += update.o
+O_FILES += string.o
+O_FILES += mem.o
 
 rom: $(O_FILES)
 	rm -f rom
@@ -22,6 +51,6 @@ rom: $(O_FILES)
 	$(CC) -c $(C_FLAGS) $<
 
 cleaner:
-	rm *.o
+	rm -f *.o rom
 
-clean:	cleaner rom
+clean:	cleaner
