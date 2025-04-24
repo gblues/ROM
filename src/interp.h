@@ -1,3 +1,5 @@
+#ifndef __INTERP_H
+#define __INTERP_H
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -26,6 +28,8 @@
 ***************************************************************************/
 
 /* this is a listing of all the commands and command related data */
+
+#include "merc.h"
 
 /* wrapper function for safe command execution */
 void do_function args((CHAR_DATA *ch, DO_FUN *do_fun, char *argument));
@@ -296,3 +300,4 @@ DECLARE_DO_FUN( do_worth	);
 DECLARE_DO_FUN(	do_yell		);
 DECLARE_DO_FUN(	do_zap		);
 DECLARE_DO_FUN( do_zecho	);
+#endif // __INTERP_H

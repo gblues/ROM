@@ -1,3 +1,5 @@
+#ifndef __LOOKUP_H
+#define __LOOKUP_H
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -25,9 +27,12 @@
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
 
+#include "merc.h"
 
 int	clan_lookup	args( (const char *name) );
 int	position_lookup	args( (const char *name) );
 int 	sex_lookup	args( (const char *name) );
 int 	size_lookup	args( (const char *name) );
 int flag_lookup args( ( const char *name, const struct flag_type *flag_table ) );
+
+#endif // __LOOKUP_H

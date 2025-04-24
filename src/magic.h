@@ -1,3 +1,5 @@
+#ifndef __MAGIC_H
+#define __MAGIC_H
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -25,6 +27,7 @@
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
 
+#include "merc.h"
 
 /*
  * Spell functions.
@@ -128,3 +131,5 @@ DECLARE_SPELL_FUN(	spell_gas_breath	);
 DECLARE_SPELL_FUN(	spell_lightning_breath	);
 DECLARE_SPELL_FUN(	spell_general_purpose	);
 DECLARE_SPELL_FUN(	spell_high_explosive	);
+
+#endif // __MAGIC_H

@@ -1,3 +1,5 @@
+#ifndef __DB_H
+#define __DB_H
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -24,6 +26,8 @@
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
+
+#include "merc.h"
 
 /* vals from db.c */
 extern bool fBootDb;
@@ -63,3 +67,4 @@ void convert_mobile( MOB_INDEX_DATA *pMobIndex );            /* OLC ROM */
 void convert_objects( void );                                /* OLC ROM */
 void convert_object( OBJ_INDEX_DATA *pObjIndex );            /* OLC ROM */
 
+#endif // __DB_H

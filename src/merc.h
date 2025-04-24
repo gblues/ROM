@@ -1,3 +1,5 @@
+#ifndef __MERC_H
+#define __MERC_H
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -2517,3 +2519,4 @@ extern const struct flag_type   weapon_type_olc[];
  *                                 OLC END                                   *
  *****************************************************************************/
 
+#endif // __MERC_H

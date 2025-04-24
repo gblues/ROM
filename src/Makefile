@@ -51,6 +51,6 @@ rom: $(O_FILES)
 	$(CC) -c $(C_FLAGS) $<
 
 cleaner:
-	rm *.o
+	rm -f *.o rom
 
-clean:	cleaner rom
+clean:	cleaner
