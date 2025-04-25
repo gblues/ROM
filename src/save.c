@@ -25,11 +25,7 @@
  *	ROM license, in the file Rom24/doc/rom.license			   *
  ***************************************************************************/
 #include <stdlib.h>
-#if defined(macintosh)
-#include <types.h>
-#else
 #include <sys/types.h>
-#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -42,9 +38,7 @@
 #include "recycle.h"
 #include "tables.h"
 
-#if !defined(macintosh)
 extern int _filbuf args((FILE *));
-#endif
 
 int rename(const char *oldfname, const char *newfname);
 

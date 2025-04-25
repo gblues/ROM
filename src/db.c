@@ -30,13 +30,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#if defined(macintosh)
-#include <types.h>
-#else
 #include <sys/resource.h>
 #include <sys/time.h>
 #include <sys/types.h>
-#endif
 
 #include "db.h"
 #include "lookup.h"
@@ -44,9 +40,7 @@
 #include "music.h"
 #include "recycle.h"
 
-#if !defined(macintosh)
 extern int _filbuf args((FILE *));
-#endif
 
 #if !defined(OLD_RAND)
 #if !defined(linux)
