@@ -25,11 +25,7 @@
  *	ROM license, in the file Rom24/doc/rom.license			   *
  ***************************************************************************/
 
-#if defined(macintosh)
-#include <types.h>
-#else
 #include <sys/types.h>
-#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -111,7 +107,7 @@ int slot_lookup(int slot) {
  */
 void say_spell(CHAR_DATA *ch, int sn) {
   char buf[MAX_STRING_LENGTH];
-  char buf2[MAX_STRING_LENGTH];
+  char buf2[MAX_STRING_LENGTH*2];
   CHAR_DATA *rch;
   char *pName;
   int iSyl;

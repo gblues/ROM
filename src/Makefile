@@ -1,10 +1,13 @@
-# Makefile for SYSV
-
+PLATFORM := $(shell uname -s)
 CC      = gcc
 PROF    = -O -g
 NOCRYPT =
 C_FLAGS =  -Wall $(PROF) $(DEBUG) $(NOCRYPT)
 L_FLAGS =  $(PROF) $(DEBUG)
+LIBS    :=
+ifeq ($(PLATFORM), Linux)
+LIBS    += -lcrypt
+endif
 O_FILES :=
 O_FILES += act_comm.o
 O_FILES += act_enter.o
@@ -17,7 +20,7 @@ O_FILES += ban.o
 O_FILES += bit.o
 O_FILES += comm.o
 O_FILES += const.o
-O_FILES += db.o 
+O_FILES += db.o
 O_FILES += db2.o
 O_FILES += effects.o
 O_FILES += fight.o
@@ -45,12 +48,11 @@ O_FILES += mem.o
 
 rom: $(O_FILES)
 	rm -f rom
-	$(CC) $(L_FLAGS) -o rom $(O_FILES)
+	$(CC) $(L_FLAGS) -o rom $(O_FILES) $(LIBS)
 
-.c.o: merc.h
+.c.o:
 	$(CC) -c $(C_FLAGS) $<
 
-cleaner:
-	rm -f *.o rom
 
-clean:	cleaner
+clean:
+	rm -f *.o rom

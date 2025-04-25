@@ -25,13 +25,8 @@
  *	ROM license, in the file Rom24/doc/rom.license			   *
  ***************************************************************************/
 
-#if defined(macintosh)
-#include <time.h>
-#include <types.h>
-#else
 #include <sys/time.h>
 #include <sys/types.h>
-#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -156,7 +151,6 @@ void free_gen_data(GEN_DATA *gen) {
 }
 
 /* stuff for recycling extended descs */
-EXTRA_DESCR_DATA *extra_descr_free;
 
 EXTRA_DESCR_DATA *new_extra_descr(void) {
   EXTRA_DESCR_DATA *ed;

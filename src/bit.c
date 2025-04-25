@@ -17,11 +17,7 @@
  implementing a system like below with such functions. -Jason Dinkel
  */
 
-#if defined(macintosh)
-#include <types.h>
-#else
 #include <sys/types.h>
-#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

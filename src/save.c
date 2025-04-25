@@ -24,12 +24,8 @@
  *	By using this code, you have agreed to follow the terms of the	   *
  *	ROM license, in the file Rom24/doc/rom.license			   *
  ***************************************************************************/
-
-#if defined(macintosh)
-#include <types.h>
-#else
+#include <stdlib.h>
 #include <sys/types.h>
-#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -42,9 +38,7 @@
 #include "recycle.h"
 #include "tables.h"
 
-#if !defined(macintosh)
 extern int _filbuf args((FILE *));
-#endif
 
 int rename(const char *oldfname, const char *newfname);
 
@@ -435,8 +429,9 @@ void fwrite_obj(CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest) {
  * Load a char and inventory into a new ch structure.
  */
 bool load_char_obj(DESCRIPTOR_DATA *d, char *name) {
+  const char gzip_cmd[] = "gzip -dfq ";
   char strsave[MAX_INPUT_LENGTH];
-  char buf[100];
+  char buf[MAX_STRING_LENGTH];
   CHAR_DATA *ch;
   FILE *fp;
   bool found;
@@ -472,9 +467,15 @@ bool load_char_obj(DESCRIPTOR_DATA *d, char *name) {
   /* decompress if .gz file exists */
   sprintf(strsave, "%s%s%s", PLAYER_DIR, capitalize(name), ".gz");
   if ((fp = fopen(strsave, "r")) != NULL) {
+    int exit_code = 0;
     fclose(fp);
-    sprintf(buf, "gzip -dfq %s", strsave);
-    system(buf);
+    // TODO: integrate gzip library instead of running a system process
+    snprintf(buf, sizeof(buf), "%s%s", gzip_cmd, strsave);
+    if ((exit_code = system(buf))) {
+      snprintf(buf, sizeof(buf), "Failed to decompress with '%s%s', errno=%d",
+        gzip_cmd, strsave, exit_code);
+      log_string(buf);
+    }
   }
 #endif
 
