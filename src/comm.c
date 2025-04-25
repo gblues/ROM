@@ -56,6 +56,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "interp.h"
 #include "merc.h"
@@ -152,28 +153,6 @@ int socket args((int domain, int type, int protocol));
 #if defined(interactive)
 #include <net/errno.h>
 #include <sys/fnctl.h>
-#endif
-
-#if defined(linux)
-/*
-    Linux shouldn't need these. If you have a problem compiling, try
-    uncommenting these functions.
-*/
-/*
-int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
-int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
-int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	listen		args( ( int s, int backlog ) );
-*/
-
-int close args((int fd));
-int gettimeofday args((struct timeval * tp, struct timezone *tzp));
-int read args((int fd, char *buf, int nbyte));
-int select args((int width, fd_set *readfds, fd_set *writefds,
-                 fd_set *exceptfds, struct timeval *timeout));
-int socket args((int domain, int type, int protocol));
-int write args((int fd, char *buf, int nbyte));
 #endif
 
 #if defined(macintosh)

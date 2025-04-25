@@ -470,13 +470,15 @@ void do_scroll(CHAR_DATA *ch, char *argument) {
 /* RT does socials */
 void do_socials(CHAR_DATA *ch, char *argument) {
   char buf[MAX_STRING_LENGTH];
+  char namebuf[sizeof(social_table[0].name)];
   int iSocial;
   int col;
 
   col = 0;
 
   for (iSocial = 0; social_table[iSocial].name[0] != '\0'; iSocial++) {
-    sprintf(buf, "%-12s", social_table[iSocial].name);
+    strncpy(namebuf, social_table[iSocial].name, sizeof(namebuf));
+    snprintf(buf, sizeof(buf), "%-12s", namebuf);
     send_to_char(buf, ch);
     if (++col % 6 == 0) send_to_char("\n\r", ch);
   }

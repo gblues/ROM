@@ -101,6 +101,7 @@ void free_mem_data args((MEM_DATA * memory));
 MD *find_memory args((MEM_DATA * memory, long id));
 #undef MD
 
+extern EXTRA_DESCR_DATA *extra_descr_free;
 /* buffer procedures */
 
 BUFFER *new_buf args((void));

@@ -44,8 +44,6 @@ MOB_INDEX_DATA *mob_index_free;
 RESET_DATA *reset_free;
 HELP_DATA *help_free;
 
-HELP_DATA *help_last;
-
 RESET_DATA *new_reset_data(void) {
   RESET_DATA *pReset;
 

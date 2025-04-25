@@ -156,7 +156,6 @@ void free_gen_data(GEN_DATA *gen) {
 }
 
 /* stuff for recycling extended descs */
-EXTRA_DESCR_DATA *extra_descr_free;
 
 EXTRA_DESCR_DATA *new_extra_descr(void) {
   EXTRA_DESCR_DATA *ed;
