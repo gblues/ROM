@@ -1,3 +1,36 @@
+# Rivers of Mud (ROM)
+
+A recent Discord conversation the other day sparked memories of playing on a
+ROM 2.3-based MUD. I eventually became a developer on that MUD, and so I have
+an affinity for this code base.
+
+I decided to pick it up and try to get it to compile. It failed spectacularly!
+
+This repository represents my work to bring the codebase to a more current
+standard.
+
+Below is the original ROM 2.4 README, for historical purposes. What took 10-60
+minutes in 1992 takes under 10 seconds on a modern CPU.
+
+You can look at the pull request history to see an up-to-date list of changes
+I've made, but what I've done so far:
+
+- fix compiler errors on modern toolchains for both Linux (Ubuntu) and
+  MacOS
+- put the code through a linter to reformat using Google's linter
+- Remove UNIX makefiles (dead platforms)
+- Remove legacy macintosh (pre-mac OSX) support
+- MSDOS support is broken but not completely excised (TBD)
+
+Changes on deck:
+- remove code for dead platforms (MSDOS, unixes)
+- swap unsafe functions (e.g. strcpy) for safe ones
+- maybe try converting to using autoconf
+
+I'm gonna call this an unofficial ROM 2.7 alpha level.
+
+
+```text
 <This is the original readme file from Merc relase 2.1>
 Merc Release 2.1
 Sunday 01 August 1993
@@ -152,3 +185,4 @@ It's your mud now -- the end of our development is the beginning of yours.
 We will continue making maintenance releases to fix bugs, add new platform
 support, and fold in contributed code and areas.  The next release of Merc,
 version 2.2, will be on 05 Sep 1993.
+```
