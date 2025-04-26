@@ -55,27 +55,12 @@
 #define TRUE 1
 #endif
 
-#if defined(_AIX)
-#if !defined(const)
-#define const
-#endif
-typedef int sh_int;
-typedef int bool;
-#define unix
-#else
 typedef short int sh_int;
 typedef unsigned char bool;
-#endif
 
-/*
- * MacOS (modern)
- */
-#if defined(__MACH__)
 #include <stdlib.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#define unix
-#endif
 
 /*
  * Structure types.
@@ -1829,79 +1814,6 @@ extern TIME_INFO_DATA time_info;
 extern WEATHER_DATA weather_info;
 
 /*
- * OS-dependent declarations.
- * These are all very standard library functions,
- *   but some systems have incomplete or non-ansi header files.
- */
-#if defined(_AIX)
-char *crypt args((const char *key, const char *salt));
-#endif
-
-#if defined(apollo)
-int atoi args((const char *string));
-void *calloc args((unsigned nelem, size_t size));
-char *crypt args((const char *key, const char *salt));
-#endif
-
-#if defined(hpux)
-char *crypt args((const char *key, const char *salt));
-#endif
-
-#if defined(linux)
-char *crypt args((const char *key, const char *salt));
-#endif
-
-#if defined(macintosh)
-#define NOCRYPT
-#if defined(unix)
-#undef unix
-#endif
-#endif
-
-#if defined(MIPS_OS)
-char *crypt args((const char *key, const char *salt));
-#endif
-
-#if defined(MSDOS)
-#define NOCRYPT
-#if defined(unix)
-#undef unix
-#endif
-#endif
-
-#if defined(NeXT)
-char *crypt args((const char *key, const char *salt));
-#endif
-
-#if defined(sequent)
-char *crypt args((const char *key, const char *salt));
-int fclose args((FILE * stream));
-int fprintf args((FILE * stream, const char *format, ...));
-int fread args((void *ptr, int size, int n, FILE *stream));
-int fseek args((FILE * stream, long offset, int ptrname));
-void perror args((const char *s));
-int ungetc args((int c, FILE *stream));
-#endif
-
-#if defined(sun)
-char *crypt args((const char *key, const char *salt));
-int fclose args((FILE * stream));
-int fprintf args((FILE * stream, const char *format, ...));
-#if defined(SYSV)
-size_t fread args((void *ptr, size_t size, size_t n, FILE *stream));
-#elif !defined(__SVR4)
-int fread args((void *ptr, int size, int n, FILE *stream));
-#endif
-int fseek args((FILE * stream, long offset, int ptrname));
-void perror args((const char *s));
-int ungetc args((int c, FILE *stream));
-#endif
-
-#if defined(ultrix)
-char *crypt args((const char *key, const char *salt));
-#endif
-
-/*
  * The crypt(3) function is not available on some operating systems.
  * In particular, the U.S. Government prohibits its export from the
  *   United States to foreign countries.
@@ -1922,24 +1834,11 @@ char *crypt args((const char *key, const char *salt));
  *   so players can go ahead and telnet to all the other descriptors.
  * Then we close it whenever we need to open a file (e.g. a save file).
  */
-#if defined(macintosh)
-#define PLAYER_DIR "" /* Player files	*/
-#define TEMP_FILE "romtmp"
-#define NULL_FILE "proto.are" /* To reserve one stream */
-#endif
 
-#if defined(MSDOS)
-#define PLAYER_DIR "" /* Player files */
-#define TEMP_FILE "romtmp"
-#define NULL_FILE "nul" /* To reserve one stream */
-#endif
-
-#if defined(unix)
 #define PLAYER_DIR "../player/" /* Player files */
 #define GOD_DIR "../gods/"      /* list of gods */
 #define TEMP_FILE "../player/romtmp"
 #define NULL_FILE "/dev/null" /* To reserve one stream */
-#endif
 
 #define AREA_LIST "area.lst"  /* List of areas*/
 #define BUG_FILE "bugs.txt"   /* For 'bug' and bug()*/

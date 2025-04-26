@@ -42,15 +42,6 @@
 
 extern int _filbuf args((FILE *));
 
-#if !defined(OLD_RAND)
-#if !defined(linux)
-long random();
-#endif
-void srandom(unsigned int);
-int getpid();
-time_t time(time_t *tloc);
-#endif
-
 /* externals for counting purposes */
 extern OBJ_DATA *obj_free;
 extern CHAR_DATA *char_free;
