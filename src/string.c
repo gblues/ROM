@@ -75,7 +75,7 @@ char *string_replace(char *orig, char *old, char *new) {
   int i;
 
   xbuf[0] = '\0';
-  strcpy(xbuf, orig);
+  strncpy(xbuf, orig, sizeof(xbuf));
   if (strstr(orig, old) != NULL) {
     i = strlen(orig) - strlen(strstr(orig, old));
     xbuf[i] = '\0';
@@ -161,7 +161,7 @@ void string_add(CHAR_DATA *ch, char *argument) {
     return;
   }
 
-  strcpy(buf, *ch->desc->pString);
+  strncpy(buf, *ch->desc->pString, sizeof(buf));
 
   /*
    * Truncate strings to MAX_STRING_LENGTH.
@@ -272,7 +272,7 @@ char *format_string(char *oldstring /*, bool fSpace */) {
     }
   }
   xbuf[i] = 0;
-  strcpy(xbuf2, xbuf);
+  strncpy(xbuf2, xbuf, sizeof(xbuf2));
 
   rdesc = xbuf2;
 
@@ -371,7 +371,7 @@ char *string_unpad(char *argument) {
 
   while (*s == ' ') s++;
 
-  strcpy(buf, s);
+  strncpy(buf, s, sizeof(buf));
   s = buf;
 
   if (*s != '\0') {

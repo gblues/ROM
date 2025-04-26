@@ -58,7 +58,7 @@ void substitute_alias(DESCRIPTOR_DATA *d, char *argument) {
     return;
   }
 
-  strcpy(buf, argument);
+  strncpy(buf, argument, sizeof(buf));
 
   for (alias = 0; alias < MAX_ALIAS; alias++) /* go through the aliases */
   {

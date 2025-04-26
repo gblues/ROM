@@ -290,7 +290,7 @@ void boot_db(void) {
     }
 
     for (;;) {
-      strcpy(strArea, fread_word(fpList));
+      strncpy(strArea, fread_word(fpList), sizeof(strArea));
       if (strArea[0] == '$') break;
 
       if (strArea[0] == '-') {
@@ -2125,7 +2125,7 @@ char *str_dup(const char *str) {
   if (str >= string_space && str < top_string) return (char *)str;
 
   str_new = alloc_mem(strlen(str) + 1);
-  strcpy(str_new, str);
+  strncpy(str_new, str, strlen(str) + 1);
   return str_new;
 }
 
@@ -2646,7 +2646,7 @@ void bug(const char *str, int param) {
     */
   }
 
-  strcpy(buf, "[*****] BUG: ");
+  strncpy(buf, "[*****] BUG: ", sizeof(buf));
   sprintf(buf + strlen(buf), str, param);
   log_string(buf);
   /* RT removed due to bug-file spamming

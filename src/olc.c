@@ -337,7 +337,7 @@ void aedit(CHAR_DATA *ch, char *argument) {
 
   EDIT_AREA(ch, pArea);
   smash_tilde(argument);
-  strcpy(arg, argument);
+  strncpy(arg, argument, sizeof(arg));
   argument = one_argument(argument, command);
 
   if (!IS_BUILDER(ch, pArea))
@@ -386,7 +386,7 @@ void redit(CHAR_DATA *ch, char *argument) {
   pArea = pRoom->area;
 
   smash_tilde(argument);
-  strcpy(arg, argument);
+  strncpy(arg, argument, sizeof(arg));
   argument = one_argument(argument, command);
 
   if (!IS_BUILDER(ch, pArea))
@@ -433,7 +433,7 @@ void oedit(CHAR_DATA *ch, char *argument) {
   /*  int  value;   ROM */
 
   smash_tilde(argument);
-  strcpy(arg, argument);
+  strncpy(arg, argument, sizeof(arg));
   argument = one_argument(argument, command);
 
   EDIT_OBJ(ch, pObj);
@@ -483,7 +483,7 @@ void medit(CHAR_DATA *ch, char *argument) {
   /*  int  value;    ROM */
 
   smash_tilde(argument);
-  strcpy(arg, argument);
+  strncpy(arg, argument, sizeof(arg));
   argument = one_argument(argument, command);
 
   EDIT_MOB(ch, pMob);

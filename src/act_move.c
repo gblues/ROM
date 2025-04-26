@@ -1350,7 +1350,7 @@ void do_train(CHAR_DATA *ch, char *argument) {
     cost = 1;
 
   else {
-    strcpy(buf, "You can train:");
+    strncpy(buf, "You can train:", sizeof(buf));
     if (ch->perm_stat[STAT_STR] < get_max_train(ch, STAT_STR))
       strcat(buf, " str");
     if (ch->perm_stat[STAT_INT] < get_max_train(ch, STAT_INT))

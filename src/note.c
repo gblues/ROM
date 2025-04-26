@@ -234,7 +234,7 @@ void load_thread(char *name, NOTE_DATA **list, int type, time_t free_time) {
     pnotelast = pnote;
   }
 
-  strcpy(strArea, NOTE_FILE);
+  strncpy(strArea, NOTE_FILE, sizeof(strArea));
   fpArea = fp;
   bug("Load_notes: bad key word.", 0);
   exit(1);
@@ -695,7 +695,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
       return;
     }
 
-    strcpy(buf, ch->pnote->text);
+    strncpy(buf, ch->pnote->text, sizeof(buf));
 
     for (len = strlen(buf); len > 0; len--) {
       if (buf[len] == '\r') {

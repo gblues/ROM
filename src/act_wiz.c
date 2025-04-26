@@ -318,7 +318,7 @@ void do_smote(CHAR_DATA *ch, char *argument) {
       continue;
     }
 
-    strcpy(temp, argument);
+    strncpy(temp, argument, sizeof(temp));
     temp[strlen(argument) - strlen(letter)] = '\0';
     last[0] = '\0';
     name = vch->name;
@@ -2792,7 +2792,7 @@ void do_mset(CHAR_DATA *ch, char *argument) {
   smash_tilde(argument);
   argument = one_argument(argument, arg1);
   argument = one_argument(argument, arg2);
-  strcpy(arg3, argument);
+  strncpy(arg3, argument, sizeof(arg3));
 
   if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
     send_to_char("Syntax:\n\r", ch);
@@ -2902,7 +2902,7 @@ void do_mset(CHAR_DATA *ch, char *argument) {
     if (class == -1) {
       char buf[MAX_STRING_LENGTH];
 
-      strcpy(buf, "Possible classes are: ");
+      strncpy(buf, "Possible classes are: ", sizeof(buf));
       for (class = 0; class < MAX_CLASS; class++) {
         if (class > 0) strcat(buf, " ");
         strcat(buf, class_table[class].name);
@@ -3126,7 +3126,7 @@ void do_string(CHAR_DATA *ch, char *argument) {
   argument = one_argument(argument, type);
   argument = one_argument(argument, arg1);
   argument = one_argument(argument, arg2);
-  strcpy(arg3, argument);
+  strncpy(arg3, argument, sizeof(arg3));
 
   if (type[0] == '\0' || arg1[0] == '\0' || arg2[0] == '\0' ||
       arg3[0] == '\0') {
@@ -3264,7 +3264,7 @@ void do_oset(CHAR_DATA *ch, char *argument) {
   smash_tilde(argument);
   argument = one_argument(argument, arg1);
   argument = one_argument(argument, arg2);
-  strcpy(arg3, argument);
+  strncpy(arg3, argument, sizeof(arg3));
 
   if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
     send_to_char("Syntax:\n\r", ch);
@@ -3360,7 +3360,7 @@ void do_rset(CHAR_DATA *ch, char *argument) {
   smash_tilde(argument);
   argument = one_argument(argument, arg1);
   argument = one_argument(argument, arg2);
-  strcpy(arg3, argument);
+  strncpy(arg3, argument, sizeof(arg3));
 
   if (arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0') {
     send_to_char("Syntax:\n\r", ch);

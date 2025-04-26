@@ -2061,8 +2061,8 @@ char *cont_bit_name args((int cont_flags));
 /* interp.c */
 void interpret args((CHAR_DATA * ch, char *argument));
 bool is_number args((char *arg));
-int number_argument args((char *argument, char *arg));
-int mult_argument args((char *argument, char *arg));
+int number_argument args((char *argument, char *arg, size_t arg_size));
+int mult_argument args((char *argument, char *arg, size_t arg_size));
 char *one_argument args((char *argument, char *arg_first));
 
 /* magic.c */

@@ -2002,7 +2002,7 @@ OBJ_DATA *get_obj_keeper(CHAR_DATA *ch, CHAR_DATA *keeper, char *argument) {
   int number;
   int count;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   for (obj = keeper->carrying; obj != NULL; obj = obj->next_content) {
     if (obj->wear_loc == WEAR_NONE && can_see_obj(keeper, obj) &&
@@ -2165,7 +2165,7 @@ void do_buy(CHAR_DATA *ch, char *argument) {
 
     if ((keeper = find_keeper(ch)) == NULL) return;
 
-    number = mult_argument(argument, arg);
+    number = mult_argument(argument, arg, sizeof(arg));
     obj = get_obj_keeper(ch, keeper, arg);
     cost = get_cost(keeper, obj, TRUE);
 

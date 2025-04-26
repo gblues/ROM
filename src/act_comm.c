@@ -863,7 +863,7 @@ void do_pmote(CHAR_DATA *ch, char *argument) {
       continue;
     }
 
-    strcpy(temp, argument);
+    strncpy(temp, argument, sizeof(temp));
     temp[strlen(argument) - strlen(letter)] = '\0';
     last[0] = '\0';
     name = vch->name;

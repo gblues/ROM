@@ -1899,7 +1899,7 @@ CHAR_DATA *get_char_room(CHAR_DATA *ch, char *argument) {
   int number;
   int count;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   if (!str_cmp(arg, "self")) return ch;
   for (rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room) {
@@ -1921,7 +1921,7 @@ CHAR_DATA *get_char_world(CHAR_DATA *ch, char *argument) {
 
   if ((wch = get_char_room(ch, argument)) != NULL) return wch;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   for (wch = char_list; wch != NULL; wch = wch->next) {
     if (wch->in_room == NULL || !can_see(ch, wch) || !is_name(arg, wch->name))
@@ -1955,7 +1955,7 @@ OBJ_DATA *get_obj_list(CHAR_DATA *ch, char *argument, OBJ_DATA *list) {
   int number;
   int count;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   for (obj = list; obj != NULL; obj = obj->next_content) {
     if (can_see_obj(ch, obj) && is_name(arg, obj->name)) {
@@ -1975,7 +1975,7 @@ OBJ_DATA *get_obj_carry(CHAR_DATA *ch, char *argument, CHAR_DATA *viewer) {
   int number;
   int count;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   for (obj = ch->carrying; obj != NULL; obj = obj->next_content) {
     if (obj->wear_loc == WEAR_NONE && (can_see_obj(viewer, obj)) &&
@@ -1996,7 +1996,7 @@ OBJ_DATA *get_obj_wear(CHAR_DATA *ch, char *argument) {
   int number;
   int count;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   for (obj = ch->carrying; obj != NULL; obj = obj->next_content) {
     if (obj->wear_loc != WEAR_NONE && can_see_obj(ch, obj) &&
@@ -2035,7 +2035,7 @@ OBJ_DATA *get_obj_world(CHAR_DATA *ch, char *argument) {
 
   if ((obj = get_obj_here(ch, argument)) != NULL) return obj;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   for (obj = object_list; obj != NULL; obj = obj->next) {
     if (can_see_obj(ch, obj) && is_name(arg, obj->name)) {

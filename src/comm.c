@@ -143,7 +143,7 @@ int main(int argc, char **argv) {
    */
   gettimeofday(&now_time, NULL);
   current_time = (time_t)now_time.tv_sec;
-  strcpy(str_boot_time, ctime(&current_time));
+  strncpy(str_boot_time, ctime(&current_time), sizeof(str_boot_time));
 
   /*
    * Reserve one channel for our use.
@@ -643,11 +643,6 @@ void read_from_buffer(DESCRIPTOR_DATA *d) {
                  get_trust(d->character));
 
         d->repeat = 0;
-        /*
-                        write_to_descriptor( d->descriptor,
-                            "\n\r*** PUT A LID ON IT!!! ***\n\r", 0 );
-                        strcpy( d->incomm, "quit" );
-        */
       }
     }
   }
@@ -656,9 +651,9 @@ void read_from_buffer(DESCRIPTOR_DATA *d) {
    * Do '!' substitution.
    */
   if (d->incomm[0] == '!')
-    strcpy(d->incomm, d->inlast);
+    strncpy(d->incomm, d->inlast, sizeof(d->incomm));
   else
-    strcpy(d->inlast, d->incomm);
+    strncpy(d->inlast, d->incomm, sizeof(d->inlast));
 
   /*
    * Shift the input buffer.
@@ -1298,7 +1293,7 @@ void nanny(DESCRIPTOR_DATA *d, char *argument) {
           return;
       }
 
-      strcpy(buf, "Select a class [");
+      strncpy(buf, "Select a class [", sizeof(buf));
       for (iClass = 0; iClass < MAX_CLASS; iClass++) {
         if (iClass > 0) strcat(buf, " ");
         strcat(buf, class_table[iClass].name);
@@ -1707,7 +1702,7 @@ void page_to_char(const char *txt, CHAR_DATA *ch) {
   }
 
   ch->desc->showstr_head = alloc_mem(strlen(txt) + 1);
-  strcpy(ch->desc->showstr_head, txt);
+  strncpy(ch->desc->showstr_head, txt, strlen(txt) + 1);
   ch->desc->showstr_point = ch->desc->showstr_head;
   show_string(ch->desc, "");
 }

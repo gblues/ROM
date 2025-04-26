@@ -63,7 +63,7 @@ void load_socials(FILE *fp) {
       fprintf(stderr, "%s\n\r", temp);
 #endif
 
-    strcpy(social.name, temp);
+    strncpy(social.name, temp, sizeof(social.name));
     fread_to_eol(fp);
 
     temp = fread_string_eol(fp);

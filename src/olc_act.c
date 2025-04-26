@@ -919,7 +919,7 @@ REDIT(redit_show) {
        * Format up the exit info.
        * Capitalize all flags that are not part of the reset info.
        */
-      strcpy(reset_state, flag_string(exit_flags, pexit->rs_flags));
+      strncpy(reset_state, flag_string(exit_flags, pexit->rs_flags), sizeof(reset_state));
       state = flag_string(exit_flags, pexit->exit_info);
       strcat(buf1, " Exit flags: [");
       for (;;) {

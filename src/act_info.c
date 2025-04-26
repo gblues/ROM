@@ -346,7 +346,7 @@ void show_char_to_char_1(CHAR_DATA *victim, CHAR_DATA *ch) {
   else
     percent = -1;
 
-  strcpy(buf, PERS(victim, ch));
+  strncpy(buf, PERS(victim, ch), sizeof(buf));
 
   if (percent >= 100)
     strcat(buf, " is in excellent condition.\n\r");
@@ -702,10 +702,10 @@ void do_prompt(CHAR_DATA *ch, char *argument) {
   }
 
   if (!strcmp(argument, "all"))
-    strcpy(buf, "<%hhp %mm %vmv> ");
+    strncpy(buf, "<%hhp %mm %vmv> ", sizeof(buf));
   else {
     if (strlen(argument) > 50) argument[50] = '\0';
-    strcpy(buf, argument);
+    strncpy(buf, argument, sizeof(buf));
     smash_tilde(buf);
     if (str_suffix("%c", buf)) strcat(buf, " ");
   }
@@ -807,7 +807,7 @@ void do_look(CHAR_DATA *ch, char *argument) {
 
   argument = one_argument(argument, arg1);
   argument = one_argument(argument, arg2);
-  number = number_argument(arg1, arg3);
+  number = number_argument(arg1, arg3, sizeof(arg3));
   count = 0;
 
   if (arg1[0] == '\0' || !str_cmp(arg1, "auto")) {
@@ -2019,9 +2019,9 @@ void set_title(CHAR_DATA *ch, char *title) {
   if (title[0] != '.' && title[0] != ',' && title[0] != '!' &&
       title[0] != '?') {
     buf[0] = ' ';
-    strcpy(buf + 1, title);
+    strncpy(buf + 1, title, sizeof(buf)-1);
   } else {
-    strcpy(buf, title);
+    strncpy(buf, title, sizeof(buf));
   }
 
   free_string(ch->pcdata->title);
@@ -2060,7 +2060,7 @@ void do_description(CHAR_DATA *ch, char *argument) {
         return;
       }
 
-      strcpy(buf, ch->description);
+      strncpy(buf, ch->description, sizeof(buf));
 
       for (len = strlen(buf); len > 0; len--) {
         if (buf[len] == '\r') {
