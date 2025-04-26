@@ -95,7 +95,6 @@ void save_char_obj(CHAR_DATA *ch) {
 
   if (ch->desc != NULL && ch->desc->original != NULL) ch = ch->desc->original;
 
-#if defined(unix)
   /* create god log */
   if (IS_IMMORTAL(ch) || ch->level >= LEVEL_IMMORTAL) {
     fclose(fpReserve);
@@ -110,7 +109,6 @@ void save_char_obj(CHAR_DATA *ch) {
     fclose(fp);
     fpReserve = fopen(NULL_FILE, "r");
   }
-#endif
 
   fclose(fpReserve);
   sprintf(strsave, "%s%s", PLAYER_DIR, capitalize(ch->name));
@@ -463,7 +461,6 @@ bool load_char_obj(DESCRIPTOR_DATA *d, char *name) {
   found = FALSE;
   fclose(fpReserve);
 
-#if defined(unix)
   /* decompress if .gz file exists */
   sprintf(strsave, "%s%s%s", PLAYER_DIR, capitalize(name), ".gz");
   if ((fp = fopen(strsave, "r")) != NULL) {
@@ -477,7 +474,6 @@ bool load_char_obj(DESCRIPTOR_DATA *d, char *name) {
       log_string(buf);
     }
   }
-#endif
 
   sprintf(strsave, "%s%s", PLAYER_DIR, capitalize(name));
   if ((fp = fopen(strsave, "r")) != NULL) {

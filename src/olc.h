@@ -1,3 +1,5 @@
+#ifndef __OLC_H
+#define __OLC_H
 /***************************************************************************
  *  File: olc.h                                                            *
  *                                                                         *
@@ -253,3 +255,4 @@ void free_obj_index args((OBJ_INDEX_DATA * pObj));
 MOB_INDEX_DATA *new_mob_index args((void));
 void free_mob_index args((MOB_INDEX_DATA * pMob));
 #undef ED
+#endif // __OLC_H

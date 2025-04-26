@@ -1,3 +1,5 @@
+#ifndef __MUSIC_H
+#define __MUSIC_H
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -40,3 +42,4 @@ extern struct song_data song_table[MAX_SONGS];
 
 void song_update args((void));
 void load_songs args((void));
+#endif // __MUSIC_H
