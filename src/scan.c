@@ -78,7 +78,7 @@ void do_scan(CHAR_DATA *ch, char *argument) {
 
   act("You peer intently $T.", ch, NULL, dir_name[door], TO_CHAR);
   act("$n peers intently $T.", ch, NULL, dir_name[door], TO_ROOM);
-  sprintf(buf, "Looking %s you see:\n\r", dir_name[door]);
+  snprintf(buf, sizeof(buf), "Looking %s you see:\n\r", dir_name[door]);
 
   scan_room = ch->in_room;
 
@@ -113,7 +113,7 @@ void scan_char(CHAR_DATA *victim, CHAR_DATA *ch, sh_int depth, sh_int door) {
 
   strcat(buf, PERS(victim, ch));
   strcat(buf, ", ");
-  sprintf(buf2, distance[depth], dir_name[door]);
+  snprintf(buf2, sizeof(buf2), distance[depth], dir_name[door]);
   strcat(buf, buf2);
   strcat(buf, "\n\r");
 

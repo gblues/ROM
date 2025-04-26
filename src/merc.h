@@ -102,6 +102,7 @@ typedef void SPELL_FUN args((int sn, int level, CHAR_DATA *ch, void *vo,
 #define MAX_KEY_HASH 1024
 #define MAX_STRING_LENGTH 4608
 #define MAX_INPUT_LENGTH 256
+#define LOGBUF_SIZE 2*MAX_INPUT_LENGTH
 #define PAGELEN 22
 
 /*

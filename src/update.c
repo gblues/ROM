@@ -63,7 +63,7 @@ void advance_level(CHAR_DATA *ch, bool hide) {
   ch->pcdata->last_level =
       (ch->played + (int)(current_time - ch->logon)) / 3600;
 
-  sprintf(buf, "the %s",
+  snprintf(buf, sizeof(buf), "the %s",
           title_table[ch->class][ch->level][ch->sex == SEX_FEMALE ? 1 : 0]);
   set_title(ch, buf);
 
@@ -96,7 +96,7 @@ void advance_level(CHAR_DATA *ch, bool hide) {
   ch->pcdata->perm_move += add_move;
 
   if (!hide) {
-    sprintf(buf,
+    snprintf(buf, sizeof(buf),
             "You gain %d hit point%s, %d mana, %d move, and %d practice%s.\n\r",
             add_hp, add_hp == 1 ? "" : "s", add_mana, add_move, add_prac,
             add_prac == 1 ? "" : "s");
@@ -115,9 +115,9 @@ void gain_exp(CHAR_DATA *ch, int gain) {
          ch->exp >= exp_per_level(ch, ch->pcdata->points) * (ch->level + 1)) {
     send_to_char("You raise a level!!  ", ch);
     ch->level += 1;
-    sprintf(buf, "%s gained level %d", ch->name, ch->level);
+    snprintf(buf, sizeof(buf), "%s gained level %d", ch->name, ch->level);
     log_string(buf);
-    sprintf(buf, "$N has attained level %d!", ch->level);
+    snprintf(buf, sizeof(buf), "$N has attained level %d!", ch->level);
     wiznet(buf, ch, NULL, WIZ_LEVELS, 0, 0);
     advance_level(ch, FALSE);
     save_char_obj(ch);

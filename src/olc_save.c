@@ -566,7 +566,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
                       capitalize(get_obj_index(pReset->arg1)->short_descr),
                       pLastMob ? pLastMob->short_descr : "!NO_MOB!");
               if (!pLastMob) {
-                sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+                snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
                 bug(buf, 0);
               }
               break;
@@ -578,7 +578,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
                       flag_string(wear_loc_strings, pReset->arg3),
                       pLastMob ? pLastMob->short_descr : "!NO_MOB!");
               if (!pLastMob) {
-                sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+                snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
                 bug(buf, 0);
               }
               break;
@@ -614,7 +614,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
           case 'G':
             fprintf(fp, "G 0 %d %d\n", pReset->arg1, pReset->arg2);
             if (!pLastMob) {
-              sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+              snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
               bug(buf, 0);
             }
             break;
@@ -623,7 +623,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
             fprintf(fp, "E 0 %d %d %d\n", pReset->arg1, pReset->arg2,
                     pReset->arg3);
             if (!pLastMob) {
-              sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+              snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
               bug(buf, 0);
             }
             break;
@@ -798,7 +798,7 @@ void do_asave(CHAR_DATA *ch, char *argument) {
     save_area_list();
 
     send_to_char("Saved zones:\n\r", ch);
-    sprintf(buf, "None.\n\r");
+    snprintf(buf, sizeof(buf), "None.\n\r");
 
     for (pArea = area_first; pArea; pArea = pArea->next) {
       /* Builder must be assigned this area. */
@@ -807,7 +807,7 @@ void do_asave(CHAR_DATA *ch, char *argument) {
       /* Save changed areas. */
       if (IS_SET(pArea->area_flags, AREA_CHANGED)) {
         save_area(pArea);
-        sprintf(buf, "%24s - '%s'\n\r", pArea->name, pArea->filename);
+        snprintf(buf, sizeof(buf), "%24s - '%s'\n\r", pArea->name, pArea->filename);
         send_to_char(buf, ch);
         REMOVE_BIT(pArea->area_flags, AREA_CHANGED);
       }
