@@ -1,3 +1,8 @@
 **/*.o
 **/.vscode
 src/rom
+src/Makefile
+**/*~
+**/autom4te.cache/
+**/config.log
+**/config.status
