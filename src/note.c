@@ -72,31 +72,31 @@ void do_unread(CHAR_DATA *ch) {
 
   if ((count = count_spool(ch, news_list)) > 0) {
     found = TRUE;
-    sprintf(buf, "There %s %d new news article%s waiting.\n\r",
+    snprintf(buf, sizeof(buf), "There %s %d new news article%s waiting.\n\r",
             count > 1 ? "are" : "is", count, count > 1 ? "s" : "");
     send_to_char(buf, ch);
   }
   if ((count = count_spool(ch, changes_list)) > 0) {
     found = TRUE;
-    sprintf(buf, "There %s %d change%s waiting to be read.\n\r",
+    snprintf(buf, sizeof(buf), "There %s %d change%s waiting to be read.\n\r",
             count > 1 ? "are" : "is", count, count > 1 ? "s" : "");
     send_to_char(buf, ch);
   }
   if ((count = count_spool(ch, note_list)) > 0) {
     found = TRUE;
-    sprintf(buf, "You have %d new note%s waiting.\n\r", count,
+    snprintf(buf, sizeof(buf), "You have %d new note%s waiting.\n\r", count,
             count > 1 ? "s" : "");
     send_to_char(buf, ch);
   }
   if ((count = count_spool(ch, idea_list)) > 0) {
     found = TRUE;
-    sprintf(buf, "You have %d unread idea%s to peruse.\n\r", count,
+    snprintf(buf, sizeof(buf), "You have %d unread idea%s to peruse.\n\r", count,
             count > 1 ? "s" : "");
     send_to_char(buf, ch);
   }
   if (IS_TRUSTED(ch, ANGEL) && (count = count_spool(ch, penalty_list)) > 0) {
     found = TRUE;
-    sprintf(buf, "%d %s been added.\n\r", count,
+    snprintf(buf, sizeof(buf), "%d %s been added.\n\r", count,
             count > 1 ? "penalties have" : "penalty has");
     send_to_char(buf, ch);
   }
@@ -234,7 +234,7 @@ void load_thread(char *name, NOTE_DATA **list, int type, time_t free_time) {
     pnotelast = pnote;
   }
 
-  strcpy(strArea, NOTE_FILE);
+  strncpy(strArea, NOTE_FILE, sizeof(strArea));
   fpArea = fp;
   bug("Load_notes: bad key word.", 0);
   exit(1);
@@ -341,8 +341,8 @@ void note_remove(CHAR_DATA *ch, NOTE_DATA *pnote, bool delete) {
     while (*to_list != '\0') {
       to_list = one_argument(to_list, to_one);
       if (to_one[0] != '\0' && str_cmp(ch->name, to_one)) {
-        strcat(to_new, " ");
-        strcat(to_new, to_one);
+        strncat(to_new, " ", sizeof(to_new) - strlen(to_new) - 1);
+        strncat(to_new, to_one, sizeof(to_new) - strlen(to_new) - 1);
       }
     }
     /* Just a simple recipient removal? */
@@ -513,7 +513,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
       vnum = 0;
       for (pnote = *list; pnote != NULL; pnote = pnote->next) {
         if (!hide_note(ch, pnote)) {
-          sprintf(buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r", vnum, pnote->sender,
+          snprintf(buf, sizeof(buf), "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r", vnum, pnote->sender,
                   pnote->subject, pnote->date, pnote->to_list);
           send_to_char(buf, ch);
           page_to_char(pnote->text, ch);
@@ -522,7 +522,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
         } else if (is_note_to(ch, pnote))
           vnum++;
       }
-      sprintf(buf, "You have no unread %s.\n\r", list_name);
+      snprintf(buf, sizeof(buf), "You have no unread %s.\n\r", list_name);
       send_to_char(buf, ch);
       return;
     }
@@ -538,7 +538,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
     vnum = 0;
     for (pnote = *list; pnote != NULL; pnote = pnote->next) {
       if (is_note_to(ch, pnote) && (vnum++ == anum || fAll)) {
-        sprintf(buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r", vnum - 1,
+        snprintf(buf, sizeof(buf), "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r", vnum - 1,
                 pnote->sender, pnote->subject, pnote->date, pnote->to_list);
         send_to_char(buf, ch);
         page_to_char(pnote->text, ch);
@@ -547,7 +547,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
       }
     }
 
-    sprintf(buf, "There aren't that many %s.\n\r", list_name);
+    snprintf(buf, sizeof(buf), "There aren't that many %s.\n\r", list_name);
     send_to_char(buf, ch);
     return;
   }
@@ -556,7 +556,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
     vnum = 0;
     for (pnote = *list; pnote != NULL; pnote = pnote->next) {
       if (is_note_to(ch, pnote)) {
-        sprintf(buf, "[%3d%s] %s: %s\n\r", vnum,
+        snprintf(buf, sizeof(buf), "[%3d%s] %s: %s\n\r", vnum,
                 hide_note(ch, pnote) ? " " : "N", pnote->sender,
                 pnote->subject);
         send_to_char(buf, ch);
@@ -601,7 +601,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
       }
     }
 
-    sprintf(buf, "There aren't that many %s.", list_name);
+    snprintf(buf, sizeof(buf), "There aren't that many %s.", list_name);
     send_to_char(buf, ch);
     return;
   }
@@ -622,7 +622,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
       }
     }
 
-    sprintf(buf, "There aren't that many %s.", list_name);
+    snprintf(buf, sizeof(buf), "There aren't that many %s.", list_name);
     send_to_char(buf, ch);
     return;
   }
@@ -651,7 +651,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
   /* below this point only certain people can edit notes */
   if ((type == NOTE_NEWS && !IS_TRUSTED(ch, ANGEL)) ||
       (type == NOTE_CHANGES && !IS_TRUSTED(ch, CREATOR))) {
-    sprintf(buf, "You aren't high enough level to write %s.", list_name);
+    snprintf(buf, sizeof(buf), "You aren't high enough level to write %s.", list_name);
     send_to_char(buf, ch);
     return;
   }
@@ -695,7 +695,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
       return;
     }
 
-    strcpy(buf, ch->pnote->text);
+    strncpy(buf, ch->pnote->text, sizeof(buf));
 
     for (len = strlen(buf); len > 0; len--) {
       if (buf[len] == '\r') {
@@ -764,7 +764,7 @@ void parse_note(CHAR_DATA *ch, char *argument, int type) {
       return;
     }
 
-    sprintf(buf, "%s: %s\n\rTo: %s\n\r", ch->pnote->sender, ch->pnote->subject,
+    snprintf(buf, sizeof(buf), "%s: %s\n\rTo: %s\n\r", ch->pnote->sender, ch->pnote->subject,
             ch->pnote->to_list);
     send_to_char(buf, ch);
     send_to_char(ch->pnote->text, ch);

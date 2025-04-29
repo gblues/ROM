@@ -1259,7 +1259,7 @@ void do_recall(CHAR_DATA *ch, char *argument) {
     if (number_percent() < 80 * skill / 100) {
       check_improve(ch, gsn_recall, FALSE, 6);
       WAIT_STATE(ch, 4);
-      sprintf(buf, "You failed!.\n\r");
+      snprintf(buf, sizeof(buf), "You failed!.\n\r");
       send_to_char(buf, ch);
       return;
     }
@@ -1267,7 +1267,7 @@ void do_recall(CHAR_DATA *ch, char *argument) {
     lose = (ch->desc != NULL) ? 25 : 50;
     gain_exp(ch, 0 - lose);
     check_improve(ch, gsn_recall, TRUE, 4);
-    sprintf(buf, "You recall from combat!  You lose %d exps.\n\r", lose);
+    snprintf(buf, sizeof(buf), "You recall from combat!  You lose %d exps.\n\r", lose);
     send_to_char(buf, ch);
     stop_fighting(ch, TRUE);
   }
@@ -1306,7 +1306,7 @@ void do_train(CHAR_DATA *ch, char *argument) {
   }
 
   if (argument[0] == '\0') {
-    sprintf(buf, "You have %d training sessions.\n\r", ch->train);
+    snprintf(buf, sizeof(buf), "You have %d training sessions.\n\r", ch->train);
     send_to_char(buf, ch);
     argument = "foo";
   }
@@ -1350,21 +1350,21 @@ void do_train(CHAR_DATA *ch, char *argument) {
     cost = 1;
 
   else {
-    strcpy(buf, "You can train:");
+    strncpy(buf, "You can train:", sizeof(buf));
     if (ch->perm_stat[STAT_STR] < get_max_train(ch, STAT_STR))
-      strcat(buf, " str");
+      strncat(buf, " str", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_INT] < get_max_train(ch, STAT_INT))
-      strcat(buf, " int");
+      strncat(buf, " int", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_WIS] < get_max_train(ch, STAT_WIS))
-      strcat(buf, " wis");
+      strncat(buf, " wis", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_DEX] < get_max_train(ch, STAT_DEX))
-      strcat(buf, " dex");
+      strncat(buf, " dex", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_CON] < get_max_train(ch, STAT_CON))
-      strcat(buf, " con");
-    strcat(buf, " hp mana");
+      strncat(buf, " con", sizeof(buf) - strlen(buf) - 1);
+    strncat(buf, " hp mana", sizeof(buf) - strlen(buf) - 1);
 
     if (buf[strlen(buf) - 1] != ':') {
-      strcat(buf, ".\n\r");
+      strncat(buf, ".\n\r", sizeof(buf) - strlen(buf) - 1);
       send_to_char(buf, ch);
     } else {
       /*

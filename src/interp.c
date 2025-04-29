@@ -397,7 +397,7 @@ void interpret(CHAR_DATA *ch, char *argument) {
    * Special parsing so ' can be a command,
    *   also no spaces needed after punctuation.
    */
-  strcpy(logline, argument);
+  strncpy(logline, argument, sizeof(logline));
   if (!isalpha(argument[0]) && !isdigit(argument[0])) {
     command[0] = argument[0];
     command[1] = '\0';
@@ -424,11 +424,11 @@ void interpret(CHAR_DATA *ch, char *argument) {
   /*
    * Log and snoop.
    */
-  if (cmd_table[cmd].log == LOG_NEVER) strcpy(logline, "");
+  if (cmd_table[cmd].log == LOG_NEVER) strncpy(logline, "", sizeof(logline));
 
   if ((!IS_NPC(ch) && IS_SET(ch->act, PLR_LOG)) || fLogAll ||
       cmd_table[cmd].log == LOG_ALWAYS) {
-    sprintf(log_buf, "Log %s: %s", ch->name, logline);
+    snprintf(log_buf, LOGBUF_SIZE, "Log %s: %s", ch->name, logline);
     wiznet(log_buf, ch, NULL, WIZ_SECURE, 0, get_trust(ch));
     log_string(log_buf);
   }
@@ -619,7 +619,7 @@ bool is_number(char *arg) {
 /*
  * Given a string like 14.foo, return 14 and 'foo'
  */
-int number_argument(char *argument, char *arg) {
+int number_argument(char *argument, char *arg, size_t arg_size) {
   char *pdot;
   int number;
 
@@ -628,19 +628,19 @@ int number_argument(char *argument, char *arg) {
       *pdot = '\0';
       number = atoi(argument);
       *pdot = '.';
-      strcpy(arg, pdot + 1);
+      strncpy(arg, pdot + 1, arg_size);
       return number;
     }
   }
 
-  strcpy(arg, argument);
+  strncpy(arg, argument, arg_size);
   return 1;
 }
 
 /*
  * Given a string like 14*foo, return 14 and 'foo'
  */
-int mult_argument(char *argument, char *arg) {
+int mult_argument(char *argument, char *arg, size_t arg_size) {
   char *pdot;
   int number;
 
@@ -649,12 +649,12 @@ int mult_argument(char *argument, char *arg) {
       *pdot = '\0';
       number = atoi(argument);
       *pdot = '*';
-      strcpy(arg, pdot + 1);
+      strncpy(arg, pdot + 1, arg_size);
       return number;
     }
   }
 
-  strcpy(arg, argument);
+  strncpy(arg, argument, arg_size);
   return 1;
 }
 
@@ -698,7 +698,7 @@ void do_commands(CHAR_DATA *ch, char *argument) {
   for (cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++) {
     if (cmd_table[cmd].level < LEVEL_HERO &&
         cmd_table[cmd].level <= get_trust(ch) && cmd_table[cmd].show) {
-      sprintf(buf, "%-12s", cmd_table[cmd].name);
+      snprintf(buf, sizeof(buf), "%-12s", cmd_table[cmd].name);
       send_to_char(buf, ch);
       if (++col % 6 == 0) send_to_char("\n\r", ch);
     }
@@ -717,7 +717,7 @@ void do_wizhelp(CHAR_DATA *ch, char *argument) {
   for (cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++) {
     if (cmd_table[cmd].level >= LEVEL_HERO &&
         cmd_table[cmd].level <= get_trust(ch) && cmd_table[cmd].show) {
-      sprintf(buf, "%-12s", cmd_table[cmd].name);
+      snprintf(buf, sizeof(buf), "%-12s", cmd_table[cmd].name);
       send_to_char(buf, ch);
       if (++col % 6 == 0) send_to_char("\n\r", ch);
     }

@@ -93,7 +93,7 @@ bool check_ban(char *site, int type) {
   BAN_DATA *pban;
   char host[MAX_STRING_LENGTH];
 
-  strcpy(host, capitalize(site));
+  strncpy(host, capitalize(site), sizeof(host));
   host[0] = LOWER(host[0]);
 
   for (pban = ban_list; pban != NULL; pban = pban->next) {
@@ -210,7 +210,7 @@ void ban_site(CHAR_DATA *ch, char *argument, bool fPerm) {
   pban->next = ban_list;
   ban_list = pban;
   save_bans();
-  sprintf(buf, "%s has been banned.\n\r", pban->name);
+  snprintf(buf, sizeof(buf), "%s has been banned.\n\r", pban->name);
   send_to_char(buf, ch);
   return;
 }
@@ -245,7 +245,7 @@ void do_allow(CHAR_DATA *ch, char *argument) {
         prev->next = curr->next;
 
       free_ban(curr);
-      sprintf(buf, "Ban on %s lifted.\n\r", arg);
+      snprintf(buf, sizeof(buf), "Ban on %s lifted.\n\r", arg);
       send_to_char(buf, ch);
       save_bans();
       return;

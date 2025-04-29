@@ -145,11 +145,11 @@ char *flag_string(const struct flag_type *flag_table, int bits) {
        flag_table[flag].name != NULL && flag_table[flag].name[0] != '\0';
        flag++) {
     if (!is_stat(flag_table) && IS_SET(bits, flag_table[flag].bit)) {
-      strcat(buf, " ");
-      strcat(buf, flag_table[flag].name);
+      strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
+      strncat(buf, flag_table[flag].name, sizeof(buf) - strlen(buf) - 1);
     } else if (flag_table[flag].bit == bits) {
-      strcat(buf, " ");
-      strcat(buf, flag_table[flag].name);
+      strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
+      strncat(buf, flag_table[flag].name, sizeof(buf) - strlen(buf) - 1);
       break;
     }
   }

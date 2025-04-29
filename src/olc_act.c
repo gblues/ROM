@@ -103,13 +103,13 @@ void show_flag_cmds(CHAR_DATA *ch, const struct flag_type *flag_table) {
        flag_table[flag].name != NULL && flag_table[flag].name[0] != '\0';
        flag++) {
     if (flag_table[flag].settable) {
-      sprintf(buf, "%-19.18s", flag_table[flag].name);
-      strcat(buf1, buf);
-      if (++col % 4 == 0) strcat(buf1, "\n\r");
+      snprintf(buf, sizeof(buf), "%-19.18s", flag_table[flag].name);
+      strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+      if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
     }
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -140,13 +140,13 @@ void show_skill_cmds(CHAR_DATA *ch, int tar) {
       continue;
 
     if (tar == -1 || skill_table[sn].target == tar) {
-      sprintf(buf, "%-19.18s", skill_table[sn].name);
-      strcat(buf1, buf);
-      if (++col % 4 == 0) strcat(buf1, "\n\r");
+      snprintf(buf, sizeof(buf), "%-19.18s", skill_table[sn].name);
+      strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+      if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
     }
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -167,12 +167,12 @@ void show_spec_cmds(CHAR_DATA *ch) {
   col = 0;
   send_to_char("Preceed special functions with 'spec_'\n\r\n\r", ch);
   for (spec = 0; spec_table[spec].function != NULL; spec++) {
-    sprintf(buf, "%-19.18s", &spec_table[spec].name[5]);
-    strcat(buf1, buf);
-    if (++col % 4 == 0) strcat(buf1, "\n\r");
+    snprintf(buf, sizeof(buf), "%-19.18s", &spec_table[spec].name[5]);
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -187,12 +187,12 @@ void show_liquids(CHAR_DATA *ch) {
   buf1[0] = '\0';
   col = 0;
   for (liq = 0; liq_table[liq].liq_name[0] != '\0'; liq++) {
-    sprintf(buf, "%-19.18s", &liq_table[liq].liq_name[0]);
-    strcat(buf1, buf);
-    if (++col % 4 == 0) strcat(buf1, "\n\r");
+    snprintf(buf, sizeof(buf), "%-19.18s", &liq_table[liq].liq_name[0]);
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -219,7 +219,7 @@ bool show_help(CHAR_DATA *ch, char *argument) {
     send_to_char("Syntax:  ? [command]\n\r\n\r", ch);
     send_to_char("[command]  [description]\n\r", ch);
     for (cnt = 0; help_table[cnt].command[0] != '\0'; cnt++) {
-      sprintf(buf, "%-10.10s -%s\n\r", capitalize(help_table[cnt].command),
+      snprintf(buf, sizeof(buf), "%-10.10s -%s\n\r", capitalize(help_table[cnt].command),
               help_table[cnt].desc);
       send_to_char(buf, ch);
     }
@@ -303,10 +303,10 @@ REDIT(redit_mlist) {
     if ((pMobIndex = get_mob_index(vnum))) {
       if (fAll || is_name(arg, pMobIndex->player_name)) {
         found = TRUE;
-        sprintf(buf, "[%5d] %-17.16s", pMobIndex->vnum,
+        snprintf(buf, sizeof(buf), "[%5d] %-17.16s", pMobIndex->vnum,
                 capitalize(pMobIndex->short_descr));
-        strcat(buf1, buf);
-        if (++col % 3 == 0) strcat(buf1, "\n\r");
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+        if (++col % 3 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
       }
     }
   }
@@ -316,7 +316,7 @@ REDIT(redit_mlist) {
     return FALSE;
   }
 
-  if (col % 3 != 0) strcat(buf1, "\n\r");
+  if (col % 3 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return FALSE;
@@ -348,10 +348,10 @@ REDIT(redit_olist) {
       if (fAll || is_name(arg, pObjIndex->name) ||
           flag_value(type_flags, arg) == pObjIndex->item_type) {
         found = TRUE;
-        sprintf(buf, "[%5d] %-17.16s", pObjIndex->vnum,
+        snprintf(buf, sizeof(buf), "[%5d] %-17.16s", pObjIndex->vnum,
                 capitalize(pObjIndex->short_descr));
-        strcat(buf1, buf);
-        if (++col % 3 == 0) strcat(buf1, "\n\r");
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+        if (++col % 3 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
       }
     }
   }
@@ -361,7 +361,7 @@ REDIT(redit_olist) {
     return FALSE;
   }
 
-  if (col % 3 != 0) strcat(buf1, "\n\r");
+  if (col % 3 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return FALSE;
@@ -456,35 +456,28 @@ AEDIT(aedit_show) {
 
   EDIT_AREA(ch, pArea);
 
-  sprintf(buf, "Name:     [%5d] %s\n\r", pArea->vnum, pArea->name);
+  snprintf(buf, sizeof(buf), "Name:     [%5d] %s\n\r", pArea->vnum, pArea->name);
   send_to_char(buf, ch);
 
-#if 0  /* ROM OLC */
-    sprintf( buf, "Recall:   [%5d] %s\n\r", pArea->recall,
-	get_room_index( pArea->recall )
-	? get_room_index( pArea->recall )->name : "none" );
-    send_to_char( buf, ch );
-#endif /* ROM */
-
-  sprintf(buf, "File:     %s\n\r", pArea->filename);
+  snprintf(buf, sizeof(buf), "File:     %s\n\r", pArea->filename);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Vnums:    [%d-%d]\n\r", pArea->lvnum, pArea->uvnum);
+  snprintf(buf, sizeof(buf), "Vnums:    [%d-%d]\n\r", pArea->lvnum, pArea->uvnum);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Age:      [%d]\n\r", pArea->age);
+  snprintf(buf, sizeof(buf), "Age:      [%d]\n\r", pArea->age);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Players:  [%d]\n\r", pArea->nplayer);
+  snprintf(buf, sizeof(buf), "Players:  [%d]\n\r", pArea->nplayer);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Security: [%d]\n\r", pArea->security);
+  snprintf(buf, sizeof(buf), "Security: [%d]\n\r", pArea->security);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Builders: [%s]\n\r", pArea->builders);
+  snprintf(buf, sizeof(buf), "Builders: [%s]\n\r", pArea->builders);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Flags:    [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Flags:    [%s]\n\r",
           flag_string(area_flags, pArea->area_flags));
   send_to_char(buf, ch);
 
@@ -566,7 +559,7 @@ AEDIT(aedit_file) {
   }
 
   free_string(pArea->filename);
-  strcat(file, ".are");
+  strncat(file, ".are", sizeof(file) - strlen(file) - 1);
   pArea->filename = str_dup(file);
 
   send_to_char("Filename set.\n\r", ch);
@@ -592,38 +585,6 @@ AEDIT(aedit_age) {
   return TRUE;
 }
 
-#if 0  /* ROM OLC */
-AEDIT( aedit_recall )
-{
-    AREA_DATA *pArea;
-    char room[MAX_STRING_LENGTH];
-    int  value;
-
-    EDIT_AREA(ch, pArea);
-
-    one_argument( argument, room );
-
-    if ( !is_number( argument ) || argument[0] == '\0' )
-    {
-	send_to_char( "Syntax:  recall [#rvnum]\n\r", ch );
-	return FALSE;
-    }
-
-    value = atoi( room );
-
-    if ( !get_room_index( value ) )
-    {
-	send_to_char( "AEdit:  Room vnum does not exist.\n\r", ch );
-	return FALSE;
-    }
-
-    pArea->recall = value;
-
-    send_to_char( "Recall set.\n\r", ch );
-    return TRUE;
-}
-#endif /* ROM OLC */
-
 AEDIT(aedit_security) {
   AREA_DATA *pArea;
   char sec[MAX_STRING_LENGTH];
@@ -643,7 +604,7 @@ AEDIT(aedit_security) {
 
   if (value > ch->pcdata->security || value < 0) {
     if (ch->pcdata->security != 0) {
-      sprintf(buf, "Security is 0-%d.\n\r", ch->pcdata->security);
+      snprintf(buf, sizeof(buf), "Security is 0-%d.\n\r", ch->pcdata->security);
       send_to_char(buf, ch);
     } else
       send_to_char("Security is 0 only.\n\r", ch);
@@ -691,10 +652,10 @@ AEDIT(aedit_builder) {
     }
 
     if (pArea->builders[0] != '\0') {
-      strcat(buf, pArea->builders);
-      strcat(buf, " ");
+      strncat(buf, pArea->builders, sizeof(buf) - strlen(buf) - 1);
+      strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
     }
-    strcat(buf, name);
+    strncat(buf, name, sizeof(buf) - strlen(buf) - 1);
     free_string(pArea->builders);
     pArea->builders = string_proper(str_dup(buf));
 
@@ -839,38 +800,38 @@ REDIT(redit_show) {
 
   buf1[0] = '\0';
 
-  sprintf(buf, "Description:\n\r%s", pRoom->description);
-  strcat(buf1, buf);
+  snprintf(buf, sizeof(buf), "Description:\n\r%s", pRoom->description);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
-  sprintf(buf, "Name:       [%s]\n\rArea:       [%5d] %s\n\r", pRoom->name,
+  snprintf(buf, sizeof(buf), "Name:       [%s]\n\rArea:       [%5d] %s\n\r", pRoom->name,
           pRoom->area->vnum, pRoom->area->name);
-  strcat(buf1, buf);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
-  sprintf(buf, "Vnum:       [%5d]\n\rSector:     [%s]\n\r", pRoom->vnum,
+  snprintf(buf, sizeof(buf), "Vnum:       [%5d]\n\rSector:     [%s]\n\r", pRoom->vnum,
           flag_string(sector_flags, pRoom->sector_type));
-  strcat(buf1, buf);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
-  sprintf(buf, "Room flags: [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Room flags: [%s]\n\r",
           flag_string(room_flags, pRoom->room_flags));
-  strcat(buf1, buf);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
   if (pRoom->extra_descr) {
     EXTRA_DESCR_DATA *ed;
 
-    strcat(buf1, "Desc Kwds:  [");
+    strncat(buf1, "Desc Kwds:  [", sizeof(buf1) - strlen(buf1) - 1);
     for (ed = pRoom->extra_descr; ed; ed = ed->next) {
-      strcat(buf1, ed->keyword);
-      if (ed->next) strcat(buf1, " ");
+      strncat(buf1, ed->keyword, sizeof(buf1) - strlen(buf1) - 1);
+      if (ed->next) strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
     }
-    strcat(buf1, "]\n\r");
+    strncat(buf1, "]\n\r", sizeof(buf1) - strlen(buf1) - 1);
   }
 
-  strcat(buf1, "Characters: [");
+  strncat(buf1, "Characters: [", sizeof(buf1) - strlen(buf1) - 1);
   fcnt = FALSE;
   for (rch = pRoom->people; rch; rch = rch->next_in_room) {
     one_argument(rch->name, buf);
-    strcat(buf1, buf);
-    strcat(buf1, " ");
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
     fcnt = TRUE;
   }
 
@@ -879,16 +840,16 @@ REDIT(redit_show) {
 
     end = strlen(buf1) - 1;
     buf1[end] = ']';
-    strcat(buf1, "\n\r");
+    strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   } else
-    strcat(buf1, "none]\n\r");
+    strncat(buf1, "none]\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
-  strcat(buf1, "Objects:    [");
+  strncat(buf1, "Objects:    [", sizeof(buf1) - strlen(buf1) - 1);
   fcnt = FALSE;
   for (obj = pRoom->contents; obj; obj = obj->next_content) {
     one_argument(obj->name, buf);
-    strcat(buf1, buf);
-    strcat(buf1, " ");
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
     fcnt = TRUE;
   }
 
@@ -897,9 +858,9 @@ REDIT(redit_show) {
 
     end = strlen(buf1) - 1;
     buf1[end] = ']';
-    strcat(buf1, "\n\r");
+    strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   } else
-    strcat(buf1, "none]\n\r");
+    strncat(buf1, "none]\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   for (door = 0; door < MAX_DIR; door++) {
     EXIT_DATA *pexit;
@@ -910,18 +871,18 @@ REDIT(redit_show) {
       char *state;
       int i, length;
 
-      sprintf(buf, "-%-5s to [%5d] Key: [%5d]", capitalize(dir_name[door]),
+      snprintf(buf, sizeof(buf), "-%-5s to [%5d] Key: [%5d]", capitalize(dir_name[door]),
               pexit->u1.to_room ? pexit->u1.to_room->vnum : 0, /* ROM OLC */
               pexit->key);
-      strcat(buf1, buf);
+      strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
       /*
        * Format up the exit info.
        * Capitalize all flags that are not part of the reset info.
        */
-      strcpy(reset_state, flag_string(exit_flags, pexit->rs_flags));
+      strncpy(reset_state, flag_string(exit_flags, pexit->rs_flags), sizeof(reset_state));
       state = flag_string(exit_flags, pexit->exit_info);
-      strcat(buf1, " Exit flags: [");
+      strncat(buf1, " Exit flags: [", sizeof(buf1) - strlen(buf1) - 1);
       for (;;) {
         state = one_argument(state, word);
 
@@ -930,7 +891,7 @@ REDIT(redit_show) {
 
           end = strlen(buf1) - 1;
           buf1[end] = ']';
-          strcat(buf1, "\n\r");
+          strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
           break;
         }
 
@@ -938,17 +899,17 @@ REDIT(redit_show) {
           length = strlen(word);
           for (i = 0; i < length; i++) word[i] = UPPER(word[i]);
         }
-        strcat(buf1, word);
-        strcat(buf1, " ");
+        strncat(buf1, word, sizeof(buf1) - strlen(buf1) - 1);
+        strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
       }
 
       if (pexit->keyword && pexit->keyword[0] != '\0') {
-        sprintf(buf, "Kwds: [%s]\n\r", pexit->keyword);
-        strcat(buf1, buf);
+        snprintf(buf, sizeof(buf), "Kwds: [%s]\n\r", pexit->keyword);
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
       }
       if (pexit->description && pexit->description[0] != '\0') {
-        sprintf(buf, "%s", pexit->description);
-        strcat(buf1, buf);
+        snprintf(buf, sizeof(buf), "%s", pexit->description);
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
       }
     }
   }
@@ -1110,7 +1071,7 @@ bool change_exit(CHAR_DATA *ch, char *argument, int door) {
     }
 
     redit_create(ch, arg);
-    sprintf(buf, "link %s", arg);
+    snprintf(buf, sizeof(buf), "link %s", arg);
     change_exit(ch, buf, door);
     return TRUE;
   }
@@ -1511,7 +1472,7 @@ REDIT(redit_mreset) {
   newmob = create_mobile(pMobIndex);
   char_to_room(newmob, pRoom);
 
-  sprintf(output,
+  snprintf(output, sizeof(output),
           "%s (%d) has been loaded and added to resets.\n\r"
           "There will be a maximum of %d loaded to this room.\n\r",
           capitalize(pMobIndex->short_descr), pMobIndex->vnum, pReset->arg2);
@@ -1628,7 +1589,7 @@ REDIT(redit_oreset) {
     newobj = create_object(pObjIndex, number_fuzzy(olevel));
     obj_to_room(newobj, pRoom);
 
-    sprintf(output, "%s (%d) has been loaded and added to resets.\n\r",
+    snprintf(output, sizeof(output), "%s (%d) has been loaded and added to resets.\n\r",
             capitalize(pObjIndex->short_descr), pObjIndex->vnum);
     send_to_char(output, ch);
   } else
@@ -1648,7 +1609,7 @@ REDIT(redit_oreset) {
       newobj->cost = 0;
       obj_to_obj(newobj, to_obj);
 
-      sprintf(output,
+      snprintf(output, sizeof(output),
               "%s (%d) has been loaded into "
               "%s (%d) and added to resets.\n\r",
               capitalize(newobj->short_descr), newobj->pIndexData->vnum,
@@ -1673,7 +1634,7 @@ REDIT(redit_oreset) {
          * Disallow loading a sword(WEAR_WIELD) into WEAR_HEAD.
          */
         if (!IS_SET(pObjIndex->wear_flags, wear_bit(wear_loc))) {
-          sprintf(output, "%s (%d) has wear flags: [%s]\n\r",
+          snprintf(output, sizeof(output), "%s (%d) has wear flags: [%s]\n\r",
                   capitalize(pObjIndex->short_descr), pObjIndex->vnum,
                   flag_string(wear_flags, pObjIndex->wear_flags));
           send_to_char(output, ch);
@@ -1743,7 +1704,7 @@ REDIT(redit_oreset) {
         obj_to_char(newobj, to_mob);
         if (pReset->command == 'E') equip_char(to_mob, newobj, pReset->arg3);
 
-        sprintf(output,
+        snprintf(output, sizeof(output),
                 "%s (%d) has been loaded "
                 "%s of %s (%d) and added to resets.\n\r",
                 capitalize(pObjIndex->short_descr), pObjIndex->vnum,
@@ -1772,15 +1733,15 @@ void show_obj_values(CHAR_DATA *ch, OBJ_INDEX_DATA *obj) {
 
     case ITEM_LIGHT:
       if (obj->value[2] == -1 || obj->value[2] == 999) /* ROM OLC */
-        sprintf(buf, "[v2] Light:  Infinite[-1]\n\r");
+        snprintf(buf, sizeof(buf), "[v2] Light:  Infinite[-1]\n\r");
       else
-        sprintf(buf, "[v2] Light:  [%d]\n\r", obj->value[2]);
+        snprintf(buf, sizeof(buf), "[v2] Light:  [%d]\n\r", obj->value[2]);
       send_to_char(buf, ch);
       break;
 
     case ITEM_WAND:
     case ITEM_STAFF:
-      sprintf(buf,
+      snprintf(buf, sizeof(buf),
               "[v0] Level:          [%d]\n\r"
               "[v1] Charges Total:  [%d]\n\r"
               "[v2] Charges Left:   [%d]\n\r"
@@ -1793,7 +1754,7 @@ void show_obj_values(CHAR_DATA *ch, OBJ_INDEX_DATA *obj) {
     case ITEM_SCROLL:
     case ITEM_POTION:
     case ITEM_PILL:
-      sprintf(buf,
+      snprintf(buf, sizeof(buf),
               "[v0] Level:  [%d]\n\r"
               "[v1] Spell:  %s\n\r"
               "[v2] Spell:  %s\n\r"
@@ -1808,7 +1769,7 @@ void show_obj_values(CHAR_DATA *ch, OBJ_INDEX_DATA *obj) {
       /* ARMOR for ROM */
 
     case ITEM_ARMOR:
-      sprintf(buf,
+      snprintf(buf, sizeof(buf),
               "[v0] Ac pierce       [%d]\n\r"
               "[v1] Ac bash         [%d]\n\r"
               "[v2] Ac slash        [%d]\n\r"
@@ -1822,23 +1783,23 @@ void show_obj_values(CHAR_DATA *ch, OBJ_INDEX_DATA *obj) {
        * Hugin */
       /* It somehow fixed a bug in showing scroll/pill/potions too ?! */
     case ITEM_WEAPON:
-      sprintf(buf, "[v0] Weapon class:   %s\n\r",
+      snprintf(buf, sizeof(buf), "[v0] Weapon class:   %s\n\r",
               flag_string(weapon_class, obj->value[0]));
       send_to_char(buf, ch);
-      sprintf(buf, "[v1] Number of dice: [%d]\n\r", obj->value[1]);
+      snprintf(buf, sizeof(buf), "[v1] Number of dice: [%d]\n\r", obj->value[1]);
       send_to_char(buf, ch);
-      sprintf(buf, "[v2] Type of dice:   [%d]\n\r", obj->value[2]);
+      snprintf(buf, sizeof(buf), "[v2] Type of dice:   [%d]\n\r", obj->value[2]);
       send_to_char(buf, ch);
-      sprintf(buf, "[v3] Type:           %s\n\r",
+      snprintf(buf, sizeof(buf), "[v3] Type:           %s\n\r",
               flag_string(weapon_flags, obj->value[3]));
       send_to_char(buf, ch);
-      sprintf(buf, "[v4] Special type:   %s\n\r",
+      snprintf(buf, sizeof(buf), "[v4] Special type:   %s\n\r",
               flag_string(weapon_type_olc, obj->value[4]));
       send_to_char(buf, ch);
       break;
 
     case ITEM_CONTAINER:
-      sprintf(buf,
+      snprintf(buf, sizeof(buf),
               "[v0] Weight: [%d kg]\n\r"
               "[v1] Flags:  [%s]\n\r"
               "[v2] Key:    %s [%d]\n\r",
@@ -1851,7 +1812,7 @@ void show_obj_values(CHAR_DATA *ch, OBJ_INDEX_DATA *obj) {
       break;
 
     case ITEM_DRINK_CON:
-      sprintf(buf,
+      snprintf(buf, sizeof(buf),
               "[v0] Liquid Total: [%d]\n\r"
               "[v1] Liquid Left:  [%d]\n\r"
               "[v2] Liquid:       %s\n\r"
@@ -1862,7 +1823,7 @@ void show_obj_values(CHAR_DATA *ch, OBJ_INDEX_DATA *obj) {
       break;
 
     case ITEM_FOOD:
-      sprintf(buf,
+      snprintf(buf, sizeof(buf),
               "[v0] Food hours: [%d]\n\r"
               "[v3] Poisoned:   %s\n\r",
               obj->value[0], obj->value[3] != 0 ? "Yes" : "No");
@@ -1870,7 +1831,7 @@ void show_obj_values(CHAR_DATA *ch, OBJ_INDEX_DATA *obj) {
       break;
 
     case ITEM_MONEY:
-      sprintf(buf, "[v0] Gold:   [%d]\n\r", obj->value[0]);
+      snprintf(buf, sizeof(buf), "[v0] Gold:   [%d]\n\r", obj->value[0]);
       send_to_char(buf, ch);
       break;
   }
@@ -2108,35 +2069,35 @@ OEDIT(oedit_show) {
 
   EDIT_OBJ(ch, pObj);
 
-  sprintf(buf, "Name:        [%s]\n\rArea:        [%5d] %s\n\r", pObj->name,
+  snprintf(buf, sizeof(buf), "Name:        [%s]\n\rArea:        [%5d] %s\n\r", pObj->name,
           !pObj->area ? -1 : pObj->area->vnum,
           !pObj->area ? "No Area" : pObj->area->name);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Vnum:        [%5d]\n\rType:        [%s]\n\r", pObj->vnum,
+  snprintf(buf, sizeof(buf), "Vnum:        [%5d]\n\rType:        [%s]\n\r", pObj->vnum,
           flag_string(type_flags, pObj->item_type));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Level:       [%5d]\n\r", pObj->level);
+  snprintf(buf, sizeof(buf), "Level:       [%5d]\n\r", pObj->level);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Wear flags:  [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Wear flags:  [%s]\n\r",
           flag_string(wear_flags, pObj->wear_flags));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Extra flags: [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Extra flags: [%s]\n\r",
           flag_string(extra_flags, pObj->extra_flags));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Material:    [%s]\n\r", /* ROM */
+  snprintf(buf, sizeof(buf), "Material:    [%s]\n\r", /* ROM */
           pObj->material);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Condition:   [%5d]\n\r", /* ROM */
+  snprintf(buf, sizeof(buf), "Condition:   [%5d]\n\r", /* ROM */
           pObj->condition);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Weight:      [%5d]\n\rCost:        [%5d]\n\r", pObj->weight,
+  snprintf(buf, sizeof(buf), "Weight:      [%5d]\n\rCost:        [%5d]\n\r", pObj->weight,
           pObj->cost);
   send_to_char(buf, ch);
 
@@ -2154,7 +2115,7 @@ OEDIT(oedit_show) {
     send_to_char("\n\r", ch);
   }
 
-  sprintf(buf, "Short desc:  %s\n\rLong desc:\n\r     %s\n\r",
+  snprintf(buf, sizeof(buf), "Short desc:  %s\n\rLong desc:\n\r     %s\n\r",
           pObj->short_descr, pObj->description);
   send_to_char(buf, ch);
 
@@ -2163,7 +2124,7 @@ OEDIT(oedit_show) {
       send_to_char("Number Modifier Affects\n\r", ch);
       send_to_char("------ -------- -------\n\r", ch);
     }
-    sprintf(buf, "[%4d] %-8d %s\n\r", cnt, paf->modifier,
+    snprintf(buf, sizeof(buf), "[%4d] %-8d %s\n\r", cnt, paf->modifier,
             flag_string(apply_flags, paf->location));
     send_to_char(buf, ch);
     cnt++;
@@ -2711,100 +2672,100 @@ MEDIT(medit_show) {
 
   EDIT_MOB(ch, pMob);
 
-  sprintf(buf, "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
+  snprintf(buf, sizeof(buf), "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
           pMob->player_name, !pMob->area ? -1 : pMob->area->vnum,
           !pMob->area ? "No Area" : pMob->area->name);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Act:         [%s]\n\r", flag_string(act_flags, pMob->act));
+  snprintf(buf, sizeof(buf), "Act:         [%s]\n\r", flag_string(act_flags, pMob->act));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Vnum:        [%5d]\n\rSex:         [%s]\n\r", pMob->vnum,
+  snprintf(buf, sizeof(buf), "Vnum:        [%5d]\n\rSex:         [%s]\n\r", pMob->vnum,
           pMob->sex == SEX_MALE     ? "male"
           : pMob->sex == SEX_FEMALE ? "female"
           : pMob->sex == 3          ? "random"
                                     : "neutral"); /* ROM magic number */
   send_to_char(buf, ch);
 
-  sprintf(buf, "Race:        [%s]\n\r", /* ROM OLC */
+  snprintf(buf, sizeof(buf), "Race:        [%s]\n\r", /* ROM OLC */
           race_table[pMob->race].name);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Level: [%2d]  Align: [%4d]  Hitroll: [%2d]\n\r", pMob->level,
+  snprintf(buf, sizeof(buf), "Level: [%2d]  Align: [%4d]  Hitroll: [%2d]\n\r", pMob->level,
           pMob->alignment, pMob->hitroll);
   send_to_char(buf, ch);
 
   /* ROM values: */
 
-  sprintf(buf, "Hit dice:[%2dd%-3d+%4d]  Damage dice:[%2dd%-3d+%4d]\n\r",
+  snprintf(buf, sizeof(buf), "Hit dice:[%2dd%-3d+%4d]  Damage dice:[%2dd%-3d+%4d]\n\r",
           pMob->hit[DICE_NUMBER], pMob->hit[DICE_TYPE], pMob->hit[DICE_BONUS],
           pMob->damage[DICE_NUMBER], pMob->damage[DICE_TYPE],
           pMob->damage[DICE_BONUS]);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Mana dice:   [%2dd%-3d+%4d]\n\r", pMob->mana[DICE_NUMBER],
+  snprintf(buf, sizeof(buf), "Mana dice:   [%2dd%-3d+%4d]\n\r", pMob->mana[DICE_NUMBER],
           pMob->mana[DICE_TYPE], pMob->mana[DICE_BONUS]);
   send_to_char(buf, ch);
 
   /* ROM values end */
 
-  sprintf(buf, "Affected by: [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Affected by: [%s]\n\r",
           flag_string(affect_flags, pMob->affected_by));
   send_to_char(buf, ch);
 
   /* ROM values: */
 
-  sprintf(buf, "Armor:       [pierce: %d  bash: %d  slash: %d  magic: %d]\n\r",
+  snprintf(buf, sizeof(buf), "Armor:       [pierce: %d  bash: %d  slash: %d  magic: %d]\n\r",
           pMob->ac[AC_PIERCE], pMob->ac[AC_BASH], pMob->ac[AC_SLASH],
           pMob->ac[AC_EXOTIC]);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Form:        [%s]\n\r", flag_string(form_flags, pMob->form));
+  snprintf(buf, sizeof(buf), "Form:        [%s]\n\r", flag_string(form_flags, pMob->form));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Parts:       [%s]\n\r", flag_string(part_flags, pMob->parts));
+  snprintf(buf, sizeof(buf), "Parts:       [%s]\n\r", flag_string(part_flags, pMob->parts));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Imm:         [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Imm:         [%s]\n\r",
           flag_string(imm_flags, pMob->imm_flags));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Res:         [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Res:         [%s]\n\r",
           flag_string(res_flags, pMob->res_flags));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Vuln:        [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Vuln:        [%s]\n\r",
           flag_string(vuln_flags, pMob->vuln_flags));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Off:         [%s]\n\r",
+  snprintf(buf, sizeof(buf), "Off:         [%s]\n\r",
           flag_string(off_flags, pMob->off_flags));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Size: [%s]  ", flag_string(size_flags, pMob->size));
+  snprintf(buf, sizeof(buf), "Size: [%s]  ", flag_string(size_flags, pMob->size));
   send_to_char(buf, ch);
 
-  sprintf(buf, "Start pos. [%s]  ", position_table[pMob->start_pos].name);
+  snprintf(buf, sizeof(buf), "Start pos. [%s]  ", position_table[pMob->start_pos].name);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Default pos [%s]\n\r", position_table[pMob->default_pos].name);
+  snprintf(buf, sizeof(buf), "Default pos [%s]\n\r", position_table[pMob->default_pos].name);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Gold:        [%5ld]\n\r", pMob->wealth);
+  snprintf(buf, sizeof(buf), "Gold:        [%5ld]\n\r", pMob->wealth);
   send_to_char(buf, ch);
 
   /* ROM values end */
 
   if (pMob->spec_fun) {
-    sprintf(buf, "Spec fun:    [%s]\n\r", spec_string(pMob->spec_fun));
+    snprintf(buf, sizeof(buf), "Spec fun:    [%s]\n\r", spec_string(pMob->spec_fun));
     send_to_char(buf, ch);
   }
 
-  sprintf(buf, "Short descr: %s\n\rLong descr:\n\r%s", pMob->short_descr,
+  snprintf(buf, sizeof(buf), "Short descr: %s\n\rLong descr:\n\r%s", pMob->short_descr,
           pMob->long_descr);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Description:\n\r%s", pMob->description);
+  snprintf(buf, sizeof(buf), "Description:\n\r%s", pMob->description);
   send_to_char(buf, ch);
 
   if (pMob->pShop) {
@@ -2813,13 +2774,13 @@ MEDIT(medit_show) {
 
     pShop = pMob->pShop;
 
-    sprintf(buf,
+    snprintf(buf, sizeof(buf),
             "Shop data for [%5d]:\n\r"
             "  Markup for purchaser: %d%%\n\r"
             "  Markdown for seller:  %d%%\n\r",
             pShop->keeper, pShop->profit_buy, pShop->profit_sell);
     send_to_char(buf, ch);
-    sprintf(buf, "  Hours: %d to %d.\n\r", pShop->open_hour, pShop->close_hour);
+    snprintf(buf, sizeof(buf), "  Hours: %d to %d.\n\r", pShop->open_hour, pShop->close_hour);
     send_to_char(buf, ch);
 
     for (iTrade = 0; iTrade < MAX_TRADE; iTrade++) {
@@ -2828,7 +2789,7 @@ MEDIT(medit_show) {
           send_to_char("  Number Trades Type\n\r", ch);
           send_to_char("  ------ -----------\n\r", ch);
         }
-        sprintf(buf, "  [%4d] %s\n\r", iTrade,
+        snprintf(buf, sizeof(buf), "  [%4d] %s\n\r", iTrade,
                 flag_string(type_flags, pShop->buy_type[iTrade]));
         send_to_char(buf, ch);
       }
@@ -2967,7 +2928,7 @@ MEDIT(medit_long) {
   }
 
   free_string(pMob->long_descr);
-  strcat(argument, "\n\r");
+  strncat(argument, "\n\r", sizeof(argument) - strlen(argument) - 1);
   pMob->long_descr = str_dup(argument);
   pMob->long_descr[0] = UPPER(pMob->long_descr[0]);
 
@@ -3077,7 +3038,7 @@ MEDIT(medit_shop) {
     }
 
     if (atoi(arg1) >= MAX_TRADE) {
-      sprintf(buf, "REdit:  May sell %d items max.\n\r", MAX_TRADE);
+      snprintf(buf, sizeof(buf), "REdit:  May sell %d items max.\n\r", MAX_TRADE);
       send_to_char(buf, ch);
       return FALSE;
     }
@@ -3572,7 +3533,7 @@ MEDIT(medit_race) {
 
     for (race = 0; race_table[race].name != NULL; race++) {
       if ((race % 3) == 0) send_to_char("\n\r", ch);
-      sprintf(buf, " %-15s", race_table[race].name);
+      snprintf(buf, sizeof(buf), " %-15s", race_table[race].name);
       send_to_char(buf, ch);
     }
 

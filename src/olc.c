@@ -53,19 +53,19 @@ char *olc_ed_name(CHAR_DATA *ch) {
   buf[0] = '\0';
   switch (ch->desc->editor) {
     case ED_AREA:
-      sprintf(buf, "AEdit");
+      snprintf(buf, sizeof(buf), "AEdit");
       break;
     case ED_ROOM:
-      sprintf(buf, "REdit");
+      snprintf(buf, sizeof(buf), "REdit");
       break;
     case ED_OBJECT:
-      sprintf(buf, "OEdit");
+      snprintf(buf, sizeof(buf), "OEdit");
       break;
     case ED_MOBILE:
-      sprintf(buf, "MEdit");
+      snprintf(buf, sizeof(buf), "MEdit");
       break;
     default:
-      sprintf(buf, " ");
+      snprintf(buf, sizeof(buf), " ");
       break;
   }
   return buf;
@@ -82,22 +82,22 @@ char *olc_ed_vnum(CHAR_DATA *ch) {
   switch (ch->desc->editor) {
     case ED_AREA:
       pArea = (AREA_DATA *)ch->desc->pEdit;
-      sprintf(buf, "%d", pArea ? pArea->vnum : 0);
+      snprintf(buf, sizeof(buf), "%d", pArea ? pArea->vnum : 0);
       break;
     case ED_ROOM:
       pRoom = ch->in_room;
-      sprintf(buf, "%d", pRoom ? pRoom->vnum : 0);
+      snprintf(buf, sizeof(buf), "%d", pRoom ? pRoom->vnum : 0);
       break;
     case ED_OBJECT:
       pObj = (OBJ_INDEX_DATA *)ch->desc->pEdit;
-      sprintf(buf, "%d", pObj ? pObj->vnum : 0);
+      snprintf(buf, sizeof(buf), "%d", pObj ? pObj->vnum : 0);
       break;
     case ED_MOBILE:
       pMob = (MOB_INDEX_DATA *)ch->desc->pEdit;
-      sprintf(buf, "%d", pMob ? pMob->vnum : 0);
+      snprintf(buf, sizeof(buf), "%d", pMob ? pMob->vnum : 0);
       break;
     default:
-      sprintf(buf, " ");
+      snprintf(buf, sizeof(buf), " ");
       break;
   }
 
@@ -118,12 +118,12 @@ void show_olc_cmds(CHAR_DATA *ch, const struct olc_cmd_type *olc_table) {
   buf1[0] = '\0';
   col = 0;
   for (cmd = 0; olc_table[cmd].name[0] != '\0'; cmd++) {
-    sprintf(buf, "%-15.15s", olc_table[cmd].name);
-    strcat(buf1, buf);
-    if (++col % 5 == 0) strcat(buf1, "\n\r");
+    snprintf(buf, sizeof(buf), "%-15.15s", olc_table[cmd].name);
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    if (++col % 5 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   }
 
-  if (col % 5 != 0) strcat(buf1, "\n\r");
+  if (col % 5 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -483,7 +483,7 @@ void medit(CHAR_DATA *ch, char *argument) {
   /*  int  value;    ROM */
 
   smash_tilde(argument);
-  strcpy(arg, argument);
+  strncpy(arg, argument, sizeof(arg));
   argument = one_argument(argument, command);
 
   EDIT_MOB(ch, pMob);
@@ -730,34 +730,34 @@ void display_resets(CHAR_DATA *ch) {
     ROOM_INDEX_DATA *pRoomIndex;
 
     final[0] = '\0';
-    sprintf(final, "[%2d] ", ++iReset);
+    snprintf(final, sizeof(final), "[%2d] ", ++iReset);
 
     switch (pReset->command) {
       default:
-        sprintf(buf, "Bad reset command: %c.", pReset->command);
-        strcat(final, buf);
+        snprintf(buf, sizeof(buf), "Bad reset command: %c.", pReset->command);
+        strncat(final, buf, sizeof(final) - strlen(final) - 1);
         break;
 
       case 'M':
         if (!(pMobIndex = get_mob_index(pReset->arg1))) {
-          sprintf(buf, "Load Mobile - Bad Mob %d\n\r", pReset->arg1);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Load Mobile - Bad Mob %d\n\r", pReset->arg1);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
         if (!(pRoomIndex = get_room_index(pReset->arg3))) {
-          sprintf(buf, "Load Mobile - Bad Room %d\n\r", pReset->arg3);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Load Mobile - Bad Room %d\n\r", pReset->arg3);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
         pMob = pMobIndex;
-        sprintf(
-            buf,
+        snprintf(
+            buf, sizeof(buf),
             "M[%5d] %-13.13s in room             R[%5d] [%-2d%2d] %-15.14s\n\r",
             pReset->arg1, pMob->short_descr, pReset->arg3, pReset->arg4,
             pReset->arg2, pRoomIndex->name);
-        strcat(final, buf);
+        strncat(final, buf, sizeof(final) - strlen(final) - 1);
 
         /*
          * Check for pet shop.
@@ -776,80 +776,80 @@ void display_resets(CHAR_DATA *ch) {
 
       case 'O':
         if (!(pObjIndex = get_obj_index(pReset->arg1))) {
-          sprintf(buf, "Load Object - Bad Object %d\n\r", pReset->arg1);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Load Object - Bad Object %d\n\r", pReset->arg1);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
         pObj = pObjIndex;
 
         if (!(pRoomIndex = get_room_index(pReset->arg3))) {
-          sprintf(buf, "Load Object - Bad Room %d\n\r", pReset->arg3);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Load Object - Bad Room %d\n\r", pReset->arg3);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
-        sprintf(buf,
+        snprintf(buf, sizeof(buf),
                 "O[%5d] %-13.13s in room             "
                 "R[%5d]       %-15.15s\n\r",
                 pReset->arg1, pObj->short_descr, pReset->arg3,
                 pRoomIndex->name);
-        strcat(final, buf);
+        strncat(final, buf, sizeof(final) - strlen(final) - 1);
 
         break;
 
       case 'P':
         if (!(pObjIndex = get_obj_index(pReset->arg1))) {
-          sprintf(buf, "Put Object - Bad Object %d\n\r", pReset->arg1);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Put Object - Bad Object %d\n\r", pReset->arg1);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
         pObj = pObjIndex;
 
         if (!(pObjToIndex = get_obj_index(pReset->arg3))) {
-          sprintf(buf, "Put Object - Bad To Object %d\n\r", pReset->arg3);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Put Object - Bad To Object %d\n\r", pReset->arg3);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
-        sprintf(buf,
+        snprintf(buf, sizeof(buf),
                 "O[%5d] %-13.13s inside              O[%5d]       %-15.15s\n\r",
                 pReset->arg1, pObj->short_descr, pReset->arg3,
                 pObjToIndex->short_descr);
-        strcat(final, buf);
+        strncat(final, buf, sizeof(final) - strlen(final) - 1);
 
         break;
 
       case 'G':
       case 'E':
         if (!(pObjIndex = get_obj_index(pReset->arg1))) {
-          sprintf(buf, "Give/Equip Object - Bad Object %d\n\r", pReset->arg1);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Give/Equip Object - Bad Object %d\n\r", pReset->arg1);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
         pObj = pObjIndex;
 
         if (!pMob) {
-          sprintf(buf, "Give/Equip Object - No Previous Mobile\n\r");
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Give/Equip Object - No Previous Mobile\n\r");
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           break;
         }
 
         if (pMob->pShop) {
-          sprintf(
-              buf,
+          snprintf(
+              buf, sizeof(buf),
               "O[%5d] %-13.13s in the inventory of S[%5d]       %-15.15s\n\r",
               pReset->arg1, pObj->short_descr, pMob->vnum, pMob->short_descr);
         } else
-          sprintf(buf, "O[%5d] %-13.13s %-19.19s M[%5d]       %-15.15s\n\r",
+          snprintf(buf, sizeof(buf), "O[%5d] %-13.13s %-19.19s M[%5d]       %-15.15s\n\r",
                   pReset->arg1, pObj->short_descr,
                   (pReset->command == 'G')
                       ? flag_string(wear_loc_strings, WEAR_NONE)
                       : flag_string(wear_loc_strings, pReset->arg3),
                   pMob->vnum, pMob->short_descr);
-        strcat(final, buf);
+        strncat(final, buf, sizeof(final) - strlen(final) - 1);
 
         break;
 
@@ -860,10 +860,10 @@ void display_resets(CHAR_DATA *ch) {
        */
       case 'D':
         pRoomIndex = get_room_index(pReset->arg1);
-        sprintf(buf, "R[%5d] %s door of %-19.19s reset to %s\n\r", pReset->arg1,
+        snprintf(buf, sizeof(buf), "R[%5d] %s door of %-19.19s reset to %s\n\r", pReset->arg1,
                 capitalize(dir_name[pReset->arg2]), pRoomIndex->name,
                 flag_string(door_resets, pReset->arg3));
-        strcat(final, buf);
+        strncat(final, buf, sizeof(final) - strlen(final) - 1);
 
         break;
       /*
@@ -871,14 +871,14 @@ void display_resets(CHAR_DATA *ch) {
        */
       case 'R':
         if (!(pRoomIndex = get_room_index(pReset->arg1))) {
-          sprintf(buf, "Randomize Exits - Bad Room %d\n\r", pReset->arg1);
-          strcat(final, buf);
+          snprintf(buf, sizeof(buf), "Randomize Exits - Bad Room %d\n\r", pReset->arg1);
+          strncat(final, buf, sizeof(final) - strlen(final) - 1);
           continue;
         }
 
-        sprintf(buf, "R[%5d] Exits are randomized in %s\n\r", pReset->arg1,
+        snprintf(buf, sizeof(buf), "R[%5d] Exits are randomized in %s\n\r", pReset->arg1,
                 pRoomIndex->name);
-        strcat(final, buf);
+        strncat(final, buf, sizeof(final) - strlen(final) - 1);
 
         break;
     }
@@ -1129,14 +1129,14 @@ void do_alist(CHAR_DATA *ch, char *argument) {
   char result[MAX_STRING_LENGTH * 2]; /* May need tweaking. */
   AREA_DATA *pArea;
 
-  sprintf(result, "[%3s] [%-27s] (%-5s-%5s) [%-10s] %3s [%-10s]\n\r", "Num",
+  snprintf(result, sizeof(result), "[%3s] [%-27s] (%-5s-%5s) [%-10s] %3s [%-10s]\n\r", "Num",
           "Area Name", "lvnum", "uvnum", "Filename", "Sec", "Builders");
 
   for (pArea = area_first; pArea; pArea = pArea->next) {
-    sprintf(buf, "[%3d] %-29.29s (%-5d-%5d) %-12.12s [%d] [%-10.10s]\n\r",
+    snprintf(buf, sizeof(buf), "[%3d] %-29.29s (%-5d-%5d) %-12.12s [%d] [%-10.10s]\n\r",
             pArea->vnum, pArea->name, pArea->lvnum, pArea->uvnum,
             pArea->filename, pArea->security, pArea->builders);
-    strcat(result, buf);
+    strncat(result, buf, sizeof(result) - strlen(result) - 1);
   }
 
   send_to_char(result, ch);

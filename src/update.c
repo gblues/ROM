@@ -63,7 +63,7 @@ void advance_level(CHAR_DATA *ch, bool hide) {
   ch->pcdata->last_level =
       (ch->played + (int)(current_time - ch->logon)) / 3600;
 
-  sprintf(buf, "the %s",
+  snprintf(buf, sizeof(buf), "the %s",
           title_table[ch->class][ch->level][ch->sex == SEX_FEMALE ? 1 : 0]);
   set_title(ch, buf);
 
@@ -96,7 +96,7 @@ void advance_level(CHAR_DATA *ch, bool hide) {
   ch->pcdata->perm_move += add_move;
 
   if (!hide) {
-    sprintf(buf,
+    snprintf(buf, sizeof(buf),
             "You gain %d hit point%s, %d mana, %d move, and %d practice%s.\n\r",
             add_hp, add_hp == 1 ? "" : "s", add_mana, add_move, add_prac,
             add_prac == 1 ? "" : "s");
@@ -115,9 +115,9 @@ void gain_exp(CHAR_DATA *ch, int gain) {
          ch->exp >= exp_per_level(ch, ch->pcdata->points) * (ch->level + 1)) {
     send_to_char("You raise a level!!  ", ch);
     ch->level += 1;
-    sprintf(buf, "%s gained level %d", ch->name, ch->level);
+    snprintf(buf, sizeof(buf), "%s gained level %d", ch->name, ch->level);
     log_string(buf);
-    sprintf(buf, "$N has attained level %d!", ch->level);
+    snprintf(buf, sizeof(buf), "$N has attained level %d!", ch->level);
     wiznet(buf, ch, NULL, WIZ_LEVELS, 0, 0);
     advance_level(ch, FALSE);
     save_char_obj(ch);
@@ -417,22 +417,22 @@ void weather_update(void) {
   switch (++time_info.hour) {
     case 5:
       weather_info.sunlight = SUN_LIGHT;
-      strcat(buf, "The day has begun.\n\r");
+      strncat(buf, "The day has begun.\n\r", sizeof(buf) - strlen(buf) - 1);
       break;
 
     case 6:
       weather_info.sunlight = SUN_RISE;
-      strcat(buf, "The sun rises in the east.\n\r");
+      strncat(buf, "The sun rises in the east.\n\r", sizeof(buf) - strlen(buf) - 1);
       break;
 
     case 19:
       weather_info.sunlight = SUN_SET;
-      strcat(buf, "The sun slowly disappears in the west.\n\r");
+      strncat(buf, "The sun slowly disappears in the west.\n\r", sizeof(buf) - strlen(buf) - 1);
       break;
 
     case 20:
       weather_info.sunlight = SUN_DARK;
-      strcat(buf, "The night has begun.\n\r");
+      strncat(buf, "The night has begun.\n\r", sizeof(buf) - strlen(buf) - 1);
       break;
 
     case 24:
@@ -476,7 +476,7 @@ void weather_update(void) {
     case SKY_CLOUDLESS:
       if (weather_info.mmhg < 990 ||
           (weather_info.mmhg < 1010 && number_bits(2) == 0)) {
-        strcat(buf, "The sky is getting cloudy.\n\r");
+        strncat(buf, "The sky is getting cloudy.\n\r", sizeof(buf) - strlen(buf) - 1);
         weather_info.sky = SKY_CLOUDY;
       }
       break;
@@ -484,25 +484,25 @@ void weather_update(void) {
     case SKY_CLOUDY:
       if (weather_info.mmhg < 970 ||
           (weather_info.mmhg < 990 && number_bits(2) == 0)) {
-        strcat(buf, "It starts to rain.\n\r");
+        strncat(buf, "It starts to rain.\n\r", sizeof(buf) - strlen(buf) - 1);
         weather_info.sky = SKY_RAINING;
       }
 
       if (weather_info.mmhg > 1030 && number_bits(2) == 0) {
-        strcat(buf, "The clouds disappear.\n\r");
+        strncat(buf, "The clouds disappear.\n\r", sizeof(buf) - strlen(buf) - 1);
         weather_info.sky = SKY_CLOUDLESS;
       }
       break;
 
     case SKY_RAINING:
       if (weather_info.mmhg < 970 && number_bits(2) == 0) {
-        strcat(buf, "Lightning flashes in the sky.\n\r");
+        strncat(buf, "Lightning flashes in the sky.\n\r", sizeof(buf) - strlen(buf) - 1);
         weather_info.sky = SKY_LIGHTNING;
       }
 
       if (weather_info.mmhg > 1030 ||
           (weather_info.mmhg > 1010 && number_bits(2) == 0)) {
-        strcat(buf, "The rain stopped.\n\r");
+        strncat(buf, "The rain stopped.\n\r", sizeof(buf) - strlen(buf) - 1);
         weather_info.sky = SKY_CLOUDY;
       }
       break;
@@ -510,7 +510,7 @@ void weather_update(void) {
     case SKY_LIGHTNING:
       if (weather_info.mmhg > 1010 ||
           (weather_info.mmhg > 990 && number_bits(2) == 0)) {
-        strcat(buf, "The lightning has stopped.\n\r");
+        strncat(buf, "The lightning has stopped.\n\r", sizeof(buf) - strlen(buf) - 1);
         weather_info.sky = SKY_RAINING;
         break;
       }

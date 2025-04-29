@@ -138,7 +138,7 @@ void get_obj(CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container) {
       }
 
       if (members > 1 && (obj->value[0] > 1 || obj->value[1])) {
-        sprintf(buffer, "%d %d", obj->value[0], obj->value[1]);
+        snprintf(buffer, sizeof(buffer), "%d %d", obj->value[0], obj->value[1]);
         do_function(ch, &do_split, buffer);
       }
     }
@@ -582,10 +582,10 @@ void do_give(CHAR_DATA *ch, char *argument) {
       victim->gold += amount;
     }
 
-    sprintf(buf, "$n gives you %d %s.", amount, silver ? "silver" : "gold");
+    snprintf(buf, sizeof(buf), "$n gives you %d %s.", amount, silver ? "silver" : "gold");
     act(buf, ch, NULL, victim, TO_VICT);
     act("$n gives $N some coins.", ch, NULL, victim, TO_NOTVICT);
-    sprintf(buf, "You give $N %d %s.", amount, silver ? "silver" : "gold");
+    snprintf(buf, sizeof(buf), "You give $N %d %s.", amount, silver ? "silver" : "gold");
     act(buf, ch, NULL, victim, TO_CHAR);
 
     if (IS_NPC(victim) && IS_SET(victim->act, ACT_IS_CHANGER)) {
@@ -601,13 +601,13 @@ void do_give(CHAR_DATA *ch, char *argument) {
         act("$n tells you 'I'm sorry, you did not give me enough to change.'",
             victim, NULL, ch, TO_VICT);
         ch->reply = victim;
-        sprintf(buf, "%d %s %s", amount, silver ? "silver" : "gold", ch->name);
+        snprintf(buf, sizeof(buf), "%d %s %s", amount, silver ? "silver" : "gold", ch->name);
         do_function(victim, &do_give, buf);
       } else if (can_see(victim, ch)) {
-        sprintf(buf, "%d %s %s", change, silver ? "gold" : "silver", ch->name);
+        snprintf(buf, sizeof(buf), "%d %s %s", change, silver ? "gold" : "silver", ch->name);
         do_function(victim, &do_give, buf);
         if (silver) {
-          sprintf(buf, "%d silver %s", (95 * amount / 100 - change * 100),
+          snprintf(buf, sizeof(buf), "%d silver %s", (95 * amount / 100 - change * 100),
                   ch->name);
           do_function(victim, &do_give, buf);
         }
@@ -814,10 +814,10 @@ void do_fill(CHAR_DATA *ch, char *argument) {
     return;
   }
 
-  sprintf(buf, "You fill $p with %s from $P.",
+  snprintf(buf, sizeof(buf), "You fill $p with %s from $P.",
           liq_table[fountain->value[2]].liq_name);
   act(buf, ch, obj, fountain, TO_CHAR);
-  sprintf(buf, "$n fills $p with %s from $P.",
+  snprintf(buf, sizeof(buf), "$n fills $p with %s from $P.",
           liq_table[fountain->value[2]].liq_name);
   act(buf, ch, obj, fountain, TO_ROOM);
   obj->value[2] = fountain->value[2];
@@ -856,11 +856,11 @@ void do_pour(CHAR_DATA *ch, char *argument) {
 
     out->value[1] = 0;
     out->value[3] = 0;
-    sprintf(buf, "You invert $p, spilling %s all over the ground.",
+    snprintf(buf, sizeof(buf), "You invert $p, spilling %s all over the ground.",
             liq_table[out->value[2]].liq_name);
     act(buf, ch, out, NULL, TO_CHAR);
 
-    sprintf(buf, "$n inverts $p, spilling %s all over the ground.",
+    snprintf(buf, sizeof(buf), "$n inverts $p, spilling %s all over the ground.",
             liq_table[out->value[2]].liq_name);
     act(buf, ch, out, NULL, TO_ROOM);
     return;
@@ -914,18 +914,18 @@ void do_pour(CHAR_DATA *ch, char *argument) {
   in->value[2] = out->value[2];
 
   if (vch == NULL) {
-    sprintf(buf, "You pour %s from $p into $P.",
+    snprintf(buf, sizeof(buf), "You pour %s from $p into $P.",
             liq_table[out->value[2]].liq_name);
     act(buf, ch, out, in, TO_CHAR);
-    sprintf(buf, "$n pours %s from $p into $P.",
+    snprintf(buf, sizeof(buf), "$n pours %s from $p into $P.",
             liq_table[out->value[2]].liq_name);
     act(buf, ch, out, in, TO_ROOM);
   } else {
-    sprintf(buf, "You pour some %s for $N.", liq_table[out->value[2]].liq_name);
+    snprintf(buf, sizeof(buf), "You pour some %s for $N.", liq_table[out->value[2]].liq_name);
     act(buf, ch, NULL, vch, TO_CHAR);
-    sprintf(buf, "$n pours you some %s.", liq_table[out->value[2]].liq_name);
+    snprintf(buf, sizeof(buf), "$n pours you some %s.", liq_table[out->value[2]].liq_name);
     act(buf, ch, NULL, vch, TO_VICT);
-    sprintf(buf, "$n pours some %s for $N.", liq_table[out->value[2]].liq_name);
+    snprintf(buf, sizeof(buf), "$n pours some %s for $N.", liq_table[out->value[2]].liq_name);
     act(buf, ch, NULL, vch, TO_NOTVICT);
   }
 }
@@ -1136,7 +1136,7 @@ void wear_obj(CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace) {
   char buf[MAX_STRING_LENGTH];
 
   if (ch->level < obj->level) {
-    sprintf(buf, "You must be level %d to use this object.\n\r", obj->level);
+    snprintf(buf, sizeof(buf), "You must be level %d to use this object.\n\r", obj->level);
     send_to_char(buf, ch);
     act("$n tries to use $p, but is too inexperienced.", ch, obj, NULL,
         TO_ROOM);
@@ -1485,7 +1485,7 @@ void do_sacrifice(CHAR_DATA *ch, char *argument) {
   if (silver == 1)
     send_to_char("Mota gives you one silver coin for your sacrifice.\n\r", ch);
   else {
-    sprintf(buf, "Mota gives you %d silver coins for your sacrifice.\n\r",
+    snprintf(buf, sizeof(buf), "Mota gives you %d silver coins for your sacrifice.\n\r",
             silver);
     send_to_char(buf, ch);
   }
@@ -1499,7 +1499,7 @@ void do_sacrifice(CHAR_DATA *ch, char *argument) {
     }
 
     if (members > 1 && silver > 1) {
-      sprintf(buffer, "%d", silver);
+      snprintf(buffer, sizeof(buffer), "%d", silver);
       do_function(ch, &do_split, buffer);
     }
   }
@@ -1809,17 +1809,17 @@ void do_steal(CHAR_DATA *ch, char *argument) {
     act("$n tried to steal from $N.\n\r", ch, NULL, victim, TO_NOTVICT);
     switch (number_range(0, 3)) {
       case 0:
-        sprintf(buf, "%s is a lousy thief!", ch->name);
+        snprintf(buf, sizeof(buf), "%s is a lousy thief!", ch->name);
         break;
       case 1:
-        sprintf(buf, "%s couldn't rob %s way out of a paper bag!", ch->name,
+        snprintf(buf, sizeof(buf), "%s couldn't rob %s way out of a paper bag!", ch->name,
                 (ch->sex == 2) ? "her" : "his");
         break;
       case 2:
-        sprintf(buf, "%s tried to rob me!", ch->name);
+        snprintf(buf, sizeof(buf), "%s tried to rob me!", ch->name);
         break;
       case 3:
-        sprintf(buf, "Keep your hands out of there, %s!", ch->name);
+        snprintf(buf, sizeof(buf), "Keep your hands out of there, %s!", ch->name);
         break;
     }
     if (!IS_AWAKE(victim)) do_function(victim, &do_wake, "");
@@ -1829,7 +1829,7 @@ void do_steal(CHAR_DATA *ch, char *argument) {
         check_improve(ch, gsn_steal, FALSE, 2);
         multi_hit(victim, ch, TYPE_UNDEFINED);
       } else {
-        sprintf(buf, "$N tried to steal from %s.", victim->name);
+        snprintf(buf, sizeof(buf), "$N tried to steal from %s.", victim->name);
         wiznet(buf, ch, NULL, WIZ_FLAGS, 0, 0);
         if (!IS_SET(ch->act, PLR_THIEF)) {
           SET_BIT(ch->act, PLR_THIEF);
@@ -1858,11 +1858,11 @@ void do_steal(CHAR_DATA *ch, char *argument) {
     victim->silver -= silver;
     victim->gold -= gold;
     if (silver <= 0)
-      sprintf(buf, "Bingo!  You got %d gold coins.\n\r", gold);
+      snprintf(buf, sizeof(buf), "Bingo!  You got %d gold coins.\n\r", gold);
     else if (gold <= 0)
-      sprintf(buf, "Bingo!  You got %d silver coins.\n\r", silver);
+      snprintf(buf, sizeof(buf), "Bingo!  You got %d silver coins.\n\r", silver);
     else
-      sprintf(buf, "Bingo!  You got %d silver and %d gold coins.\n\r", silver,
+      snprintf(buf, sizeof(buf), "Bingo!  You got %d silver and %d gold coins.\n\r", silver,
               gold);
 
     send_to_char(buf, ch);
@@ -1923,7 +1923,7 @@ CHAR_DATA *find_keeper(CHAR_DATA *ch) {
   if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_KILLER) )
   {
       do_function(keeper, &do_say, "Killers are not welcome!");
-      sprintf(buf, "%s the KILLER is over here!\n\r", ch->name);
+      snprintf(buf, sizeof(buf), "%s the KILLER is over here!\n\r", ch->name);
       do_function(keeper, &do_yell, buf );
       return NULL;
   }
@@ -1931,7 +1931,7 @@ CHAR_DATA *find_keeper(CHAR_DATA *ch) {
   if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_THIEF) )
   {
       do_function(keeper, &do_say, "Thieves are not welcome!");
-      sprintf(buf, "%s the THIEF is over here!\n\r", ch->name);
+      snprintf(buf, sizeof(buf), "%s the THIEF is over here!\n\r", ch->name);
       do_function(keeper, &do_yell, buf );
       return NULL;
   }
@@ -2002,7 +2002,7 @@ OBJ_DATA *get_obj_keeper(CHAR_DATA *ch, CHAR_DATA *keeper, char *argument) {
   int number;
   int count;
 
-  number = number_argument(argument, arg);
+  number = number_argument(argument, arg, sizeof(arg));
   count = 0;
   for (obj = keeper->carrying; obj != NULL; obj = obj->next_content) {
     if (obj->wear_loc == WEAR_NONE && can_see_obj(keeper, obj) &&
@@ -2127,7 +2127,7 @@ void do_buy(CHAR_DATA *ch, char *argument) {
     roll = number_percent();
     if (roll < get_skill(ch, gsn_haggle)) {
       cost -= cost / 2 * roll / 100;
-      sprintf(buf, "You haggle the price down to %d coins.\n\r", cost);
+      snprintf(buf, sizeof(buf), "You haggle the price down to %d coins.\n\r", cost);
       send_to_char(buf, ch);
       check_improve(ch, gsn_haggle, TRUE, 4);
     }
@@ -2140,12 +2140,12 @@ void do_buy(CHAR_DATA *ch, char *argument) {
 
     argument = one_argument(argument, arg);
     if (arg[0] != '\0') {
-      sprintf(buf, "%s %s", pet->name, arg);
+      snprintf(buf, sizeof(buf), "%s %s", pet->name, arg);
       free_string(pet->name);
       pet->name = str_dup(buf);
     }
 
-    sprintf(buf, "%sA neck tag says 'I belong to %s'.\n\r", pet->description,
+    snprintf(buf, sizeof(buf), "%sA neck tag says 'I belong to %s'.\n\r", pet->description,
             ch->name);
     free_string(pet->description);
     pet->description = str_dup(buf);
@@ -2165,7 +2165,7 @@ void do_buy(CHAR_DATA *ch, char *argument) {
 
     if ((keeper = find_keeper(ch)) == NULL) return;
 
-    number = mult_argument(argument, arg);
+    number = mult_argument(argument, arg, sizeof(arg));
     obj = get_obj_keeper(ch, keeper, arg);
     cost = get_cost(keeper, obj, TRUE);
 
@@ -2236,13 +2236,13 @@ void do_buy(CHAR_DATA *ch, char *argument) {
     }
 
     if (number > 1) {
-      sprintf(buf, "$n buys $p[%d].", number);
+      snprintf(buf, sizeof(buf), "$n buys $p[%d].", number);
       act(buf, ch, obj, NULL, TO_ROOM);
-      sprintf(buf, "You buy $p[%d] for %d silver.", number, cost * number);
+      snprintf(buf, sizeof(buf), "You buy $p[%d] for %d silver.", number, cost * number);
       act(buf, ch, obj, NULL, TO_CHAR);
     } else {
       act("$n buys $p.", ch, obj, NULL, TO_ROOM);
-      sprintf(buf, "You buy $p for %d silver.", cost);
+      snprintf(buf, sizeof(buf), "You buy $p for %d silver.", cost);
       act(buf, ch, obj, NULL, TO_CHAR);
     }
     deduct_cost(ch, cost * number);
@@ -2294,7 +2294,7 @@ void do_list(CHAR_DATA *ch, char *argument) {
           found = TRUE;
           send_to_char("Pets for sale:\n\r", ch);
         }
-        sprintf(buf, "[%2d] %8d - %s\n\r", pet->level,
+        snprintf(buf, sizeof(buf), "[%2d] %8d - %s\n\r", pet->level,
                 10 * pet->level * pet->level, pet->short_descr);
         send_to_char(buf, ch);
       }
@@ -2322,7 +2322,7 @@ void do_list(CHAR_DATA *ch, char *argument) {
         }
 
         if (IS_OBJ_STAT(obj, ITEM_INVENTORY))
-          sprintf(buf, "[%2d %5d -- ] %s\n\r", obj->level, cost,
+          snprintf(buf, sizeof(buf), "[%2d %5d -- ] %s\n\r", obj->level, cost,
                   obj->short_descr);
         else {
           count = 1;
@@ -2333,7 +2333,7 @@ void do_list(CHAR_DATA *ch, char *argument) {
             obj = obj->next_content;
             count++;
           }
-          sprintf(buf, "[%2d %5d %2d ] %s\n\r", obj->level, cost, count,
+          snprintf(buf, sizeof(buf), "[%2d %5d %2d ] %s\n\r", obj->level, cost, count,
                   obj->short_descr);
         }
         send_to_char(buf, ch);
@@ -2398,7 +2398,7 @@ void do_sell(CHAR_DATA *ch, char *argument) {
     cost = UMIN(cost, (keeper->silver + 100 * keeper->gold));
     check_improve(ch, gsn_haggle, TRUE, 4);
   }
-  sprintf(buf, "You sell $p for %d silver and %d gold piece%s.",
+  snprintf(buf, sizeof(buf), "You sell $p for %d silver and %d gold piece%s.",
           cost - (cost / 100) * 100, cost / 100, cost == 1 ? "" : "s");
   act(buf, ch, obj, NULL, TO_CHAR);
   ch->gold += cost / 100;
@@ -2458,7 +2458,7 @@ void do_value(CHAR_DATA *ch, char *argument) {
     return;
   }
 
-  sprintf(buf,
+  snprintf(buf, sizeof(buf),
           "$n tells you 'I'll give you %d silver and %d gold coins for $p'.",
           cost - (cost / 100) * 100, cost / 100);
   act(buf, keeper, obj, ch, TO_VICT);

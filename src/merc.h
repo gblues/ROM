@@ -102,6 +102,7 @@ typedef void SPELL_FUN args((int sn, int level, CHAR_DATA *ch, void *vo,
 #define MAX_KEY_HASH 1024
 #define MAX_STRING_LENGTH 4608
 #define MAX_INPUT_LENGTH 256
+#define LOGBUF_SIZE 2*MAX_INPUT_LENGTH
 #define PAGELEN 22
 
 /*
@@ -2061,8 +2062,8 @@ char *cont_bit_name args((int cont_flags));
 /* interp.c */
 void interpret args((CHAR_DATA * ch, char *argument));
 bool is_number args((char *arg));
-int number_argument args((char *argument, char *arg));
-int mult_argument args((char *argument, char *arg));
+int number_argument args((char *argument, char *arg, size_t arg_size));
+int mult_argument args((char *argument, char *arg, size_t arg_size));
 char *one_argument args((char *argument, char *arg_first));
 
 /* magic.c */

@@ -103,14 +103,14 @@ void save_area_list() {
  *
  * -- Hugin
  */
-char *fwrite_flag(long flags, char buf[]) {
+char *fwrite_flag(long flags, char *buf, size_t buf_size) {
   char offset;
   char *cp;
 
   buf[0] = '\0';
 
   if (flags == 0) {
-    strcpy(buf, "0");
+    strncpy(buf, "0", buf_size);
     return buf;
   }
 
@@ -144,8 +144,8 @@ void save_mobile(FILE *fp, MOB_INDEX_DATA *pMobIndex) {
   fprintf(fp, "%s~\n", fix_string(pMobIndex->long_descr));
   fprintf(fp, "%s~\n", fix_string(pMobIndex->description));
   fprintf(fp, "%s~\n", race_table[race].name);
-  fprintf(fp, "%s ", fwrite_flag(pMobIndex->act, buf));
-  fprintf(fp, "%s ", fwrite_flag(pMobIndex->affected_by, buf));
+  fprintf(fp, "%s ", fwrite_flag(pMobIndex->act, buf, sizeof(buf)));
+  fprintf(fp, "%s ", fwrite_flag(pMobIndex->affected_by, buf, sizeof(buf)));
   fprintf(fp, "%d 0\n", pMobIndex->alignment);
   fprintf(fp, "%d ", pMobIndex->level);
   fprintf(fp, "%d ", pMobIndex->hitroll);
@@ -159,15 +159,15 @@ void save_mobile(FILE *fp, MOB_INDEX_DATA *pMobIndex) {
   fprintf(fp, "%d %d %d %d\n", pMobIndex->ac[AC_PIERCE] / 10,
           pMobIndex->ac[AC_BASH] / 10, pMobIndex->ac[AC_SLASH] / 10,
           pMobIndex->ac[AC_EXOTIC] / 10);
-  fprintf(fp, "%s ", fwrite_flag(pMobIndex->off_flags, buf));
-  fprintf(fp, "%s ", fwrite_flag(pMobIndex->imm_flags, buf));
-  fprintf(fp, "%s ", fwrite_flag(pMobIndex->res_flags, buf));
-  fprintf(fp, "%s\n", fwrite_flag(pMobIndex->vuln_flags, buf));
+  fprintf(fp, "%s ", fwrite_flag(pMobIndex->off_flags, buf, sizeof(buf)));
+  fprintf(fp, "%s ", fwrite_flag(pMobIndex->imm_flags, buf, sizeof(buf)));
+  fprintf(fp, "%s ", fwrite_flag(pMobIndex->res_flags, buf, sizeof(buf)));
+  fprintf(fp, "%s\n", fwrite_flag(pMobIndex->vuln_flags, buf, sizeof(buf)));
   fprintf(fp, "%s %s %s %ld\n", position_table[pMobIndex->start_pos].short_name,
           position_table[pMobIndex->default_pos].short_name,
           sex_table[pMobIndex->sex].name, pMobIndex->wealth);
-  fprintf(fp, "%s ", fwrite_flag(pMobIndex->form, buf));
-  fprintf(fp, "%s ", fwrite_flag(pMobIndex->parts, buf));
+  fprintf(fp, "%s ", fwrite_flag(pMobIndex->form, buf, sizeof(buf)));
+  fprintf(fp, "%s ", fwrite_flag(pMobIndex->parts, buf, sizeof(buf)));
 
   fprintf(fp, "%s ", size_flags[pMobIndex->size].name);
   fprintf(fp, "none\n");
@@ -213,8 +213,8 @@ void save_object(FILE *fp, OBJ_INDEX_DATA *pObjIndex) {
   fprintf(fp, "%s~\n", fix_string(pObjIndex->description));
   fprintf(fp, "%s~\n", pObjIndex->material);
   fprintf(fp, "%s ", item_name(pObjIndex->item_type));
-  fprintf(fp, "%s ", fwrite_flag(pObjIndex->extra_flags, buf));
-  fprintf(fp, "%s\n", fwrite_flag(pObjIndex->wear_flags, buf));
+  fprintf(fp, "%s ", fwrite_flag(pObjIndex->extra_flags, buf, sizeof(buf)));
+  fprintf(fp, "%s\n", fwrite_flag(pObjIndex->wear_flags, buf, sizeof(buf)));
 
   /*
    *  Using fwrite_flag to write most values gives a strange
@@ -224,18 +224,18 @@ void save_object(FILE *fp, OBJ_INDEX_DATA *pObjIndex) {
 
   switch (pObjIndex->item_type) {
     default:
-      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[0], buf));
-      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[1], buf));
-      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[2], buf));
-      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[3], buf));
-      fprintf(fp, "%s\n", fwrite_flag(pObjIndex->value[4], buf));
+      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[0], buf, sizeof(buf)));
+      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[1], buf, sizeof(buf)));
+      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[2], buf, sizeof(buf)));
+      fprintf(fp, "%s ", fwrite_flag(pObjIndex->value[3], buf, sizeof(buf)));
+      fprintf(fp, "%s\n", fwrite_flag(pObjIndex->value[4], buf, sizeof(buf)));
       break;
 
     case ITEM_WEAPON:
       fprintf(fp, "%s %d %d %s %s\n", weapon_name(pObjIndex->value[0]),
               pObjIndex->value[1], pObjIndex->value[2],
               attack_table[pObjIndex->value[3]].name,
-              fwrite_flag(pObjIndex->value[4], buf));
+              fwrite_flag(pObjIndex->value[4], buf, sizeof(buf)));
       break;
     case ITEM_LIGHT:
       fprintf(fp, "0 0 %d 0 0\n",
@@ -259,7 +259,7 @@ void save_object(FILE *fp, OBJ_INDEX_DATA *pObjIndex) {
 
     case ITEM_CONTAINER:
       fprintf(fp, "%d %s %d %d %d\n", pObjIndex->value[0],
-              fwrite_flag(pObjIndex->value[1], buf), pObjIndex->value[2],
+              fwrite_flag(pObjIndex->value[1], buf, sizeof(buf)), pObjIndex->value[2],
               pObjIndex->value[3], pObjIndex->value[4]);
       break;
 
@@ -566,7 +566,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
                       capitalize(get_obj_index(pReset->arg1)->short_descr),
                       pLastMob ? pLastMob->short_descr : "!NO_MOB!");
               if (!pLastMob) {
-                sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+                snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
                 bug(buf, 0);
               }
               break;
@@ -578,7 +578,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
                       flag_string(wear_loc_strings, pReset->arg3),
                       pLastMob ? pLastMob->short_descr : "!NO_MOB!");
               if (!pLastMob) {
-                sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+                snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
                 bug(buf, 0);
               }
               break;
@@ -614,7 +614,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
           case 'G':
             fprintf(fp, "G 0 %d %d\n", pReset->arg1, pReset->arg2);
             if (!pLastMob) {
-              sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+              snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
               bug(buf, 0);
             }
             break;
@@ -623,7 +623,7 @@ void save_resets(FILE *fp, AREA_DATA *pArea) {
             fprintf(fp, "E 0 %d %d %d\n", pReset->arg1, pReset->arg2,
                     pReset->arg3);
             if (!pLastMob) {
-              sprintf(buf, "Save_resets: !NO_MOB! in [%s]", pArea->filename);
+              snprintf(buf, sizeof(buf), "Save_resets: !NO_MOB! in [%s]", pArea->filename);
               bug(buf, 0);
             }
             break;
@@ -738,7 +738,7 @@ void do_asave(CHAR_DATA *ch, char *argument) {
   }
 
   smash_tilde(argument);
-  strcpy(arg1, argument);
+  strncpy(arg1, argument, sizeof(arg1));
 
   if (arg1[0] == '\0') {
     send_to_char("Syntax:\n\r", ch);
@@ -798,7 +798,7 @@ void do_asave(CHAR_DATA *ch, char *argument) {
     save_area_list();
 
     send_to_char("Saved zones:\n\r", ch);
-    sprintf(buf, "None.\n\r");
+    snprintf(buf, sizeof(buf), "None.\n\r");
 
     for (pArea = area_first; pArea; pArea = pArea->next) {
       /* Builder must be assigned this area. */
@@ -807,7 +807,7 @@ void do_asave(CHAR_DATA *ch, char *argument) {
       /* Save changed areas. */
       if (IS_SET(pArea->area_flags, AREA_CHANGED)) {
         save_area(pArea);
-        sprintf(buf, "%24s - '%s'\n\r", pArea->name, pArea->filename);
+        snprintf(buf, sizeof(buf), "%24s - '%s'\n\r", pArea->name, pArea->filename);
         send_to_char(buf, ch);
         REMOVE_BIT(pArea->area_flags, AREA_CHANGED);
       }

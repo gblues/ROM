@@ -536,11 +536,11 @@ bool add_buf(BUFFER *buffer, char *string) {
   if (buffer->size != oldsize) {
     buffer->string = alloc_mem(buffer->size);
 
-    strcpy(buffer->string, oldstr);
+    strncpy(buffer->string, oldstr, buffer->size);
     free_mem(oldstr, oldsize);
   }
 
-  strcat(buffer->string, string);
+  strncat(buffer->string, string, buffer->size - strlen(buffer->string) - 1);
   return TRUE;
 }
 
