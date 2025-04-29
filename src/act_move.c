@@ -1352,19 +1352,19 @@ void do_train(CHAR_DATA *ch, char *argument) {
   else {
     strncpy(buf, "You can train:", sizeof(buf));
     if (ch->perm_stat[STAT_STR] < get_max_train(ch, STAT_STR))
-      strcat(buf, " str");
+      strncat(buf, " str", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_INT] < get_max_train(ch, STAT_INT))
-      strcat(buf, " int");
+      strncat(buf, " int", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_WIS] < get_max_train(ch, STAT_WIS))
-      strcat(buf, " wis");
+      strncat(buf, " wis", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_DEX] < get_max_train(ch, STAT_DEX))
-      strcat(buf, " dex");
+      strncat(buf, " dex", sizeof(buf) - strlen(buf) - 1);
     if (ch->perm_stat[STAT_CON] < get_max_train(ch, STAT_CON))
-      strcat(buf, " con");
-    strcat(buf, " hp mana");
+      strncat(buf, " con", sizeof(buf) - strlen(buf) - 1);
+    strncat(buf, " hp mana", sizeof(buf) - strlen(buf) - 1);
 
     if (buf[strlen(buf) - 1] != ':') {
-      strcat(buf, ".\n\r");
+      strncat(buf, ".\n\r", sizeof(buf) - strlen(buf) - 1);
       send_to_char(buf, ch);
     } else {
       /*

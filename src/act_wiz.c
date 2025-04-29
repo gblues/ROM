@@ -73,15 +73,15 @@ void do_wiznet(CHAR_DATA *ch, char *argument) {
   if (!str_prefix(argument, "status")) {
     buf[0] = '\0';
 
-    if (!IS_SET(ch->wiznet, WIZ_ON)) strcat(buf, "off ");
+    if (!IS_SET(ch->wiznet, WIZ_ON)) strncat(buf, "off ", sizeof(buf) - strlen(buf) - 1);
 
     for (flag = 0; wiznet_table[flag].name != NULL; flag++)
       if (IS_SET(ch->wiznet, wiznet_table[flag].flag)) {
-        strcat(buf, wiznet_table[flag].name);
-        strcat(buf, " ");
+        strncat(buf, wiznet_table[flag].name, sizeof(buf) - strlen(buf) - 1);
+        strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
       }
 
-    strcat(buf, "\n\r");
+    strncat(buf, "\n\r", sizeof(buf) - strlen(buf) - 1);
 
     send_to_char("Wiznet status:\n\r", ch);
     send_to_char(buf, ch);
@@ -95,12 +95,12 @@ void do_wiznet(CHAR_DATA *ch, char *argument) {
 
     for (flag = 0; wiznet_table[flag].name != NULL; flag++) {
       if (wiznet_table[flag].level <= get_trust(ch)) {
-        strcat(buf, wiznet_table[flag].name);
-        strcat(buf, " ");
+        strncat(buf, wiznet_table[flag].name, sizeof(buf) - strlen(buf) - 1);
+        strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
       }
     }
 
-    strcat(buf, "\n\r");
+    strncat(buf, "\n\r", sizeof(buf) - strlen(buf) - 1);
 
     send_to_char("Wiznet options available to you are:\n\r", ch);
     send_to_char(buf, ch);
@@ -325,7 +325,7 @@ void do_smote(CHAR_DATA *ch, char *argument) {
 
     for (; *letter != '\0'; letter++) {
       if (*letter == '\'' && matches == strlen(vch->name)) {
-        strcat(temp, "r");
+        strncat(temp, "r", sizeof(temp) - strlen(temp) - 1);
         continue;
       }
 
@@ -339,20 +339,25 @@ void do_smote(CHAR_DATA *ch, char *argument) {
       }
 
       if (*letter == *name) {
+        int pos = 0;
         matches++;
         name++;
         if (matches == strlen(vch->name)) {
-          strcat(temp, "you");
+          strncat(temp, "you", sizeof(temp) - strlen(temp) - 1);
           last[0] = '\0';
           name = vch->name;
           continue;
         }
-        strncat(last, letter, 1);
+        pos = strlen(last);
+        if( (sizeof(last)-1) - pos > 2) {
+          last[pos] = *letter;
+          last[pos + 1] = '\0';
+        }
         continue;
       }
 
       matches = 0;
-      strcat(temp, last);
+      strncat(temp, last, sizeof(temp) - strlen(temp) - 1);
       strncat(temp, letter, 1);
       last[0] = '\0';
       name = vch->name;
@@ -1724,7 +1729,7 @@ void do_shutdown(CHAR_DATA *ch, char *argument) {
 
   if (ch->invis_level < LEVEL_HERO) snprintf(buf, sizeof(buf), "Shutdown by %s.", ch->name);
   append_file(ch, SHUTDOWN_FILE, buf);
-  strcat(buf, "\n\r");
+  strncat(buf, "\n\r", sizeof(buf) - strlen(buf) - 1);
   if (ch->invis_level < LEVEL_HERO) {
     do_function(ch, &do_echo, buf);
   }
@@ -2908,10 +2913,10 @@ void do_mset(CHAR_DATA *ch, char *argument) {
 
       strncpy(buf, "Possible classes are: ", sizeof(buf));
       for (class = 0; class < MAX_CLASS; class++) {
-        if (class > 0) strcat(buf, " ");
-        strcat(buf, class_table[class].name);
+        if (class > 0) strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
+        strncat(buf, class_table[class].name, sizeof(buf) - strlen(buf) - 1);
       }
-      strcat(buf, ".\n\r");
+      strncat(buf, ".\n\r", sizeof(buf) - strlen(buf) - 1);
 
       send_to_char(buf, ch);
       return;
@@ -3177,7 +3182,7 @@ void do_string(CHAR_DATA *ch, char *argument) {
 
     if (!str_prefix(arg2, "long")) {
       free_string(victim->long_descr);
-      strcat(arg3, "\n\r");
+      strncat(arg3, "\n\r", sizeof(arg3) - strlen(arg3) - 1);
       victim->long_descr = str_dup(arg3);
       return;
     }
@@ -3242,7 +3247,7 @@ void do_string(CHAR_DATA *ch, char *argument) {
         return;
       }
 
-      strcat(argument, "\n\r");
+      strncat(argument, "\n\r", sizeof(argument) - strlen(argument) - 1);
 
       ed = new_extra_descr();
 
@@ -3444,7 +3449,7 @@ void do_sockets(CHAR_DATA *ch, char *argument) {
   }
 
   snprintf(buf2, sizeof(buf2), "%d user%s\n\r", count, count == 1 ? "" : "s");
-  strcat(buf, buf2);
+  strncat(buf, buf2, sizeof(buf) - strlen(buf) - 1);
   page_to_char(buf, ch);
   return;
 }

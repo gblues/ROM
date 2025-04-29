@@ -821,10 +821,10 @@ void bust_a_prompt(CHAR_DATA *ch) {
                 !IS_AFFECTED(ch, AFF_BLIND))) &&
               !IS_SET(pexit->exit_info, EX_CLOSED)) {
             found = TRUE;
-            strcat(doors, dir_name[door]);
+            strncat(doors, dir_name[door], sizeof(doors) - strlen(doors) - 1);
           }
         }
-        if (!found) strcat(buf, "none");
+        if (!found) strncat(buf, "none", sizeof(buf) - strlen(buf) - 1);
         snprintf(buf2, sizeof(buf2), "%s", doors);
         i = buf2;
         break;
@@ -1295,10 +1295,10 @@ void nanny(DESCRIPTOR_DATA *d, char *argument) {
 
       strncpy(buf, "Select a class [", sizeof(buf));
       for (iClass = 0; iClass < MAX_CLASS; iClass++) {
-        if (iClass > 0) strcat(buf, " ");
-        strcat(buf, class_table[iClass].name);
+        if (iClass > 0) strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
+        strncat(buf, class_table[iClass].name, sizeof(buf) - strlen(buf) - 1);
       }
-      strcat(buf, "]: ");
+      strncat(buf, "]: ", sizeof(buf) - strlen(buf) - 1);
       write_to_buffer(d, buf, 0);
       d->connected = CON_GET_NEW_CLASS;
       break;
@@ -1381,10 +1381,10 @@ void nanny(DESCRIPTOR_DATA *d, char *argument) {
           buf[0] = '\0';
           for (i = 0; weapon_table[i].name != NULL; i++)
             if (ch->pcdata->learned[*weapon_table[i].gsn] > 0) {
-              strcat(buf, weapon_table[i].name);
-              strcat(buf, " ");
+              strncat(buf, weapon_table[i].name, sizeof(buf) - strlen(buf) - 1);
+              strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
             }
-          strcat(buf, "\n\rYour choice? ");
+          strncat(buf, "\n\rYour choice? ", sizeof(buf) - strlen(buf) - 1);
           write_to_buffer(d, buf, 0);
           d->connected = CON_PICK_WEAPON;
           break;
@@ -1402,10 +1402,10 @@ void nanny(DESCRIPTOR_DATA *d, char *argument) {
         buf[0] = '\0';
         for (i = 0; weapon_table[i].name != NULL; i++)
           if (ch->pcdata->learned[*weapon_table[i].gsn] > 0) {
-            strcat(buf, weapon_table[i].name);
-            strcat(buf, " ");
+            strncat(buf, weapon_table[i].name, sizeof(buf) - strlen(buf) - 1);
+            strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
           }
-        strcat(buf, "\n\rYour choice? ");
+        strncat(buf, "\n\rYour choice? ", sizeof(buf) - strlen(buf) - 1);
         write_to_buffer(d, buf, 0);
         return;
       }
@@ -1447,10 +1447,10 @@ void nanny(DESCRIPTOR_DATA *d, char *argument) {
         buf[0] = '\0';
         for (i = 0; weapon_table[i].name != NULL; i++)
           if (ch->pcdata->learned[*weapon_table[i].gsn] > 0) {
-            strcat(buf, weapon_table[i].name);
-            strcat(buf, " ");
+            strncat(buf, weapon_table[i].name, sizeof(buf) - strlen(buf) - 1);
+            strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
           }
-        strcat(buf, "\n\rYour choice? ");
+        strncat(buf, "\n\rYour choice? ", sizeof(buf) - strlen(buf) - 1);
         write_to_buffer(d, buf, 0);
         d->connected = CON_PICK_WEAPON;
         break;

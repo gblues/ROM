@@ -287,9 +287,10 @@ void do_spells(CHAR_DATA *ch, char *argument) {
         snprintf(spell_list[level], sizeof(spell_list[level]), "\n\rLevel %2d: %s", level, buf);
       else /* append */
       {
-        if (++spell_columns[level] % 2 == 0)
-          strcat(spell_list[level], "\n\r          ");
-        strcat(spell_list[level], buf);
+        if (++spell_columns[level] % 2 == 0) {
+          strncat(spell_list[level], "\n\r          ", sizeof(spell_list[level]) - strlen(spell_list[level]) - 1);
+        }
+        strncat(spell_list[level], buf, sizeof(spell_list[level]) - strlen(spell_list[level]) - 1);
       }
     }
   }
@@ -385,9 +386,10 @@ void do_skills(CHAR_DATA *ch, char *argument) {
         snprintf(skill_list[level], sizeof(skill_list[level]), "\n\rLevel %2d: %s", level, buf);
       else /* append */
       {
-        if (++skill_columns[level] % 2 == 0)
-          strcat(skill_list[level], "\n\r          ");
-        strcat(skill_list[level], buf);
+        if (++skill_columns[level] % 2 == 0) {
+          strncat(skill_list[level], "\n\r          ", sizeof(skill_list[level]) - strlen(skill_list[level]) - 1);
+        }
+        strncat(skill_list[level], buf, sizeof(skill_list[level]) - strlen(skill_list[level]) - 1);
       }
     }
   }

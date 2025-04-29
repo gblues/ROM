@@ -68,9 +68,9 @@ void substitute_alias(DESCRIPTOR_DATA *d, char *argument) {
       point = one_argument(argument, name);
       if (!strcmp(ch->pcdata->alias[alias], name)) {
         buf[0] = '\0';
-        strcat(buf, ch->pcdata->alias_sub[alias]);
-        strcat(buf, " ");
-        strcat(buf, point);
+        strncat(buf, ch->pcdata->alias_sub[alias], sizeof(buf) - strlen(buf) - 1);
+        strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
+        strncat(buf, point, sizeof(buf) - strlen(buf) - 1);
 
         if (strlen(buf) > MAX_INPUT_LENGTH - 1) {
           send_to_char("Alias substitution too long. Truncated.\r\n", ch);

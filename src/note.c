@@ -341,8 +341,8 @@ void note_remove(CHAR_DATA *ch, NOTE_DATA *pnote, bool delete) {
     while (*to_list != '\0') {
       to_list = one_argument(to_list, to_one);
       if (to_one[0] != '\0' && str_cmp(ch->name, to_one)) {
-        strcat(to_new, " ");
-        strcat(to_new, to_one);
+        strncat(to_new, " ", sizeof(to_new) - strlen(to_new) - 1);
+        strncat(to_new, to_one, sizeof(to_new) - strlen(to_new) - 1);
       }
     }
     /* Just a simple recipient removal? */

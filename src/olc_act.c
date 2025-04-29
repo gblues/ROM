@@ -104,12 +104,12 @@ void show_flag_cmds(CHAR_DATA *ch, const struct flag_type *flag_table) {
        flag++) {
     if (flag_table[flag].settable) {
       snprintf(buf, sizeof(buf), "%-19.18s", flag_table[flag].name);
-      strcat(buf1, buf);
-      if (++col % 4 == 0) strcat(buf1, "\n\r");
+      strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+      if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
     }
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -141,12 +141,12 @@ void show_skill_cmds(CHAR_DATA *ch, int tar) {
 
     if (tar == -1 || skill_table[sn].target == tar) {
       snprintf(buf, sizeof(buf), "%-19.18s", skill_table[sn].name);
-      strcat(buf1, buf);
-      if (++col % 4 == 0) strcat(buf1, "\n\r");
+      strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+      if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
     }
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -168,11 +168,11 @@ void show_spec_cmds(CHAR_DATA *ch) {
   send_to_char("Preceed special functions with 'spec_'\n\r\n\r", ch);
   for (spec = 0; spec_table[spec].function != NULL; spec++) {
     snprintf(buf, sizeof(buf), "%-19.18s", &spec_table[spec].name[5]);
-    strcat(buf1, buf);
-    if (++col % 4 == 0) strcat(buf1, "\n\r");
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -188,11 +188,11 @@ void show_liquids(CHAR_DATA *ch) {
   col = 0;
   for (liq = 0; liq_table[liq].liq_name[0] != '\0'; liq++) {
     snprintf(buf, sizeof(buf), "%-19.18s", &liq_table[liq].liq_name[0]);
-    strcat(buf1, buf);
-    if (++col % 4 == 0) strcat(buf1, "\n\r");
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    if (++col % 4 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   }
 
-  if (col % 4 != 0) strcat(buf1, "\n\r");
+  if (col % 4 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return;
@@ -305,8 +305,8 @@ REDIT(redit_mlist) {
         found = TRUE;
         snprintf(buf, sizeof(buf), "[%5d] %-17.16s", pMobIndex->vnum,
                 capitalize(pMobIndex->short_descr));
-        strcat(buf1, buf);
-        if (++col % 3 == 0) strcat(buf1, "\n\r");
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+        if (++col % 3 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
       }
     }
   }
@@ -316,7 +316,7 @@ REDIT(redit_mlist) {
     return FALSE;
   }
 
-  if (col % 3 != 0) strcat(buf1, "\n\r");
+  if (col % 3 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return FALSE;
@@ -350,8 +350,8 @@ REDIT(redit_olist) {
         found = TRUE;
         snprintf(buf, sizeof(buf), "[%5d] %-17.16s", pObjIndex->vnum,
                 capitalize(pObjIndex->short_descr));
-        strcat(buf1, buf);
-        if (++col % 3 == 0) strcat(buf1, "\n\r");
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+        if (++col % 3 == 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
       }
     }
   }
@@ -361,7 +361,7 @@ REDIT(redit_olist) {
     return FALSE;
   }
 
-  if (col % 3 != 0) strcat(buf1, "\n\r");
+  if (col % 3 != 0) strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   send_to_char(buf1, ch);
   return FALSE;
@@ -559,7 +559,7 @@ AEDIT(aedit_file) {
   }
 
   free_string(pArea->filename);
-  strcat(file, ".are");
+  strncat(file, ".are", sizeof(file) - strlen(file) - 1);
   pArea->filename = str_dup(file);
 
   send_to_char("Filename set.\n\r", ch);
@@ -584,38 +584,6 @@ AEDIT(aedit_age) {
   send_to_char("Age set.\n\r", ch);
   return TRUE;
 }
-
-#if 0  /* ROM OLC */
-AEDIT( aedit_recall )
-{
-    AREA_DATA *pArea;
-    char room[MAX_STRING_LENGTH];
-    int  value;
-
-    EDIT_AREA(ch, pArea);
-
-    one_argument( argument, room );
-
-    if ( !is_number( argument ) || argument[0] == '\0' )
-    {
-	send_to_char( "Syntax:  recall [#rvnum]\n\r", ch );
-	return FALSE;
-    }
-
-    value = atoi( room );
-
-    if ( !get_room_index( value ) )
-    {
-	send_to_char( "AEdit:  Room vnum does not exist.\n\r", ch );
-	return FALSE;
-    }
-
-    pArea->recall = value;
-
-    send_to_char( "Recall set.\n\r", ch );
-    return TRUE;
-}
-#endif /* ROM OLC */
 
 AEDIT(aedit_security) {
   AREA_DATA *pArea;
@@ -684,10 +652,10 @@ AEDIT(aedit_builder) {
     }
 
     if (pArea->builders[0] != '\0') {
-      strcat(buf, pArea->builders);
-      strcat(buf, " ");
+      strncat(buf, pArea->builders, sizeof(buf) - strlen(buf) - 1);
+      strncat(buf, " ", sizeof(buf) - strlen(buf) - 1);
     }
-    strcat(buf, name);
+    strncat(buf, name, sizeof(buf) - strlen(buf) - 1);
     free_string(pArea->builders);
     pArea->builders = string_proper(str_dup(buf));
 
@@ -833,37 +801,37 @@ REDIT(redit_show) {
   buf1[0] = '\0';
 
   snprintf(buf, sizeof(buf), "Description:\n\r%s", pRoom->description);
-  strcat(buf1, buf);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
   snprintf(buf, sizeof(buf), "Name:       [%s]\n\rArea:       [%5d] %s\n\r", pRoom->name,
           pRoom->area->vnum, pRoom->area->name);
-  strcat(buf1, buf);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
   snprintf(buf, sizeof(buf), "Vnum:       [%5d]\n\rSector:     [%s]\n\r", pRoom->vnum,
           flag_string(sector_flags, pRoom->sector_type));
-  strcat(buf1, buf);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
   snprintf(buf, sizeof(buf), "Room flags: [%s]\n\r",
           flag_string(room_flags, pRoom->room_flags));
-  strcat(buf1, buf);
+  strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
   if (pRoom->extra_descr) {
     EXTRA_DESCR_DATA *ed;
 
-    strcat(buf1, "Desc Kwds:  [");
+    strncat(buf1, "Desc Kwds:  [", sizeof(buf1) - strlen(buf1) - 1);
     for (ed = pRoom->extra_descr; ed; ed = ed->next) {
-      strcat(buf1, ed->keyword);
-      if (ed->next) strcat(buf1, " ");
+      strncat(buf1, ed->keyword, sizeof(buf1) - strlen(buf1) - 1);
+      if (ed->next) strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
     }
-    strcat(buf1, "]\n\r");
+    strncat(buf1, "]\n\r", sizeof(buf1) - strlen(buf1) - 1);
   }
 
-  strcat(buf1, "Characters: [");
+  strncat(buf1, "Characters: [", sizeof(buf1) - strlen(buf1) - 1);
   fcnt = FALSE;
   for (rch = pRoom->people; rch; rch = rch->next_in_room) {
     one_argument(rch->name, buf);
-    strcat(buf1, buf);
-    strcat(buf1, " ");
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
     fcnt = TRUE;
   }
 
@@ -872,16 +840,16 @@ REDIT(redit_show) {
 
     end = strlen(buf1) - 1;
     buf1[end] = ']';
-    strcat(buf1, "\n\r");
+    strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   } else
-    strcat(buf1, "none]\n\r");
+    strncat(buf1, "none]\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
-  strcat(buf1, "Objects:    [");
+  strncat(buf1, "Objects:    [", sizeof(buf1) - strlen(buf1) - 1);
   fcnt = FALSE;
   for (obj = pRoom->contents; obj; obj = obj->next_content) {
     one_argument(obj->name, buf);
-    strcat(buf1, buf);
-    strcat(buf1, " ");
+    strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
+    strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
     fcnt = TRUE;
   }
 
@@ -890,9 +858,9 @@ REDIT(redit_show) {
 
     end = strlen(buf1) - 1;
     buf1[end] = ']';
-    strcat(buf1, "\n\r");
+    strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
   } else
-    strcat(buf1, "none]\n\r");
+    strncat(buf1, "none]\n\r", sizeof(buf1) - strlen(buf1) - 1);
 
   for (door = 0; door < MAX_DIR; door++) {
     EXIT_DATA *pexit;
@@ -906,7 +874,7 @@ REDIT(redit_show) {
       snprintf(buf, sizeof(buf), "-%-5s to [%5d] Key: [%5d]", capitalize(dir_name[door]),
               pexit->u1.to_room ? pexit->u1.to_room->vnum : 0, /* ROM OLC */
               pexit->key);
-      strcat(buf1, buf);
+      strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
 
       /*
        * Format up the exit info.
@@ -914,7 +882,7 @@ REDIT(redit_show) {
        */
       strncpy(reset_state, flag_string(exit_flags, pexit->rs_flags), sizeof(reset_state));
       state = flag_string(exit_flags, pexit->exit_info);
-      strcat(buf1, " Exit flags: [");
+      strncat(buf1, " Exit flags: [", sizeof(buf1) - strlen(buf1) - 1);
       for (;;) {
         state = one_argument(state, word);
 
@@ -923,7 +891,7 @@ REDIT(redit_show) {
 
           end = strlen(buf1) - 1;
           buf1[end] = ']';
-          strcat(buf1, "\n\r");
+          strncat(buf1, "\n\r", sizeof(buf1) - strlen(buf1) - 1);
           break;
         }
 
@@ -931,17 +899,17 @@ REDIT(redit_show) {
           length = strlen(word);
           for (i = 0; i < length; i++) word[i] = UPPER(word[i]);
         }
-        strcat(buf1, word);
-        strcat(buf1, " ");
+        strncat(buf1, word, sizeof(buf1) - strlen(buf1) - 1);
+        strncat(buf1, " ", sizeof(buf1) - strlen(buf1) - 1);
       }
 
       if (pexit->keyword && pexit->keyword[0] != '\0') {
         snprintf(buf, sizeof(buf), "Kwds: [%s]\n\r", pexit->keyword);
-        strcat(buf1, buf);
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
       }
       if (pexit->description && pexit->description[0] != '\0') {
         snprintf(buf, sizeof(buf), "%s", pexit->description);
-        strcat(buf1, buf);
+        strncat(buf1, buf, sizeof(buf1) - strlen(buf1) - 1);
       }
     }
   }
@@ -2960,7 +2928,7 @@ MEDIT(medit_long) {
   }
 
   free_string(pMob->long_descr);
-  strcat(argument, "\n\r");
+  strncat(argument, "\n\r", sizeof(argument) - strlen(argument) - 1);
   pMob->long_descr = str_dup(argument);
   pMob->long_descr[0] = UPPER(pMob->long_descr[0]);
 

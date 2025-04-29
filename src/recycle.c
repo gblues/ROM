@@ -540,7 +540,7 @@ bool add_buf(BUFFER *buffer, char *string) {
     free_mem(oldstr, oldsize);
   }
 
-  strcat(buffer->string, string);
+  strncat(buffer->string, string, buffer->size - strlen(buffer->string) - 1);
   return TRUE;
 }
 

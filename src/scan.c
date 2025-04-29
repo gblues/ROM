@@ -111,11 +111,11 @@ void scan_char(CHAR_DATA *victim, CHAR_DATA *ch, sh_int depth, sh_int door) {
 
   buf[0] = '\0';
 
-  strcat(buf, PERS(victim, ch));
-  strcat(buf, ", ");
+  strncat(buf, PERS(victim, ch), sizeof(buf) - strlen(buf) - 1);
+  strncat(buf, ", ", sizeof(buf) - strlen(buf) - 1);
   snprintf(buf2, sizeof(buf2), distance[depth], dir_name[door]);
-  strcat(buf, buf2);
-  strcat(buf, "\n\r");
+  strncat(buf, buf2, sizeof(buf) - strlen(buf) - 1);
+  strncat(buf, "\n\r", sizeof(buf) - strlen(buf) - 1);
 
   send_to_char(buf, ch);
   return;

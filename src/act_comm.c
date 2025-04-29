@@ -870,7 +870,7 @@ void do_pmote(CHAR_DATA *ch, char *argument) {
 
     for (; *letter != '\0'; letter++) {
       if (*letter == '\'' && matches == strlen(vch->name)) {
-        strcat(temp, "r");
+        strncat(temp, "r", sizeof(temp) - strlen(temp) - 1);
         continue;
       }
 
@@ -887,7 +887,7 @@ void do_pmote(CHAR_DATA *ch, char *argument) {
         matches++;
         name++;
         if (matches == strlen(vch->name)) {
-          strcat(temp, "you");
+          strncat(temp, "you", sizeof(temp) - strlen(temp) - 1);
           last[0] = '\0';
           name = vch->name;
           continue;
@@ -897,7 +897,7 @@ void do_pmote(CHAR_DATA *ch, char *argument) {
       }
 
       matches = 0;
-      strcat(temp, last);
+      strncat(temp, last, sizeof(temp) - strlen(temp) - 1);
       strncat(temp, letter, 1);
       last[0] = '\0';
       name = vch->name;

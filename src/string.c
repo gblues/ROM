@@ -79,8 +79,8 @@ char *string_replace(char *orig, char *old, char *new) {
   if (strstr(orig, old) != NULL) {
     i = strlen(orig) - strlen(strstr(orig, old));
     xbuf[i] = '\0';
-    strcat(xbuf, new);
-    strcat(xbuf, &orig[i + strlen(old)]);
+    strncat(xbuf, new, sizeof(xbuf) - strlen(xbuf) - 1);
+    strncat(xbuf, &orig[i + strlen(old)], sizeof(xbuf) - strlen(xbuf) - 1);
     free_string(orig);
   }
 
@@ -181,8 +181,8 @@ void string_add(CHAR_DATA *ch, char *argument) {
    */
   smash_tilde(argument);
 
-  strcat(buf, argument);
-  strcat(buf, "\n\r");
+  strncat(buf, argument, sizeof(buf) - strlen(buf) - 1);
+  strncat(buf, "\n\r", sizeof(buf) - strlen(buf) - 1);
   free_string(*ch->desc->pString);
   *ch->desc->pString = str_dup(buf);
   return;
@@ -290,15 +290,15 @@ char *format_string(char *oldstring /*, bool fSpace */) {
     }
     if (i) {
       *(rdesc + i) = 0;
-      strcat(xbuf, rdesc);
-      strcat(xbuf, "\n\r");
+      strncat(xbuf, rdesc, sizeof(xbuf) - strlen(xbuf) - 1);
+      strncat(xbuf, "\n\r", sizeof(xbuf) - strlen(xbuf) - 1);
       rdesc += i + 1;
       while (*rdesc == ' ') rdesc++;
     } else {
       bug("No spaces", 0);
       *(rdesc + 75) = 0;
-      strcat(xbuf, rdesc);
-      strcat(xbuf, "-\n\r");
+      strncat(xbuf, rdesc, sizeof(xbuf) - strlen(xbuf) - 1);
+      strncat(xbuf, "-\n\r", sizeof(xbuf) - strlen(xbuf) - 1);
       rdesc += 76;
     }
   }
@@ -306,8 +306,8 @@ char *format_string(char *oldstring /*, bool fSpace */) {
          (*(rdesc + i) == ' ' || *(rdesc + i) == '\n' || *(rdesc + i) == '\r'))
     i--;
   *(rdesc + i + 1) = 0;
-  strcat(xbuf, rdesc);
-  if (xbuf[strlen(xbuf) - 2] != '\n') strcat(xbuf, "\n\r");
+  strncat(xbuf, rdesc, sizeof(xbuf) - strlen(xbuf) - 1);
+  if (xbuf[strlen(xbuf) - 2] != '\n') strncat(xbuf, "\n\r", sizeof(xbuf) - strlen(xbuf) - 1);
 
   free_string(oldstring);
   return (str_dup(xbuf));
