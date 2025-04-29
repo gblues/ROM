@@ -2430,32 +2430,32 @@ char *affect_bit_name(int vector) {
   unsigned offset = 0;
 
   buf[0] = '\0';
-  if (vector & AFF_BLIND) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_BLIND], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_BLIND]) - 2; }
-  if (vector & AFF_INVISIBLE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_INVISIBLE], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_INVISIBLE]) - 2; }
-  if (vector & AFF_DETECT_EVIL) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_EVIL], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_EVIL]) - 2; }
-  if (vector & AFF_DETECT_GOOD) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_GOOD], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_GOOD]) - 2; }
-  if (vector & AFF_DETECT_INVIS) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_INVIS], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_INVIS]) - 2; }
-  if (vector & AFF_DETECT_MAGIC) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_MAGIC], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_MAGIC]) - 2; }
-  if (vector & AFF_DETECT_HIDDEN) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_HIDDEN], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_HIDDEN]) - 2; }
-  if (vector & AFF_SANCTUARY) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SANCTUARY], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SANCTUARY]) - 2; }
-  if (vector & AFF_FAERIE_FIRE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_FAERIE_FIRE], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_FAERIE_FIRE]) - 2; }
-  if (vector & AFF_INFRARED) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_INFRARED], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_INFRARED]) - 2; }
-  if (vector & AFF_CURSE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_CURSE], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_CURSE]) - 2; }
-  if (vector & AFF_POISON) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_POISON], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_POISON]) - 2; }
-  if (vector & AFF_PROTECT_EVIL) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_EVIL], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_EVIL]) - 2; }
-  if (vector & AFF_PROTECT_GOOD) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_GOOD], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_GOOD]) - 2; }
-  if (vector & AFF_SLEEP) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SLEEP], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SLEEP]) - 2; }
-  if (vector & AFF_SNEAK) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SNEAK], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SNEAK]) - 2; }
-  if (vector & AFF_HIDE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_HIDE], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_HIDE]) - 2; }
-  if (vector & AFF_CHARM) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_CHARM], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_CHARM]) - 2; }
-  if (vector & AFF_FLYING) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_FLYING], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_FLYING]) - 2; }
-  if (vector & AFF_PASS_DOOR) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PASS_DOOR], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PASS_DOOR]) - 2; }
-  if (vector & AFF_BERSERK) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_BERSERK], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_BERSERK]) - 2; }
-  if (vector & AFF_CALM) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_CALM], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_CALM]) - 2; }
-  if (vector & AFF_HASTE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_HASTE], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_HASTE]) - 2; }
-  if (vector & AFF_SLOW) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SLOW], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SLOW]) - 2; }
-  if (vector & AFF_PLAGUE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PLAGUE], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PLAGUE]) - 2; }
-  if (vector & AFF_DARK_VISION) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DARK_VISION], sizeof(buf) - offset); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DARK_VISION]) - 2; }
+  if (vector & AFF_BLIND) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_BLIND], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_BLIND]) - 2; }
+  if (vector & AFF_INVISIBLE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_INVISIBLE], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_INVISIBLE]) - 2; }
+  if (vector & AFF_DETECT_EVIL) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_EVIL], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_EVIL]) - 2; }
+  if (vector & AFF_DETECT_GOOD) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_GOOD], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_GOOD]) - 2; }
+  if (vector & AFF_DETECT_INVIS) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_INVIS], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_INVIS]) - 2; }
+  if (vector & AFF_DETECT_MAGIC) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_MAGIC], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_MAGIC]) - 2; }
+  if (vector & AFF_DETECT_HIDDEN) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_HIDDEN], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DETECT_HIDDEN]) - 2; }
+  if (vector & AFF_SANCTUARY) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SANCTUARY], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SANCTUARY]) - 2; }
+  if (vector & AFF_FAERIE_FIRE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_FAERIE_FIRE], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_FAERIE_FIRE]) - 2; }
+  if (vector & AFF_INFRARED) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_INFRARED], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_INFRARED]) - 2; }
+  if (vector & AFF_CURSE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_CURSE], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_CURSE]) - 2; }
+  if (vector & AFF_POISON) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_POISON], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_POISON]) - 2; }
+  if (vector & AFF_PROTECT_EVIL) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_EVIL], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_EVIL]) - 2; }
+  if (vector & AFF_PROTECT_GOOD) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_GOOD], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PROTECT_GOOD]) - 2; }
+  if (vector & AFF_SLEEP) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SLEEP], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SLEEP]) - 2; }
+  if (vector & AFF_SNEAK) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SNEAK], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SNEAK]) - 2; }
+  if (vector & AFF_HIDE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_HIDE], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_HIDE]) - 2; }
+  if (vector & AFF_CHARM) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_CHARM], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_CHARM]) - 2; }
+  if (vector & AFF_FLYING) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_FLYING], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_FLYING]) - 2; }
+  if (vector & AFF_PASS_DOOR) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PASS_DOOR], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PASS_DOOR]) - 2; }
+  if (vector & AFF_BERSERK) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_BERSERK], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_BERSERK]) - 2; }
+  if (vector & AFF_CALM) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_CALM], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_CALM]) - 2; }
+  if (vector & AFF_HASTE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_HASTE], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_HASTE]) - 2; }
+  if (vector & AFF_SLOW) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_SLOW], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_SLOW]) - 2; }
+  if (vector & AFF_PLAGUE) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_PLAGUE], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_PLAGUE]) - 2; }
+  if (vector & AFF_DARK_VISION) { strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_DARK_VISION], sizeof(buf) - offset - 1); offset += sizeof(AFFECT_BIT_NAMES[AFF_BIT_NAME_DARK_VISION]) - 2; }
   return (buf[0] != '\0') ? buf + 1 : strncat(buf, AFFECT_BIT_NAMES[AFF_BIT_NAME_NONE], sizeof(buf)-1);
 }
 
@@ -2515,27 +2515,27 @@ char *extra_bit_name(int extra_flags) {
   unsigned offset = 0;
 
   buf[0] = '\0';
-  if (extra_flags & ITEM_GLOW) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_GLOW], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_GLOW]) - 2; }
-  if (extra_flags & ITEM_HUM) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_HUM], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_HUM]) - 2; }
-  if (extra_flags & ITEM_DARK) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_DARK], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_DARK]) - 2; }
-  if (extra_flags & ITEM_LOCK) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_LOCK], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_LOCK]) - 2; }
-  if (extra_flags & ITEM_EVIL) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_EVIL], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_EVIL]) - 2; }
-  if (extra_flags & ITEM_INVIS) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVIS], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVIS]) - 2; }
-  if (extra_flags & ITEM_MAGIC) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_MAGIC], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_MAGIC]) - 2; }
-  if (extra_flags & ITEM_NODROP) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NODROP], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NODROP]) - 2; }
-  if (extra_flags & ITEM_BLESS) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BLESS], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BLESS]) - 2; }
-  if (extra_flags & ITEM_ANTI_GOOD) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_GOOD], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_GOOD]) - 2; }
-  if (extra_flags & ITEM_ANTI_EVIL) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_EVIL], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_EVIL]) - 2; }
-  if (extra_flags & ITEM_ANTI_NEUTRAL) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_NEUTRAL], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_NEUTRAL]) - 2; }
-  if (extra_flags & ITEM_NOREMOVE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOREMOVE], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOREMOVE]) - 2; }
-  if (extra_flags & ITEM_INVENTORY) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVENTORY], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVENTORY]) - 2; }
-  if (extra_flags & ITEM_NOPURGE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOPURGE], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOPURGE]) - 2; }
-  if (extra_flags & ITEM_VIS_DEATH) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_VIS_DEATH], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_VIS_DEATH]) - 2; }
-  if (extra_flags & ITEM_ROT_DEATH) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ROT_DEATH], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ROT_DEATH]) - 2; }
-  if (extra_flags & ITEM_NOLOCATE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOLOCATE], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOLOCATE]) - 2; }
-  if (extra_flags & ITEM_SELL_EXTRACT) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_SELL_EXTRACT], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_SELL_EXTRACT]) - 2; }
-  if (extra_flags & ITEM_BURN_PROOF) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BURN_PROOF], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BURN_PROOF]) - 2; }
-  if (extra_flags & ITEM_NOUNCURSE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOUNCURSE], sizeof(buf) - offset); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOUNCURSE]) - 2; }
+  if (extra_flags & ITEM_GLOW) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_GLOW], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_GLOW]) - 2; }
+  if (extra_flags & ITEM_HUM) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_HUM], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_HUM]) - 2; }
+  if (extra_flags & ITEM_DARK) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_DARK], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_DARK]) - 2; }
+  if (extra_flags & ITEM_LOCK) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_LOCK], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_LOCK]) - 2; }
+  if (extra_flags & ITEM_EVIL) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_EVIL], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_EVIL]) - 2; }
+  if (extra_flags & ITEM_INVIS) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVIS], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVIS]) - 2; }
+  if (extra_flags & ITEM_MAGIC) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_MAGIC], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_MAGIC]) - 2; }
+  if (extra_flags & ITEM_NODROP) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NODROP], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NODROP]) - 2; }
+  if (extra_flags & ITEM_BLESS) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BLESS], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BLESS]) - 2; }
+  if (extra_flags & ITEM_ANTI_GOOD) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_GOOD], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_GOOD]) - 2; }
+  if (extra_flags & ITEM_ANTI_EVIL) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_EVIL], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_EVIL]) - 2; }
+  if (extra_flags & ITEM_ANTI_NEUTRAL) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_NEUTRAL], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ANTI_NEUTRAL]) - 2; }
+  if (extra_flags & ITEM_NOREMOVE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOREMOVE], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOREMOVE]) - 2; }
+  if (extra_flags & ITEM_INVENTORY) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVENTORY], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_INVENTORY]) - 2; }
+  if (extra_flags & ITEM_NOPURGE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOPURGE], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOPURGE]) - 2; }
+  if (extra_flags & ITEM_VIS_DEATH) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_VIS_DEATH], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_VIS_DEATH]) - 2; }
+  if (extra_flags & ITEM_ROT_DEATH) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ROT_DEATH], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_ROT_DEATH]) - 2; }
+  if (extra_flags & ITEM_NOLOCATE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOLOCATE], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOLOCATE]) - 2; }
+  if (extra_flags & ITEM_SELL_EXTRACT) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_SELL_EXTRACT], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_SELL_EXTRACT]) - 2; }
+  if (extra_flags & ITEM_BURN_PROOF) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BURN_PROOF], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_BURN_PROOF]) - 2; }
+  if (extra_flags & ITEM_NOUNCURSE) { strncat(buf, EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOUNCURSE], sizeof(buf) - offset - 1); offset += sizeof(EXTRA_BIT_NAMES[EXTRA_BIT_NAME_NOUNCURSE]) - 2; }
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
 
@@ -2623,41 +2623,41 @@ char *act_bit_name(int act_flags) {
   buf[0] = '\0';
 
   if (IS_SET(act_flags, ACT_IS_NPC)) {
-    strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_IS_NPC], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_IS_NPC]) - 2;
-    if (act_flags & ACT_SENTINEL) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_SENTINEL], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_SENTINEL]) - 2; }
-    if (act_flags & ACT_SCAVENGER) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_SCAVENGER], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_SCAVENGER]) - 2; }
-    if (act_flags & ACT_AGGRESSIVE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_AGGRESSIVE], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_AGGRESSIVE]) - 2; }
-    if (act_flags & ACT_STAY_AREA) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_STAY_AREA], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_STAY_AREA]) - 2; }
-    if (act_flags & ACT_WIMPY) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_WIMPY], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_WIMPY]) - 2; }
-    if (act_flags & ACT_PET) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_PET], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_PET]) - 2; }
-    if (act_flags & ACT_TRAIN) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_TRAIN], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_TRAIN]) - 2; }
-    if (act_flags & ACT_PRACTICE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_PRACTICE], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_PRACTICE]) - 2; }
-    if (act_flags & ACT_UNDEAD) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_UNDEAD], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_UNDEAD]) - 2; }
-    if (act_flags & ACT_CLERIC) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_CLERIC], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_CLERIC]) - 2; }
-    if (act_flags & ACT_MAGE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_MAGE], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_MAGE]) - 2; }
-    if (act_flags & ACT_THIEF) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_THIEF], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_THIEF]) - 2; }
-    if (act_flags & ACT_WARRIOR) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_WARRIOR], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_WARRIOR]) - 2; }
-    if (act_flags & ACT_NOALIGN) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_NOALIGN], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_NOALIGN]) - 2; }
-    if (act_flags & ACT_NOPURGE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_NOPURGE], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_NOPURGE]) - 2; }
-    if (act_flags & ACT_IS_HEALER) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_IS_HEALER], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_IS_HEALER]) - 2; }
-    if (act_flags & ACT_IS_CHANGER) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_IS_CHANGER], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_IS_CHANGER]) - 2; }
-    if (act_flags & ACT_GAIN) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_GAIN], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_GAIN]) - 2; }
-    if (act_flags & ACT_UPDATE_ALWAYS) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_UPDATE_ALWAYS], sizeof(buf) - offset); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_UPDATE_ALWAYS]) - 2; }
+    strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_IS_NPC], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_IS_NPC]) - 2;
+    if (act_flags & ACT_SENTINEL) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_SENTINEL], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_SENTINEL]) - 2; }
+    if (act_flags & ACT_SCAVENGER) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_SCAVENGER], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_SCAVENGER]) - 2; }
+    if (act_flags & ACT_AGGRESSIVE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_AGGRESSIVE], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_AGGRESSIVE]) - 2; }
+    if (act_flags & ACT_STAY_AREA) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_STAY_AREA], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_STAY_AREA]) - 2; }
+    if (act_flags & ACT_WIMPY) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_WIMPY], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_WIMPY]) - 2; }
+    if (act_flags & ACT_PET) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_PET], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_PET]) - 2; }
+    if (act_flags & ACT_TRAIN) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_TRAIN], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_TRAIN]) - 2; }
+    if (act_flags & ACT_PRACTICE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_PRACTICE], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_PRACTICE]) - 2; }
+    if (act_flags & ACT_UNDEAD) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_UNDEAD], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_UNDEAD]) - 2; }
+    if (act_flags & ACT_CLERIC) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_CLERIC], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_CLERIC]) - 2; }
+    if (act_flags & ACT_MAGE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_MAGE], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_MAGE]) - 2; }
+    if (act_flags & ACT_THIEF) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_THIEF], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_THIEF]) - 2; }
+    if (act_flags & ACT_WARRIOR) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_WARRIOR], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_WARRIOR]) - 2; }
+    if (act_flags & ACT_NOALIGN) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_NOALIGN], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_NOALIGN]) - 2; }
+    if (act_flags & ACT_NOPURGE) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_NOPURGE], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_NOPURGE]) - 2; }
+    if (act_flags & ACT_IS_HEALER) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_IS_HEALER], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_IS_HEALER]) - 2; }
+    if (act_flags & ACT_IS_CHANGER) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_IS_CHANGER], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_IS_CHANGER]) - 2; }
+    if (act_flags & ACT_GAIN) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_GAIN], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_GAIN]) - 2; }
+    if (act_flags & ACT_UPDATE_ALWAYS) { strncat(buf, ACT_BIT_NAMES[ACT_BIT_NAME_UPDATE_ALWAYS], sizeof(buf) - offset - 1); offset += sizeof(ACT_BIT_NAMES[ACT_BIT_NAME_UPDATE_ALWAYS]) - 2; }
   } else {
-    strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_PLAYER], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_PLAYER]) - 2;
-    if (act_flags & PLR_AUTOASSIST) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOASSIST], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOASSIST]) - 2; }
-    if (act_flags & PLR_AUTOEXIT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOEXIT], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOEXIT]) - 2; }
-    if (act_flags & PLR_AUTOLOOT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOLOOT], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOLOOT]) - 2; }
-    if (act_flags & PLR_AUTOSAC) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSAC], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSAC]) - 2; }
-    if (act_flags & PLR_AUTOGOLD) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOGOLD], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOGOLD]) - 2; }
-    if (act_flags & PLR_AUTOSPLIT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSPLIT], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSPLIT]) - 2; }
-    if (act_flags & PLR_HOLYLIGHT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_HOLYLIGHT], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_HOLYLIGHT]) - 2; }
-    if (act_flags & PLR_CANLOOT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_CANLOOT], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_CANLOOT]) - 2; }
-    if (act_flags & PLR_NOSUMMON) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_NOSUMMON], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_NOSUMMON]) - 2; }
-    if (act_flags & PLR_NOFOLLOW) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_NOFOLLOW], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_NOFOLLOW]) - 2; }
-    if (act_flags & PLR_FREEZE) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_FREEZE], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_FREEZE]) - 2; }
-    if (act_flags & PLR_THIEF) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_THIEF], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_THIEF]) - 2; }
-    if (act_flags & PLR_KILLER) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_KILLER], sizeof(buf) - offset); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_KILLER]) - 2; }
+    strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_PLAYER], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_PLAYER]) - 2;
+    if (act_flags & PLR_AUTOASSIST) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOASSIST], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOASSIST]) - 2; }
+    if (act_flags & PLR_AUTOEXIT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOEXIT], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOEXIT]) - 2; }
+    if (act_flags & PLR_AUTOLOOT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOLOOT], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOLOOT]) - 2; }
+    if (act_flags & PLR_AUTOSAC) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSAC], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSAC]) - 2; }
+    if (act_flags & PLR_AUTOGOLD) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOGOLD], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOGOLD]) - 2; }
+    if (act_flags & PLR_AUTOSPLIT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSPLIT], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_AUTOSPLIT]) - 2; }
+    if (act_flags & PLR_HOLYLIGHT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_HOLYLIGHT], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_HOLYLIGHT]) - 2; }
+    if (act_flags & PLR_CANLOOT) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_CANLOOT], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_CANLOOT]) - 2; }
+    if (act_flags & PLR_NOSUMMON) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_NOSUMMON], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_NOSUMMON]) - 2; }
+    if (act_flags & PLR_NOFOLLOW) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_NOFOLLOW], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_NOFOLLOW]) - 2; }
+    if (act_flags & PLR_FREEZE) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_FREEZE], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_FREEZE]) - 2; }
+    if (act_flags & PLR_THIEF) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_THIEF], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_THIEF]) - 2; }
+    if (act_flags & PLR_KILLER) { strncat(buf, PLAYER_BIT_NAMES[PLR_BIT_NAME_KILLER], sizeof(buf) - offset - 1); offset += sizeof(PLAYER_BIT_NAMES[PLR_BIT_NAME_KILLER]) - 2; }
   }
   return buf+1;
 }
@@ -2704,22 +2704,22 @@ char *comm_bit_name(int comm_flags) {
 
   buf[0] = '\0';
 
-  if (comm_flags & COMM_QUIET) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_QUIET], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_QUIET]) - 2; }
-  if (comm_flags & COMM_DEAF) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_DEAF], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_DEAF]) - 2; }
-  if (comm_flags & COMM_NOWIZ) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOWIZ], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOWIZ]) - 2; }
-  if (comm_flags & COMM_NOAUCTION) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOAUCTION], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOAUCTION]) - 2; }
-  if (comm_flags & COMM_NOGOSSIP) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOGOSSIP], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOGOSSIP]) - 2; }
-  if (comm_flags & COMM_NOQUESTION) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOQUESTION], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOQUESTION]) - 2; }
-  if (comm_flags & COMM_NOMUSIC) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOMUSIC], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOMUSIC]) - 2; }
-  if (comm_flags & COMM_NOQUOTE) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOQUOTE], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOQUOTE]) - 2; }
-  if (comm_flags & COMM_COMPACT) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_COMPACT], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_COMPACT]) - 2; }
-  if (comm_flags & COMM_BRIEF) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_BRIEF], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_BRIEF]) - 2; }
-  if (comm_flags & COMM_PROMPT) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_PROMPT], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_PROMPT]) - 2; }
-  if (comm_flags & COMM_COMBINE) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_COMBINE], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_COMBINE]) - 2; }
-  if (comm_flags & COMM_NOEMOTE) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOEMOTE], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOEMOTE]) - 2; }
-  if (comm_flags & COMM_NOSHOUT) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOSHOUT], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOSHOUT]) - 2; }
-  if (comm_flags & COMM_NOTELL) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOTELL], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOTELL]) - 2; }
-  if (comm_flags & COMM_NOCHANNELS) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOCHANNELS], sizeof(buf) - offset); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOCHANNELS]) - 2; }
+  if (comm_flags & COMM_QUIET) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_QUIET], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_QUIET]) - 2; }
+  if (comm_flags & COMM_DEAF) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_DEAF], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_DEAF]) - 2; }
+  if (comm_flags & COMM_NOWIZ) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOWIZ], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOWIZ]) - 2; }
+  if (comm_flags & COMM_NOAUCTION) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOAUCTION], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOAUCTION]) - 2; }
+  if (comm_flags & COMM_NOGOSSIP) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOGOSSIP], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOGOSSIP]) - 2; }
+  if (comm_flags & COMM_NOQUESTION) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOQUESTION], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOQUESTION]) - 2; }
+  if (comm_flags & COMM_NOMUSIC) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOMUSIC], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOMUSIC]) - 2; }
+  if (comm_flags & COMM_NOQUOTE) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOQUOTE], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOQUOTE]) - 2; }
+  if (comm_flags & COMM_COMPACT) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_COMPACT], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_COMPACT]) - 2; }
+  if (comm_flags & COMM_BRIEF) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_BRIEF], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_BRIEF]) - 2; }
+  if (comm_flags & COMM_PROMPT) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_PROMPT], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_PROMPT]) - 2; }
+  if (comm_flags & COMM_COMBINE) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_COMBINE], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_COMBINE]) - 2; }
+  if (comm_flags & COMM_NOEMOTE) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOEMOTE], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOEMOTE]) - 2; }
+  if (comm_flags & COMM_NOSHOUT) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOSHOUT], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOSHOUT]) - 2; }
+  if (comm_flags & COMM_NOTELL) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOTELL], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOTELL]) - 2; }
+  if (comm_flags & COMM_NOCHANNELS) { strncat(buf, COMM_BIT_NAMES[COMM_BIT_NAME_NOCHANNELS], sizeof(buf) - offset - 1); offset += sizeof(COMM_BIT_NAMES[COMM_BIT_NAME_NOCHANNELS]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
@@ -2781,28 +2781,28 @@ char *imm_bit_name(int imm_flags) {
 
   buf[0] = '\0';
 
-  if (imm_flags & IMM_SUMMON) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_SUMMON], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_SUMMON]) - 2; }
-  if (imm_flags & IMM_CHARM) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_CHARM], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_CHARM]) - 2; }
-  if (imm_flags & IMM_MAGIC) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_MAGIC], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_MAGIC]) - 2; }
-  if (imm_flags & IMM_WEAPON) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_WEAPON], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_WEAPON]) - 2; }
-  if (imm_flags & IMM_BASH) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_BASH], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_BASH]) - 2; }
-  if (imm_flags & IMM_PIERCE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_PIERCE], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_PIERCE]) - 2; }
-  if (imm_flags & IMM_SLASH) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_SLASH], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_SLASH]) - 2; }
-  if (imm_flags & IMM_FIRE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_FIRE], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_FIRE]) - 2; }
-  if (imm_flags & IMM_COLD) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_COLD], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_COLD]) - 2; }
-  if (imm_flags & IMM_LIGHTNING) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_LIGHTNING], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_LIGHTNING]) - 2; }
-  if (imm_flags & IMM_ACID) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_ACID], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_ACID]) - 2; }
-  if (imm_flags & IMM_POISON) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_POISON], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_POISON]) - 2; }
-  if (imm_flags & IMM_NEGATIVE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_NEGATIVE], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_NEGATIVE]) - 2; }
-  if (imm_flags & IMM_HOLY) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_HOLY], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_HOLY]) - 2; }
-  if (imm_flags & IMM_ENERGY) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_ENERGY], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_ENERGY]) - 2; }
-  if (imm_flags & IMM_MENTAL) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_MENTAL], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_MENTAL]) - 2; }
-  if (imm_flags & IMM_DISEASE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_DISEASE], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_DISEASE]) - 2; }
-  if (imm_flags & IMM_DROWNING) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_DROWNING], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_DROWNING]) - 2; }
-  if (imm_flags & IMM_LIGHT) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_LIGHT], sizeof(buf) - offset); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_LIGHT]) - 2; }
-  if (imm_flags & VULN_IRON) { strncat(buf, VULN_BIT_NAMES[VULN_BIT_NAME_IRON], sizeof(buf) - offset); offset += sizeof(VULN_BIT_NAMES[VULN_BIT_NAME_IRON]) - 2; }
-  if (imm_flags & VULN_WOOD) { strncat(buf, VULN_BIT_NAMES[VULN_BIT_NAME_WOOD], sizeof(buf) - offset); offset += sizeof(VULN_BIT_NAMES[VULN_BIT_NAME_WOOD]) - 2; }
-  if (imm_flags & VULN_SILVER) { strncat(buf, VULN_BIT_NAMES[VULN_BIT_NAME_SILVER], sizeof(buf) - offset); offset += sizeof(VULN_BIT_NAMES[VULN_BIT_NAME_SILVER]) - 2; }
+  if (imm_flags & IMM_SUMMON) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_SUMMON], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_SUMMON]) - 2; }
+  if (imm_flags & IMM_CHARM) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_CHARM], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_CHARM]) - 2; }
+  if (imm_flags & IMM_MAGIC) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_MAGIC], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_MAGIC]) - 2; }
+  if (imm_flags & IMM_WEAPON) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_WEAPON], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_WEAPON]) - 2; }
+  if (imm_flags & IMM_BASH) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_BASH], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_BASH]) - 2; }
+  if (imm_flags & IMM_PIERCE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_PIERCE], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_PIERCE]) - 2; }
+  if (imm_flags & IMM_SLASH) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_SLASH], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_SLASH]) - 2; }
+  if (imm_flags & IMM_FIRE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_FIRE], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_FIRE]) - 2; }
+  if (imm_flags & IMM_COLD) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_COLD], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_COLD]) - 2; }
+  if (imm_flags & IMM_LIGHTNING) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_LIGHTNING], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_LIGHTNING]) - 2; }
+  if (imm_flags & IMM_ACID) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_ACID], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_ACID]) - 2; }
+  if (imm_flags & IMM_POISON) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_POISON], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_POISON]) - 2; }
+  if (imm_flags & IMM_NEGATIVE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_NEGATIVE], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_NEGATIVE]) - 2; }
+  if (imm_flags & IMM_HOLY) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_HOLY], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_HOLY]) - 2; }
+  if (imm_flags & IMM_ENERGY) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_ENERGY], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_ENERGY]) - 2; }
+  if (imm_flags & IMM_MENTAL) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_MENTAL], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_MENTAL]) - 2; }
+  if (imm_flags & IMM_DISEASE) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_DISEASE], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_DISEASE]) - 2; }
+  if (imm_flags & IMM_DROWNING) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_DROWNING], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_DROWNING]) - 2; }
+  if (imm_flags & IMM_LIGHT) { strncat(buf, IMM_BIT_NAMES[IMM_BIT_NAME_LIGHT], sizeof(buf) - offset - 1); offset += sizeof(IMM_BIT_NAMES[IMM_BIT_NAME_LIGHT]) - 2; }
+  if (imm_flags & VULN_IRON) { strncat(buf, VULN_BIT_NAMES[VULN_BIT_NAME_IRON], sizeof(buf) - offset - 1); offset += sizeof(VULN_BIT_NAMES[VULN_BIT_NAME_IRON]) - 2; }
+  if (imm_flags & VULN_WOOD) { strncat(buf, VULN_BIT_NAMES[VULN_BIT_NAME_WOOD], sizeof(buf) - offset - 1); offset += sizeof(VULN_BIT_NAMES[VULN_BIT_NAME_WOOD]) - 2; }
+  if (imm_flags & VULN_SILVER) { strncat(buf, VULN_BIT_NAMES[VULN_BIT_NAME_SILVER], sizeof(buf) - offset - 1); offset += sizeof(VULN_BIT_NAMES[VULN_BIT_NAME_SILVER]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
@@ -2850,23 +2850,23 @@ char *wear_bit_name(int wear_flags) {
   unsigned offset = 0;
 
   buf[0] = '\0';
-  if (wear_flags & ITEM_TAKE) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_TAKE], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_TAKE]) - 2; }
-  if (wear_flags & ITEM_WEAR_FINGER) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FINGER], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FINGER]) - 2; }
-  if (wear_flags & ITEM_WEAR_NECK) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_NECK], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_NECK]) - 2; }
-  if (wear_flags & ITEM_WEAR_BODY) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_BODY], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_BODY]) - 2; }
-  if (wear_flags & ITEM_WEAR_HEAD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HEAD], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HEAD]) - 2; }
-  if (wear_flags & ITEM_WEAR_LEGS) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_LEGS], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_LEGS]) - 2; }
-  if (wear_flags & ITEM_WEAR_FEET) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FEET], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FEET]) - 2; }
-  if (wear_flags & ITEM_WEAR_HANDS) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HANDS], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HANDS]) - 2; }
-  if (wear_flags & ITEM_WEAR_ARMS) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ARMS], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ARMS]) - 2; }
-  if (wear_flags & ITEM_WEAR_SHIELD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_SHIELD], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_SHIELD]) - 2; }
-  if (wear_flags & ITEM_WEAR_ABOUT) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ABOUT], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ABOUT]) - 2; }
-  if (wear_flags & ITEM_WEAR_WAIST) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WAIST], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WAIST]) - 2; }
-  if (wear_flags & ITEM_WEAR_WRIST) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WRIST], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WRIST]) - 2; }
-  if (wear_flags & ITEM_WIELD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WIELD], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WIELD]) - 2; }
-  if (wear_flags & ITEM_HOLD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_HOLD], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_HOLD]) - 2; }
-  if (wear_flags & ITEM_NO_SAC) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_NO_SAC], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_NO_SAC]) - 2; }
-  if (wear_flags & ITEM_WEAR_FLOAT) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FLOAT], sizeof(buf) - offset); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FLOAT]) - 2; }
+  if (wear_flags & ITEM_TAKE) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_TAKE], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_TAKE]) - 2; }
+  if (wear_flags & ITEM_WEAR_FINGER) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FINGER], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FINGER]) - 2; }
+  if (wear_flags & ITEM_WEAR_NECK) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_NECK], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_NECK]) - 2; }
+  if (wear_flags & ITEM_WEAR_BODY) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_BODY], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_BODY]) - 2; }
+  if (wear_flags & ITEM_WEAR_HEAD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HEAD], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HEAD]) - 2; }
+  if (wear_flags & ITEM_WEAR_LEGS) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_LEGS], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_LEGS]) - 2; }
+  if (wear_flags & ITEM_WEAR_FEET) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FEET], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FEET]) - 2; }
+  if (wear_flags & ITEM_WEAR_HANDS) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HANDS], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_HANDS]) - 2; }
+  if (wear_flags & ITEM_WEAR_ARMS) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ARMS], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ARMS]) - 2; }
+  if (wear_flags & ITEM_WEAR_SHIELD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_SHIELD], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_SHIELD]) - 2; }
+  if (wear_flags & ITEM_WEAR_ABOUT) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ABOUT], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_ABOUT]) - 2; }
+  if (wear_flags & ITEM_WEAR_WAIST) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WAIST], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WAIST]) - 2; }
+  if (wear_flags & ITEM_WEAR_WRIST) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WRIST], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_WRIST]) - 2; }
+  if (wear_flags & ITEM_WIELD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WIELD], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WIELD]) - 2; }
+  if (wear_flags & ITEM_HOLD) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_HOLD], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_HOLD]) - 2; }
+  if (wear_flags & ITEM_NO_SAC) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_NO_SAC], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_NO_SAC]) - 2; }
+  if (wear_flags & ITEM_WEAR_FLOAT) { strncat(buf, WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FLOAT], sizeof(buf) - offset - 1); offset += sizeof(WEAR_BIT_NAMES[WEAR_BIT_NAME_WEAR_FLOAT]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
@@ -2932,32 +2932,32 @@ char *form_bit_name(int form_flags) {
   unsigned offset = 0;
 
   buf[0] = '\0';
-  if (form_flags & FORM_POISON) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_POISON], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_POISON]) - 2; }
-  else if (form_flags & FORM_EDIBLE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_EDIBLE], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_EDIBLE]) - 2; }
-  if (form_flags & FORM_MAGICAL) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_MAGICAL], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_MAGICAL]) - 2; }
-  if (form_flags & FORM_INSTANT_DECAY) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_INSTANT_DECAY], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_INSTANT_DECAY]) - 2; }
-  if (form_flags & FORM_OTHER) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_OTHER], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_OTHER]) - 2; }
-  if (form_flags & FORM_ANIMAL) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_ANIMAL], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_ANIMAL]) - 2; }
-  if (form_flags & FORM_SENTIENT) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_SENTIENT], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_SENTIENT]) - 2; }
-  if (form_flags & FORM_UNDEAD) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_UNDEAD], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_UNDEAD]) - 2; }
-  if (form_flags & FORM_CONSTRUCT) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_CONSTRUCT], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_CONSTRUCT]) - 2; }
-  if (form_flags & FORM_MIST) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_MIST], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_MIST]) - 2; }
-  if (form_flags & FORM_INTANGIBLE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_INTANGIBLE], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_INTANGIBLE]) - 2; }
-  if (form_flags & FORM_BIPED) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_BIPED], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_BIPED]) - 2; }
-  if (form_flags & FORM_CENTAUR) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_CENTAUR], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_CENTAUR]) - 2; }
-  if (form_flags & FORM_INSECT) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_INSECT], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_INSECT]) - 2; }
-  if (form_flags & FORM_SPIDER) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_SPIDER], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_SPIDER]) - 2; }
-  if (form_flags & FORM_CRUSTACEAN) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_CRUSTACEAN], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_CRUSTACEAN]) - 2; }
-  if (form_flags & FORM_WORM) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_WORM], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_WORM]) - 2; }
-  if (form_flags & FORM_BLOB) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_BLOB], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_BLOB]) - 2; }
-  if (form_flags & FORM_MAMMAL) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_MAMMAL], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_MAMMAL]) - 2; }
-  if (form_flags & FORM_BIRD) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_BIRD], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_BIRD]) - 2; }
-  if (form_flags & FORM_REPTILE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_REPTILE], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_REPTILE]) - 2; }
-  if (form_flags & FORM_SNAKE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_SNAKE], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_SNAKE]) - 2; }
-  if (form_flags & FORM_DRAGON) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_DRAGON], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_DRAGON]) - 2; }
-  if (form_flags & FORM_AMPHIBIAN) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_AMPHIBIAN], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_AMPHIBIAN]) - 2; }
-  if (form_flags & FORM_FISH) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_FISH], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_FISH]) - 2; }
-  if (form_flags & FORM_COLD_BLOOD) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_COLD_BLOOD], sizeof(buf) - offset); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_COLD_BLOOD]) - 2; }
+  if (form_flags & FORM_POISON) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_POISON], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_POISON]) - 2; }
+  else if (form_flags & FORM_EDIBLE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_EDIBLE], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_EDIBLE]) - 2; }
+  if (form_flags & FORM_MAGICAL) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_MAGICAL], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_MAGICAL]) - 2; }
+  if (form_flags & FORM_INSTANT_DECAY) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_INSTANT_DECAY], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_INSTANT_DECAY]) - 2; }
+  if (form_flags & FORM_OTHER) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_OTHER], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_OTHER]) - 2; }
+  if (form_flags & FORM_ANIMAL) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_ANIMAL], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_ANIMAL]) - 2; }
+  if (form_flags & FORM_SENTIENT) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_SENTIENT], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_SENTIENT]) - 2; }
+  if (form_flags & FORM_UNDEAD) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_UNDEAD], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_UNDEAD]) - 2; }
+  if (form_flags & FORM_CONSTRUCT) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_CONSTRUCT], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_CONSTRUCT]) - 2; }
+  if (form_flags & FORM_MIST) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_MIST], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_MIST]) - 2; }
+  if (form_flags & FORM_INTANGIBLE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_INTANGIBLE], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_INTANGIBLE]) - 2; }
+  if (form_flags & FORM_BIPED) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_BIPED], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_BIPED]) - 2; }
+  if (form_flags & FORM_CENTAUR) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_CENTAUR], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_CENTAUR]) - 2; }
+  if (form_flags & FORM_INSECT) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_INSECT], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_INSECT]) - 2; }
+  if (form_flags & FORM_SPIDER) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_SPIDER], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_SPIDER]) - 2; }
+  if (form_flags & FORM_CRUSTACEAN) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_CRUSTACEAN], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_CRUSTACEAN]) - 2; }
+  if (form_flags & FORM_WORM) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_WORM], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_WORM]) - 2; }
+  if (form_flags & FORM_BLOB) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_BLOB], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_BLOB]) - 2; }
+  if (form_flags & FORM_MAMMAL) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_MAMMAL], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_MAMMAL]) - 2; }
+  if (form_flags & FORM_BIRD) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_BIRD], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_BIRD]) - 2; }
+  if (form_flags & FORM_REPTILE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_REPTILE], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_REPTILE]) - 2; }
+  if (form_flags & FORM_SNAKE) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_SNAKE], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_SNAKE]) - 2; }
+  if (form_flags & FORM_DRAGON) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_DRAGON], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_DRAGON]) - 2; }
+  if (form_flags & FORM_AMPHIBIAN) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_AMPHIBIAN], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_AMPHIBIAN]) - 2; }
+  if (form_flags & FORM_FISH) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_FISH], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_FISH]) - 2; }
+  if (form_flags & FORM_COLD_BLOOD) { strncat(buf, FORM_BIT_NAMES[FORM_BIT_NAME_COLD_BLOOD], sizeof(buf) - offset - 1); offset += sizeof(FORM_BIT_NAMES[FORM_BIT_NAME_COLD_BLOOD]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
@@ -3013,27 +3013,27 @@ char *part_bit_name(int part_flags) {
   unsigned offset = 0;
 
   buf[0] = '\0';
-  if (part_flags & PART_HEAD) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HEAD], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HEAD]) - 2; }
-  if (part_flags & PART_ARMS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_ARMS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_ARMS]) - 2; }
-  if (part_flags & PART_LEGS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_LEGS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_LEGS]) - 2; }
-  if (part_flags & PART_HEART) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HEART], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HEART]) - 2; }
-  if (part_flags & PART_BRAINS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_BRAINS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_BRAINS]) - 2; }
-  if (part_flags & PART_GUTS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_GUTS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_GUTS]) - 2; }
-  if (part_flags & PART_HANDS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HANDS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HANDS]) - 2; }
-  if (part_flags & PART_FEET) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FEET], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FEET]) - 2; }
-  if (part_flags & PART_FINGERS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FINGERS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FINGERS]) - 2; }
-  if (part_flags & PART_EAR) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_EARS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_EARS]) - 2; }
-  if (part_flags & PART_EYE) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_EYES], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_EYES]) - 2; }
-  if (part_flags & PART_LONG_TONGUE) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_LONG_TONGUE], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_LONG_TONGUE]) - 2; }
-  if (part_flags & PART_EYESTALKS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_EYESTALKS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_EYESTALKS]) - 2; }
-  if (part_flags & PART_TENTACLES) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_TENTACLES], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_TENTACLES]) - 2; }
-  if (part_flags & PART_FINS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FINS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FINS]) - 2; }
-  if (part_flags & PART_WINGS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_WINGS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_WINGS]) - 2; }
-  if (part_flags & PART_TAIL) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_TAIL], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_TAIL]) - 2; }
-  if (part_flags & PART_CLAWS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_CLAWS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_CLAWS]) - 2; }
-  if (part_flags & PART_FANGS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FANGS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FANGS]) - 2; }
-  if (part_flags & PART_HORNS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HORNS], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HORNS]) - 2; }
-  if (part_flags & PART_SCALES) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_SCALES], sizeof(buf) - offset); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_SCALES]) - 2; }
+  if (part_flags & PART_HEAD) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HEAD], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HEAD]) - 2; }
+  if (part_flags & PART_ARMS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_ARMS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_ARMS]) - 2; }
+  if (part_flags & PART_LEGS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_LEGS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_LEGS]) - 2; }
+  if (part_flags & PART_HEART) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HEART], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HEART]) - 2; }
+  if (part_flags & PART_BRAINS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_BRAINS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_BRAINS]) - 2; }
+  if (part_flags & PART_GUTS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_GUTS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_GUTS]) - 2; }
+  if (part_flags & PART_HANDS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HANDS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HANDS]) - 2; }
+  if (part_flags & PART_FEET) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FEET], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FEET]) - 2; }
+  if (part_flags & PART_FINGERS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FINGERS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FINGERS]) - 2; }
+  if (part_flags & PART_EAR) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_EARS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_EARS]) - 2; }
+  if (part_flags & PART_EYE) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_EYES], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_EYES]) - 2; }
+  if (part_flags & PART_LONG_TONGUE) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_LONG_TONGUE], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_LONG_TONGUE]) - 2; }
+  if (part_flags & PART_EYESTALKS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_EYESTALKS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_EYESTALKS]) - 2; }
+  if (part_flags & PART_TENTACLES) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_TENTACLES], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_TENTACLES]) - 2; }
+  if (part_flags & PART_FINS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FINS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FINS]) - 2; }
+  if (part_flags & PART_WINGS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_WINGS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_WINGS]) - 2; }
+  if (part_flags & PART_TAIL) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_TAIL], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_TAIL]) - 2; }
+  if (part_flags & PART_CLAWS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_CLAWS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_CLAWS]) - 2; }
+  if (part_flags & PART_FANGS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_FANGS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_FANGS]) - 2; }
+  if (part_flags & PART_HORNS) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_HORNS], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_HORNS]) - 2; }
+  if (part_flags & PART_SCALES) { strncat(buf, PART_BIT_NAMES[PART_BIT_NAME_SCALES], sizeof(buf) - offset - 1); offset += sizeof(PART_BIT_NAMES[PART_BIT_NAME_SCALES]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
@@ -3063,14 +3063,14 @@ char *weapon_bit_name(int weapon_flags) {
   unsigned offset = 0;
 
   buf[0] = '\0';
-  if (weapon_flags & WEAPON_FLAMING) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FLAMING], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FLAMING]) - 2; }
-  if (weapon_flags & WEAPON_FROST) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FROST], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FROST]) - 2; }
-  if (weapon_flags & WEAPON_VAMPIRIC) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VAMPIRIC], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VAMPIRIC]) - 2; }
-  if (weapon_flags & WEAPON_SHARP) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHARP], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHARP]) - 2; }
-  if (weapon_flags & WEAPON_VORPAL) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VORPAL], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VORPAL]) - 2; }
-  if (weapon_flags & WEAPON_TWO_HANDS) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_TWO_HANDS], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_TWO_HANDS]) - 2; }
-  if (weapon_flags & WEAPON_SHOCKING) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHOCKING], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHOCKING]) - 2; }
-  if (weapon_flags & WEAPON_POISON) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_POISON], sizeof(buf) - offset); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_POISON]) - 2; }
+  if (weapon_flags & WEAPON_FLAMING) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FLAMING], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FLAMING]) - 2; }
+  if (weapon_flags & WEAPON_FROST) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FROST], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_FROST]) - 2; }
+  if (weapon_flags & WEAPON_VAMPIRIC) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VAMPIRIC], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VAMPIRIC]) - 2; }
+  if (weapon_flags & WEAPON_SHARP) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHARP], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHARP]) - 2; }
+  if (weapon_flags & WEAPON_VORPAL) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VORPAL], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_VORPAL]) - 2; }
+  if (weapon_flags & WEAPON_TWO_HANDS) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_TWO_HANDS], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_TWO_HANDS]) - 2; }
+  if (weapon_flags & WEAPON_SHOCKING) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHOCKING], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_SHOCKING]) - 2; }
+  if (weapon_flags & WEAPON_POISON) { strncat(buf, WEAPON_BIT_NAMES[WEAPON_BIT_NAME_POISON], sizeof(buf) - offset - 1); offset += sizeof(WEAPON_BIT_NAMES[WEAPON_BIT_NAME_POISON]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
@@ -3093,10 +3093,10 @@ char *cont_bit_name(int cont_flags) {
 
   buf[0] = '\0';
 
-  if (cont_flags & CONT_CLOSEABLE) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSEABLE], sizeof(buf) - offset); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSEABLE]) - 2; }
-  if (cont_flags & CONT_PICKPROOF) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_PICKPROOF], sizeof(buf) - offset); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_PICKPROOF]) - 2; }
-  if (cont_flags & CONT_CLOSED) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSED], sizeof(buf) - offset); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSED]) - 2; }
-  if (cont_flags & CONT_LOCKED) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_LOCKED], sizeof(buf) - offset); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_LOCKED]) - 2; }
+  if (cont_flags & CONT_CLOSEABLE) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSEABLE], sizeof(buf) - offset - 1); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSEABLE]) - 2; }
+  if (cont_flags & CONT_PICKPROOF) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_PICKPROOF], sizeof(buf) - offset - 1); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_PICKPROOF]) - 2; }
+  if (cont_flags & CONT_CLOSED) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSED], sizeof(buf) - offset - 1); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_CLOSED]) - 2; }
+  if (cont_flags & CONT_LOCKED) { strncat(buf, CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_LOCKED], sizeof(buf) - offset - 1); offset += sizeof(CONTAINER_BIT_NAMES[CONTAINER_BIT_NAME_LOCKED]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }
@@ -3157,27 +3157,27 @@ char *off_bit_name(int off_flags) {
 
   buf[0] = '\0';
 
-  if (off_flags & OFF_AREA_ATTACK) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_AREA_ATTACK], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_AREA_ATTACK]) - 2; }
-  if (off_flags & OFF_BACKSTAB) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_BACKSTAB], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_BACKSTAB]) - 2; }
-  if (off_flags & OFF_BASH) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_BASH], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_BASH]) - 2; }
-  if (off_flags & OFF_BERSERK) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_BERSERK], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_BERSERK]) - 2; }
-  if (off_flags & OFF_DISARM) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_DISARM], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_DISARM]) - 2; }
-  if (off_flags & OFF_DODGE) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_DODGE], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_DODGE]) - 2; }
-  if (off_flags & OFF_FADE) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_FADE], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_FADE]) - 2; }
-  if (off_flags & OFF_FAST) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_FAST], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_FAST]) - 2; }
-  if (off_flags & OFF_KICK) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK]) - 2; }
-  if (off_flags & OFF_KICK_DIRT) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK_DIRT], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK_DIRT]) - 2; }
-  if (off_flags & OFF_PARRY) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_PARRY], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_PARRY]) - 2; }
-  if (off_flags & OFF_RESCUE) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_RESCUE], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_RESCUE]) - 2; }
-  if (off_flags & OFF_TAIL) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_TAIL], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_TAIL]) - 2; }
-  if (off_flags & OFF_TRIP) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_TRIP], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_TRIP]) - 2; }
-  if (off_flags & OFF_CRUSH) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_CRUSH], sizeof(buf) - offset); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_CRUSH]) - 2; }
-  if (off_flags & ASSIST_ALL) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALL], sizeof(buf) - offset); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALL]) - 2; }
-  if (off_flags & ASSIST_ALIGN) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALIGN], sizeof(buf) - offset); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALIGN]) - 2; }
-  if (off_flags & ASSIST_RACE) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_RACE], sizeof(buf) - offset); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_RACE]) - 2; }
-  if (off_flags & ASSIST_PLAYERS) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_PLAYERS], sizeof(buf) - offset); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_PLAYERS]) - 2; }
-  if (off_flags & ASSIST_GUARD) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_GUARD], sizeof(buf) - offset); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_GUARD]) - 2; }
-  if (off_flags & ASSIST_VNUM) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_VNUM], sizeof(buf) - offset); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_VNUM]) - 2; }
+  if (off_flags & OFF_AREA_ATTACK) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_AREA_ATTACK], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_AREA_ATTACK]) - 2; }
+  if (off_flags & OFF_BACKSTAB) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_BACKSTAB], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_BACKSTAB]) - 2; }
+  if (off_flags & OFF_BASH) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_BASH], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_BASH]) - 2; }
+  if (off_flags & OFF_BERSERK) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_BERSERK], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_BERSERK]) - 2; }
+  if (off_flags & OFF_DISARM) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_DISARM], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_DISARM]) - 2; }
+  if (off_flags & OFF_DODGE) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_DODGE], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_DODGE]) - 2; }
+  if (off_flags & OFF_FADE) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_FADE], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_FADE]) - 2; }
+  if (off_flags & OFF_FAST) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_FAST], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_FAST]) - 2; }
+  if (off_flags & OFF_KICK) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK]) - 2; }
+  if (off_flags & OFF_KICK_DIRT) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK_DIRT], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_KICK_DIRT]) - 2; }
+  if (off_flags & OFF_PARRY) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_PARRY], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_PARRY]) - 2; }
+  if (off_flags & OFF_RESCUE) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_RESCUE], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_RESCUE]) - 2; }
+  if (off_flags & OFF_TAIL) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_TAIL], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_TAIL]) - 2; }
+  if (off_flags & OFF_TRIP) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_TRIP], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_TRIP]) - 2; }
+  if (off_flags & OFF_CRUSH) { strncat(buf, OFFENSE_BIT_NAMES[OFF_BIT_NAME_CRUSH], sizeof(buf) - offset - 1); offset += sizeof(OFFENSE_BIT_NAMES[OFF_BIT_NAME_CRUSH]) - 2; }
+  if (off_flags & ASSIST_ALL) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALL], sizeof(buf) - offset - 1); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALL]) - 2; }
+  if (off_flags & ASSIST_ALIGN) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALIGN], sizeof(buf) - offset - 1); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_ALIGN]) - 2; }
+  if (off_flags & ASSIST_RACE) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_RACE], sizeof(buf) - offset - 1); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_RACE]) - 2; }
+  if (off_flags & ASSIST_PLAYERS) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_PLAYERS], sizeof(buf) - offset - 1); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_PLAYERS]) - 2; }
+  if (off_flags & ASSIST_GUARD) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_GUARD], sizeof(buf) - offset - 1); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_GUARD]) - 2; }
+  if (off_flags & ASSIST_VNUM) { strncat(buf, ASSIST_BIT_NAMES[ASSIST_BIT_NAME_VNUM], sizeof(buf) - offset - 1); offset += sizeof(ASSIST_BIT_NAMES[ASSIST_BIT_NAME_VNUM]) - 2; }
 
   return (buf[0] != '\0') ? buf + 1 : "none";
 }

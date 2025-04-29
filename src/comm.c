@@ -52,6 +52,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 
 #include "interp.h"
 #include "merc.h"
@@ -436,16 +437,7 @@ void init_descriptor(int control) {
     perror("New_descriptor: getpeername");
     dnew->host = str_dup("(unknown)");
   } else {
-    /*
-     * Would be nice to use inet_ntoa here but it takes a struct arg,
-     * which ain't very compatible between gcc and system libraries.
-     */
-    int addr;
-
-    addr = ntohl(sock.sin_addr.s_addr);
-    snprintf(buf, sizeof(buf), "%d.%d.%d.%d", (addr >> 24) & 0xFF, (addr >> 16) & 0xFF,
-            (addr >> 8) & 0xFF, (addr) & 0xFF);
-    snprintf(log_buf, LOGBUF_SIZE, "Sock.sinaddr:  %s", buf);
+    snprintf(log_buf, LOGBUF_SIZE, "Sock.sinaddr:  %s", inet_ntoa(sock.sin_addr));
     log_string(log_buf);
     from =
         gethostbyaddr((char *)&sock.sin_addr, sizeof(sock.sin_addr), AF_INET);

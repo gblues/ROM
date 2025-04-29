@@ -283,15 +283,10 @@ void do_spells(CHAR_DATA *ch, char *argument) {
         snprintf(buf, sizeof(buf), "%-18s  %3d mana  ", skill_table[sn].name, mana);
       }
 
-      if (spell_list[level][0] == '\0')
-        snprintf(spell_list[level], sizeof(spell_list[level]), "\n\rLevel %2d: %s", level, buf);
-      else /* append */
-      {
-        if (++spell_columns[level] % 2 == 0) {
-          strncat(spell_list[level], "\n\r          ", sizeof(spell_list[level]) - strlen(spell_list[level]) - 1);
-        }
-        strncat(spell_list[level], buf, sizeof(spell_list[level]) - strlen(spell_list[level]) - 1);
+      if (++spell_columns[level] % 2 == 0) {
+        strncat(spell_list[level], "\n\r          ", sizeof(spell_list[level]) - strlen(spell_list[level]) - 1);
       }
+      strncat(spell_list[level], buf, sizeof(spell_list[level]) - strlen(spell_list[level]) - 1);
     }
   }
 
@@ -382,15 +377,10 @@ void do_skills(CHAR_DATA *ch, char *argument) {
         snprintf(buf, sizeof(buf), "%-18s %3d%%      ", skill_table[sn].name,
                 ch->pcdata->learned[sn]);
 
-      if (skill_list[level][0] == '\0')
-        snprintf(skill_list[level], sizeof(skill_list[level]), "\n\rLevel %2d: %s", level, buf);
-      else /* append */
-      {
-        if (++skill_columns[level] % 2 == 0) {
-          strncat(skill_list[level], "\n\r          ", sizeof(skill_list[level]) - strlen(skill_list[level]) - 1);
-        }
-        strncat(skill_list[level], buf, sizeof(skill_list[level]) - strlen(skill_list[level]) - 1);
+      if (++skill_columns[level] % 2 == 0) {
+        strncat(skill_list[level], "\n\r          ", sizeof(skill_list[level]) - strlen(skill_list[level]) - 1);
       }
+      strncat(skill_list[level], buf, sizeof(skill_list[level]) - strlen(skill_list[level]) - 1);
     }
   }
 
